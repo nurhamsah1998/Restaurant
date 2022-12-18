@@ -20,6 +20,7 @@ export const theme = {
     primary: '#2eb82e',
     secondary: 'yellow',
     typography: '#0d0d0d',
+    white: '#FFFF',
   },
 };
 export default function App({navigation}) {
