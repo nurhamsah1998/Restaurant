@@ -4,7 +4,6 @@ import {Text, Button} from 'react-native-paper';
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import MyTextField from '../../../Component/Element/MyTextField';
 
 function Index() {
   const {width} = Dimensions.get('window');
