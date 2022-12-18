@@ -1,53 +1,50 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeScreen from './Screen/HomeScreen/HomeScreen';
+import {
+  MD3LightTheme as DefaultTheme,
+  Provider as PaperProvider,
+} from 'react-native-paper';
+import SplashScreen from 'react-native-splash-screen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Dashboard from './Screen/Dashboard/Dashboard';
+import Login from './Screen/Auth/Login';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function SettingsScreen() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-function Account() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Account!</Text>
-    </View>
-  );
-}
+const Stack = createNativeStackNavigator();
+export const theme = {
+  ...DefaultTheme,
 
-const Tab = createBottomTabNavigator();
-
-export default function Home() {
-  const iconNavbar = [
-    {iconName: 'windows', name: 'Home'},
-    {iconName: 'setting', name: 'Settings'},
-    {iconName: 'user', name: 'Account'},
-  ];
-  const handleNavbar = ({route}) => ({
-    tabBarIcon: ({focused, color, size}) => {
-      let iconName;
-      const pick = iconNavbar.find(i => i?.name === route.name);
-      if (pick) {
-        iconName = focused ? pick.iconName : pick.iconName;
-      }
-      // You can return any component that you like here!
-      return <AntDesign name={iconName} size={size} color={color} />;
-    },
-    tabBarActiveTintColor: 'purple',
-    tabBarInactiveTintColor: 'gray',
-  });
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#2eb82e',
+    secondary: 'yellow',
+    typography: '#0d0d0d',
+  },
+};
+export default function App({navigation}) {
+  const queryClient = new QueryClient();
+  React.useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={handleNavbar}>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Account" component={Account} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Login"
+              options={{headerShown: false}}
+              component={Login}
+            />
+            <Stack.Screen
+              name="Dashboard"
+              component={Dashboard}
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </QueryClientProvider>
   );
 }
