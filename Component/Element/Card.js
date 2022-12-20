@@ -8,14 +8,14 @@ function Card({title, tag, price, location, review, isDivider, imgUrl}) {
       {isDivider ? <Divider /> : null}
       <View style={{marginVertical: 15}}>
         <View style={{flex: 1, height: 200}}>
-          <TouchableOpacity>
+          <View>
             <Image
               style={{width: '100%', height: '100%', borderRadius: 5}}
               source={{
                 uri: imgUrl,
               }}
             />
-          </TouchableOpacity>
+          </View>
         </View>
         <Text variant="titleLarge" style={{marginTop: 10}}>
           {title}

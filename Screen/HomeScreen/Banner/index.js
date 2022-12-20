@@ -25,66 +25,33 @@ function Index() {
     },
   ];
   return (
-    <View style={{flex: 1, position: 'relative'}}>
-      <View
-        style={{
-          position: 'absolute',
-          top: 10,
-          zIndex: 2,
-          left: 10,
-          right: 10,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flex: 1,
-        }}>
-        <Button
-          icon="cloud-search"
-          style={{
-            backgroundColor: '#fff',
-            height: 50,
-            flexDirection: 'row',
-            alignItems: 'center',
-            flex: 1,
-            marginRight: 20,
-            borderRadius: 5,
-            paddingHorizontal: 10,
-          }}>
-          <Text>Press Here</Text>
-        </Button>
-        <Button
-          style={{
-            width: 50,
-            height: 50,
-            backgroundColor: '#fff',
-            borderRadius: 5,
-          }}></Button>
-      </View>
-      <GestureHandlerRootView style={{flex: 1}}>
-        <Carousel
-          loop
-          width={width}
-          height={width / 1.5}
-          autoPlay={true}
-          data={data}
-          scrollAnimationDuration={5000}
-          onSnapToItem={index => console.log('current index:', index)}
-          renderItem={({index}) => (
-            <View
-              style={{
-                flex: 1,
-              }}>
-              <Image
-                style={{flex: 1}}
-                source={{
-                  uri: `${data[index]?.img}`,
-                }}
-              />
-            </View>
-          )}
-        />
-      </GestureHandlerRootView>
-    </View>
+    <GestureHandlerRootView>
+      <Carousel
+        loop
+        width={width}
+        height={width / 1.5}
+        autoPlay={true}
+        data={data}
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10],
+        }}
+        scrollAnimationDuration={1000}
+        // onSnapToItem={index => console.log('current index:', index)}
+        renderItem={({index}) => (
+          <View
+            style={{
+              flex: 1,
+            }}>
+            <Image
+              style={{flex: 1}}
+              source={{
+                uri: `${data[index]?.img}`,
+              }}
+            />
+          </View>
+        )}
+      />
+    </GestureHandlerRootView>
   );
 }
 
