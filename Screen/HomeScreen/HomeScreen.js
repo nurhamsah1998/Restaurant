@@ -69,6 +69,7 @@ function HomeScreen() {
           <Banner />
         </View>
         <View
+          onResponderGrant={e => console.log(e)}
           onMoveShouldSetResponderCapture={() => {
             setIsScroll(true);
           }}

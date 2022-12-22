@@ -1,21 +1,21 @@
 import React from 'react';
-import {Text, View, Button} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import HomeScreen from '../HomeScreen/HomeScreen';
-import Account from '../Account/Account';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
+import HomeScreen from '../HomeScreen/HomeScreen';
 import SettingsScreen from '../Setting/SettingsScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Account from '../Account/Account';
 
-const Tab = createBottomTabNavigator();
-
-function Dashboard({navigation}) {
+function DashboardRouteStack() {
+  const DashboardNavigationStackTabs = createBottomTabNavigator();
   const iconNavbar = [
     {iconName: 'home', name: 'Home'},
-    {iconName: 'setting', name: 'Settings'},
+    {iconName: 'setting', name: 'Setting'},
     {iconName: 'user', name: 'Account'},
   ];
   const handleNavbar = ({route}) => ({
+    headerShown: false,
     tabBarIcon: ({focused, color, size}) => {
       let iconName;
       const pick = iconNavbar.find(i => i?.name === route.name);
@@ -28,18 +28,21 @@ function Dashboard({navigation}) {
     tabBarActiveTintColor: 'purple',
     tabBarInactiveTintColor: 'gray',
   });
-
   return (
-    <Tab.Navigator screenOptions={handleNavbar}>
-      <Tab.Screen
+    <DashboardNavigationStackTabs.Navigator screenOptions={handleNavbar}>
+      <DashboardNavigationStackTabs.Screen name="Home" component={HomeScreen} />
+      <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}
-        name="Home"
-        component={HomeScreen}
+        name="Setting"
+        component={SettingsScreen}
       />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-      <Tab.Screen name="Account" component={Account} />
-    </Tab.Navigator>
+      <DashboardNavigationStackTabs.Screen
+        options={{headerShown: false}}
+        name="Account"
+        component={Account}
+      />
+    </DashboardNavigationStackTabs.Navigator>
   );
 }
 
-export default Dashboard;
+export default DashboardRouteStack;

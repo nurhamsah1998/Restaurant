@@ -22,24 +22,7 @@ const DismissKeyBoard = ({children}) => {
 };
 
 export default function Login({navigation}) {
-  const isFocused = useIsFocused();
-  const [token, setToken] = React.useState(0);
   const navigate = useNavigation();
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@storage_Key');
-      if (value !== null) {
-        navigate.navigate('Dashboard');
-      } else {
-        console.warn('TIDAK ADA');
-      }
-    } catch (e) {
-      console.warn('tidak');
-    }
-  };
-  React.useEffect(() => {
-    getData();
-  }, []);
   return (
     <DismissKeyBoard>
       <View
@@ -82,7 +65,7 @@ export default function Login({navigation}) {
                       values?.password?.includes('1')
                     ) {
                       const jsonValue = JSON.stringify(values);
-                      await AsyncStorage.setItem('@storage_Key', jsonValue);
+                      await AsyncStorage.setItem('@access_token', jsonValue);
                       navigate.navigate('Dashboard');
                     } else {
                       console.warn('Error');
