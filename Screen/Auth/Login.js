@@ -12,6 +12,8 @@ import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import MyTypography from '../../Component/Element/MyTypography';
 import MyTextField from '../../Component/Element/MyTextField';
+import {theme} from '../../App';
+import {Text} from 'react-native-paper';
 
 const DismissKeyBoard = ({children}) => {
   return (
@@ -30,7 +32,7 @@ export default function Login({navigation}) {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          marginHorizontal: 15,
+          backgroundColor: theme.colors.white,
         }}>
         <View style={{marginHorizontal: 15}}>
           <View style={{width: '100%'}}>
@@ -98,19 +100,37 @@ export default function Login({navigation}) {
                       size="large"
                       title="login"
                     />
+
                     <View
                       style={{
                         flexDirection: 'row',
-                        flexWrap: 'wrap',
-                        marginTop: 10,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginVertical: 20,
                       }}>
-                      <View>
-                        <MyTypography title="Does'nt have account? " />
-                      </View>
-                      <View>
-                        <MyTypography title="Register" />
-                      </View>
+                      <View
+                        style={{
+                          backgroundColor: theme.colors.divider,
+                          height: 1,
+                          width: '40%',
+                        }}
+                      />
+                      <Text style={{marginHorizontal: 10}}>Or</Text>
+                      <View
+                        style={{
+                          backgroundColor: theme.colors.divider,
+                          height: 1,
+                          width: '40%',
+                        }}
+                      />
                     </View>
+                    <MyButton
+                      onPress={handleSubmit}
+                      variant="contained"
+                      size="large"
+                      title="Register"
+                      bgColor="secondary"
+                    />
                   </View>
                 )}
               </Formik>

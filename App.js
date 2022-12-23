@@ -13,8 +13,10 @@ export const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#2eb82e',
-    secondary: 'yellow',
+    secondary: '#00b5e6',
     typography: '#0d0d0d',
+    greenTeal: '#00e673',
+    divider: '#d2d2d2',
     white: '#FFFF',
   },
 };

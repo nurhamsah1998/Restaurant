@@ -1,44 +1,57 @@
 import React from 'react';
 import {Button, Text} from 'react-native-paper';
+import {View, TouchableOpacity} from 'react-native';
+import {theme} from '../../App';
 
 function MyButton({
   variant = 'outlined',
   title = 'text here',
   size,
   sx,
+  bgColor = 'primary',
   ...props
 }) {
   /// this is func for pick variant size of button
-  function ButtonSizingVariant(params = 'small') {
+  function ButtonSizingVariant(bgColor) {
     const buttonSizeVariant = [
       {
-        id: 'small',
-        value: 0,
+        id: 'primary',
+        value: theme.colors.greenTeal,
       },
       {
-        id: 'medium',
-        value: 5,
+        id: 'secondary',
+        value: theme.colors.secondary,
       },
       {
-        id: 'large',
-        value: 10,
+        id: 'onther',
+        value: theme.colors.divider,
       },
     ];
-    const variant = buttonSizeVariant?.find(i => i.id === params) || 0;
+    const variant = buttonSizeVariant?.find(i => i.id === bgColor) || 0;
     return variant.value;
   }
   return (
-    <Button
+    <TouchableOpacity
       style={{
-        borderRadius: 5,
-        maxHeight: 80,
+        backgroundColor: ButtonSizingVariant(bgColor),
+        padding: 20,
+        borderRadius: 12,
         ...sx,
       }}
       uppercase
       mode={variant}
       {...props}>
-      {title}
-    </Button>
+      <Text
+        variant="titleLarge"
+        style={{
+          textAlign: 'center',
+          fontWeight: 'bold',
+          textTransform: 'capitalize',
+          color: theme.colors.white,
+        }}>
+        {title}
+      </Text>
+    </TouchableOpacity>
   );
 }
 
