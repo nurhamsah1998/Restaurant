@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button, Text} from 'react-native-paper';
-import {View, TouchableOpacity} from 'react-native';
+import {Button, Text, ActivityIndicator, MD2Colors} from 'react-native-paper';
 import {theme} from '../../App';
 
 function MyButton({
@@ -8,37 +7,17 @@ function MyButton({
   title = 'text here',
   size,
   sx,
-  bgColor = 'primary',
+  color = 'primary',
   ...props
 }) {
   /// this is func for pick variant size of button
-  function ButtonSizingVariant(bgColor) {
-    const buttonSizeVariant = [
-      {
-        id: 'primary',
-        value: theme.colors.greenTeal,
-      },
-      {
-        id: 'secondary',
-        value: theme.colors.secondary,
-      },
-      {
-        id: 'onther',
-        value: theme.colors.divider,
-      },
-    ];
-    const variant = buttonSizeVariant?.find(i => i.id === bgColor) || 0;
-    return variant.value;
-  }
   return (
-    <TouchableOpacity
+    <Button
       style={{
-        backgroundColor: ButtonSizingVariant(bgColor),
-        padding: 20,
-        borderRadius: 12,
+        backgroundColor: theme.colors[color],
+        borderRadius: 5,
         ...sx,
       }}
-      uppercase
       mode={variant}
       {...props}>
       <Text
@@ -51,7 +30,8 @@ function MyButton({
         }}>
         {title}
       </Text>
-    </TouchableOpacity>
+      <ActivityIndicator animating={true} color={MD2Colors.red800} />
+    </Button>
   );
 }
 

@@ -83,7 +83,7 @@ export default function Login({navigation}) {
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
                       value={values.email}
-                      label="Email"
+                      placeholder="Enter your username"
                     />
                     <MyTextField
                       size="large"
@@ -91,7 +91,8 @@ export default function Login({navigation}) {
                       onBlur={handleBlur('password')}
                       value={values.password}
                       sx={{marginTop: 20}}
-                      label="Password"
+                      placeholder="Password"
+                      secure
                     />
                     <MyButton
                       onPress={handleSubmit}
@@ -129,7 +130,7 @@ export default function Login({navigation}) {
                       variant="contained"
                       size="large"
                       title="Register"
-                      bgColor="secondary"
+                      color="secondary"
                     />
                   </View>
                 )}
