@@ -41,7 +41,8 @@ function Index() {
           panGestureHandlerProps={{
             activeOffsetX: [-10, 10],
           }}
-          scrollAnimationDuration={1000}
+          scrollAnimationDuration={5000}
+          pagingEnabled
           // onSnapToItem={index => console.log('current index:', index)}
           renderItem={({index}) => (
             <View

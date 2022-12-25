@@ -3,14 +3,16 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import HomeScreen from '../HomeScreen/HomeScreen';
-import SettingsScreen from '../Setting/SettingsScreen';
-import Account from '../Account/Account';
+import HomeScreen from '../Dashboard/HomeScreen/HomeScreen';
+import SettingsScreen from '../Dashboard/Setting/SettingsScreen';
+import AccountScreen from '../Dashboard/Account/AccountScreen';
+import SearchScreen from '../Dashboard/Search/SearchScreen';
 
 function DashboardRouteStack() {
   const DashboardNavigationStackTabs = createBottomTabNavigator();
   const iconNavbar = [
     {iconName: 'home', name: 'Home'},
+    {iconName: 'search1', name: 'Search'},
     {iconName: 'setting', name: 'Setting'},
     {iconName: 'user', name: 'Account'},
   ];
@@ -33,13 +35,18 @@ function DashboardRouteStack() {
       <DashboardNavigationStackTabs.Screen name="Home" component={HomeScreen} />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}
+        name="Search"
+        component={SearchScreen}
+      />
+      <DashboardNavigationStackTabs.Screen
+        options={{headerShown: false}}
         name="Setting"
         component={SettingsScreen}
       />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}
         name="Account"
-        component={Account}
+        component={AccountScreen}
       />
     </DashboardNavigationStackTabs.Navigator>
   );

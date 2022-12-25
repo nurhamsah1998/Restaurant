@@ -10,8 +10,8 @@ import {Button, Text, Divider} from 'react-native-paper';
 import 'react-native-reanimated';
 import Search from './Search';
 import Banner from './Banner';
-import Card from '../../Component/Element/Card';
-import {theme} from '../../App';
+import Card from '../../../Component/Element/Card';
+import {theme} from '../../../App';
 
 function HomeScreen() {
   const [isScroll, setIsScroll] = React.useState(true);
@@ -49,6 +49,7 @@ function HomeScreen() {
       setIsScroll(true);
     }
   }, [isScroll]);
+
   return (
     <View>
       <Search />
@@ -62,12 +63,12 @@ function HomeScreen() {
           }
         }}
         scrollEnabled={isScroll}>
-        <View
+        {/* <View
           onMoveShouldSetResponder={() => {
             setIsScroll(false);
           }}>
           <Banner />
-        </View>
+        </View> */}
         <View
           onResponderGrant={e => console.log(e)}
           onMoveShouldSetResponderCapture={() => {

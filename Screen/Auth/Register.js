@@ -7,7 +7,6 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import MyButton from '../../Component/Element/MyButton';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import MyTypography from '../../Component/Element/MyTypography';
@@ -23,7 +22,7 @@ const DismissKeyBoard = ({children}) => {
   );
 };
 
-export default function Login({navigation}) {
+export default function Register({navigation}) {
   const navigate = useNavigation();
   return (
     <DismissKeyBoard>
@@ -39,7 +38,7 @@ export default function Login({navigation}) {
             <View style={{marginBottom: 30}}>
               <MyTypography
                 style={{textAlign: 'left'}}
-                title="Login"
+                title="Register"
                 variant="h1"
               />
             </View>
@@ -47,20 +46,9 @@ export default function Login({navigation}) {
               <Formik
                 initialValues={{email: '', password: ''}}
                 onSubmit={async values => {
-                  try {
-                    if (
-                      values?.email?.includes('nurhamsah') &&
-                      values?.password?.includes('1')
-                    ) {
-                      const jsonValue = JSON.stringify(values);
-                      await AsyncStorage.setItem('@access_token', jsonValue);
-                      navigate.navigate('Dashboard');
-                    } else {
-                      console.warn('Error');
-                    }
-                  } catch (e) {
-                    console.warn(e);
-                  }
+                  navigation.navigate('OnBoardding', {
+                    screen: 'Hello',
+                  });
                 }}>
                 {({handleChange, handleBlur, handleSubmit, values}) => (
                   <View>
@@ -69,7 +57,7 @@ export default function Login({navigation}) {
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
                       value={values.email}
-                      placeholder="Enter your username"
+                      placeholder="Email"
                     />
                     <MyTextField
                       size="large"
@@ -80,41 +68,35 @@ export default function Login({navigation}) {
                       placeholder="Password"
                       secure
                     />
-                    <MyButton
-                      onPress={handleSubmit}
-                      mode="contained"
-                      sx={{marginTop: 25}}
-                      size="large"
-                      title="login"
-                    />
-
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginVertical: 20,
-                      }}>
-                      <View
+                    <View style={{marginTop: 25}}>
+                      <Text
                         style={{
-                          backgroundColor: theme.colors.divider,
-                          height: 1,
-                          width: '40%',
-                        }}
-                      />
-                      <Text style={{marginHorizontal: 10}}>Or</Text>
-                      <View
-                        style={{
-                          backgroundColor: theme.colors.divider,
-                          height: 1,
-                          width: '40%',
-                        }}
-                      />
+                          textAlign: 'center',
+                          color: theme.colors.backdrop,
+                        }}>
+                        By Registering you aggree{' '}
+                        <Text
+                          style={{
+                            color: theme.colors.primary,
+                            fontWeight: '700',
+                          }}>
+                          Privacy{' '}
+                        </Text>
+                        and{' '}
+                        <Text
+                          style={{
+                            color: theme.colors.primary,
+                            fontWeight: '700',
+                          }}>
+                          Policy{' '}
+                        </Text>
+                        nur's Restaurant
+                      </Text>
                     </View>
                     <MyButton
-                      onPress={() => navigation.push('Register')}
-                      mode="contained"
-                      size="large"
+                      onPress={handleSubmit}
+                      variant="contained"
+                      sx={{marginTop: 25}}
                       title="Register"
                       color="secondary"
                     />

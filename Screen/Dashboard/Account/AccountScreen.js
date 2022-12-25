@@ -4,7 +4,7 @@ import {Button} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
-function Account() {
+function AccountScreen() {
   const navigation = useNavigation();
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -29,4 +29,4 @@ function Account() {
   );
 }
 
-export default Account;
+export default AccountScreen;

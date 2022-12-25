@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import AuthRouteStack from './AuthRouteStack';
 import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
+import OnBoardding from '../Auth/OnBoardding';
 
 function Index() {
   const navigation = useNavigation();
@@ -39,6 +40,7 @@ function Index() {
         name="AuthRouteStack"
         component={AuthRouteStack}
       />
+      <RootNavigationStack.Screen name="OnBoardding" component={OnBoardding} />
     </RootNavigationStack.Navigator>
   );
 }
