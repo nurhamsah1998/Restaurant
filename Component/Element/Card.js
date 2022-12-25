@@ -10,7 +10,7 @@ function Card({title, tag, price, location, review, isDivider, imgUrl}) {
         <View style={{flex: 1, height: 200}}>
           <View>
             <Image
-              style={{width: '100%', height: '100%', borderRadius: 5}}
+              style={{width: '100%', height: '100%', borderRadius: 20}}
               source={{
                 uri: imgUrl,
               }}

@@ -7,6 +7,7 @@ import HomeScreen from '../Dashboard/HomeScreen/HomeScreen';
 import SettingsScreen from '../Dashboard/Setting/SettingsScreen';
 import AccountScreen from '../Dashboard/Account/AccountScreen';
 import SearchScreen from '../Dashboard/Search/SearchScreen';
+import {theme} from '../../App';
 
 function DashboardRouteStack() {
   const DashboardNavigationStackTabs = createBottomTabNavigator();
@@ -27,7 +28,7 @@ function DashboardRouteStack() {
       // You can return any component that you like here!
       return <AntDesign name={iconName} size={size} color={color} />;
     },
-    tabBarActiveTintColor: 'purple',
+    tabBarActiveTintColor: theme.colors.primary,
     tabBarInactiveTintColor: 'gray',
   });
   return (
