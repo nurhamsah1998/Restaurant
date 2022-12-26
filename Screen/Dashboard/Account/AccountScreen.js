@@ -4,8 +4,10 @@ import {Button} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
+import {AuthToken} from '../../Routing/contextHelper';
+
 function AccountScreen() {
-  const navigation = useNavigation();
+  const {signOut} = React.useContext(AuthToken);
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>sfd!</Text>
@@ -13,9 +15,7 @@ function AccountScreen() {
         onPress={async () => {
           try {
             await AsyncStorage.removeItem('@access_token');
-            navigation.navigate('AuthRouteStack', {
-              screen: 'Login',
-            });
+            signOut();
           } catch (e) {
             // remove error
           }

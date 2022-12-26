@@ -1,5 +1,4 @@
-import React, {useCallback} from 'react';
-import {useIsFocused} from '@react-navigation/native';
+import React from 'react';
 import {
   View,
   SafeAreaView,
@@ -13,9 +12,10 @@ import {useNavigation} from '@react-navigation/native';
 import MyTypography from '../../Component/Element/MyTypography';
 import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
+import {AuthToken} from '../Routing/contextHelper';
 import {Text} from 'react-native-paper';
 
-const DismissKeyBoard = ({children}) => {
+export const DismissKeyBoard = ({children}) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       {children}
@@ -23,8 +23,9 @@ const DismissKeyBoard = ({children}) => {
   );
 };
 
-export default function Login({navigation}) {
+export default function Login() {
   const navigate = useNavigation();
+  const {signIn} = React.useContext(AuthToken);
   return (
     <DismissKeyBoard>
       <View
@@ -54,7 +55,7 @@ export default function Login({navigation}) {
                     ) {
                       const jsonValue = JSON.stringify(values);
                       await AsyncStorage.setItem('@access_token', jsonValue);
-                      navigate.navigate('Dashboard');
+                      signIn();
                     } else {
                       console.warn('Error');
                     }

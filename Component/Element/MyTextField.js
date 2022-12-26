@@ -22,7 +22,8 @@ function MyTextField({
       /// answered by Ray : https://stackoverflow.com/users/5841629/ray
       placeholderTextColor={theme.colors.divider}
       /// stackoverflow END
-      style={{borderRadius: 5, height: 55, fontSize: 20, ...sx}}
+      theme={{roundness: 20}}
+      style={{height: 55, marginTop: -6, fontSize: 20, ...sx}}
       mode={variant}
       {...props}
     />

@@ -7,16 +7,24 @@ import AuthRouteStack from './AuthRouteStack';
 import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
 import OnBoardding from '../Auth/OnBoardding';
+import {AuthToken} from './contextHelper';
 
 function Index() {
   const navigation = useNavigation();
+  const [loading, setLoading] = React.useState({
+    isLoading: true,
+    isAuth: false,
+  });
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('@access_token');
       if (value !== null) {
-        navigation.navigate('Dashboard');
+        setLoading({isLoading: false, isAuth: true});
+        // navigation.navigate('Dashboard');
       } else {
-        navigation.navigate('AuthRouteStack');
+        setLoading(false);
+        setLoading({isLoading: false, isAuth: false});
+        // navigation.navigate('AuthRouteStack');
       }
     } catch (e) {
       // error reading value
@@ -26,22 +34,51 @@ function Index() {
     getData();
   }, []);
   const RootNavigationStack = createNativeStackNavigator();
+  const RootDashboardNavigationStack = createNativeStackNavigator();
+  const AuthContext = React.useMemo(() => {
+    return {
+      signIn: () => {
+        setLoading({isLoading: false, isAuth: true});
+      },
+      signOut: () => {
+        setLoading({isLoading: false, isAuth: false});
+      },
+    };
+  }, []);
+  const RootDashboard = () => {
+    return (
+      <RootDashboardNavigationStack.Navigator
+        screenOptions={{headerShown: false}}>
+        <RootDashboardNavigationStack.Screen
+          name="Dashboard"
+          component={DashboardRouteStack}
+        />
+        <RootDashboardNavigationStack.Screen
+          name="OnBoardding"
+          component={OnBoardding}
+        />
+      </RootDashboardNavigationStack.Navigator>
+    );
+  };
+  if (loading.isLoading) {
+    return <LoadingSplashScreen />;
+  }
   return (
-    <RootNavigationStack.Navigator screenOptions={{headerShown: false}}>
-      <RootNavigationStack.Screen
-        name="LoadingSplashScreen"
-        component={LoadingSplashScreen}
-      />
-      <RootNavigationStack.Screen
-        name="Dashboard"
-        component={DashboardRouteStack}
-      />
-      <RootNavigationStack.Screen
-        name="AuthRouteStack"
-        component={AuthRouteStack}
-      />
-      <RootNavigationStack.Screen name="OnBoardding" component={OnBoardding} />
-    </RootNavigationStack.Navigator>
+    <AuthToken.Provider value={AuthContext}>
+      <RootNavigationStack.Navigator screenOptions={{headerShown: false}}>
+        {loading.isAuth ? (
+          <RootNavigationStack.Screen
+            name="RootDashboard"
+            component={RootDashboard}
+          />
+        ) : (
+          <RootNavigationStack.Screen
+            name="AuthRouteStack"
+            component={AuthRouteStack}
+          />
+        )}
+      </RootNavigationStack.Navigator>
+    </AuthToken.Provider>
   );
 }
 

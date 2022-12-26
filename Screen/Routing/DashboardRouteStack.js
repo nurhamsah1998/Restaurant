@@ -1,15 +1,15 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
 
 import HomeScreen from '../Dashboard/HomeScreen/HomeScreen';
 import SettingsScreen from '../Dashboard/Setting/SettingsScreen';
 import AccountScreen from '../Dashboard/Account/AccountScreen';
-import SearchScreen from '../Dashboard/Search/SearchScreen';
+import SearchScreenRouting from './SearchScreenRouting';
 import {theme} from '../../App';
 
-function DashboardRouteStack() {
+function DashboardRouteStack(route) {
   const DashboardNavigationStackTabs = createBottomTabNavigator();
   const iconNavbar = [
     {iconName: 'home', name: 'Home'},
@@ -32,12 +32,14 @@ function DashboardRouteStack() {
     tabBarInactiveTintColor: 'gray',
   });
   return (
-    <DashboardNavigationStackTabs.Navigator screenOptions={handleNavbar}>
+    <DashboardNavigationStackTabs.Navigator
+      initialRouteName={'Home'}
+      screenOptions={handleNavbar}>
       <DashboardNavigationStackTabs.Screen name="Home" component={HomeScreen} />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}
         name="Search"
-        component={SearchScreen}
+        component={SearchScreenRouting}
       />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}

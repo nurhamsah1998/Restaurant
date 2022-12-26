@@ -22,6 +22,7 @@ function ProductCard({data, keyExtractor}) {
           <TouchableOpacity
             style={{
               margin: 5,
+              marginTop: 10,
               borderBottomColor: theme.colors.divider,
               borderBottomWidth: 1,
             }}>
@@ -65,7 +66,7 @@ function ProductCard({data, keyExtractor}) {
                     color={theme.colors.primary}
                   />
                   <Text style={{marginLeft: 2, color: theme.colors.primary}}>
-                    {item.review}
+                    {`${item.review} Review`}
                   </Text>
                 </View>
                 <View

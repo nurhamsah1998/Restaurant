@@ -9,11 +9,13 @@ import {
   ImageBackground,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
 
 import {theme} from '../../../App';
 import ProductCard from '../../../Component/Element/ProductCard';
+import Chip from '../../../Component/Element/Chip';
 
-function SearchScreen() {
+function SearchScreen({navigation}) {
   const category = [
     {
       label: 'Chicken',
@@ -56,7 +58,7 @@ function SearchScreen() {
     },
     {
       label: 'Burger + Ice Drink',
-      price: 'Rp9500',
+      price: 'Rp9.500',
       review: '677',
       imgLink:
         'https://images.pexels.com/photos/11344983/pexels-photo-11344983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -91,90 +93,71 @@ function SearchScreen() {
     },
   ];
   const [selectedCategory, setSelectedIdCategory] = React.useState(null);
-
+  const navigate = useNavigation();
   return (
     <View
       style={{
         backgroundColor: theme.colors.white,
-        paddingHorizontal: 10,
-        paddingTop: 20,
         flex: 1,
       }}>
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity
-          style={{
-            flex: 5,
-            height: 55,
-            backgroundColor: '#fff',
-            elevation: 5,
-            shadowColor: '#000',
-            borderRadius: 20,
-            marginRight: 20,
-            flexDirection: 'row',
-            paddingLeft: 10,
-            alignItems: 'center',
-          }}>
-          <AntDesign name="search1" size={30} color={theme.colors.divider} />
-          <Text
-            variant="titleMedium"
-            style={{color: theme.colors.divider, marginLeft: 10}}>
-            What do you want ?
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            flex: 1,
-            height: 55,
-            backgroundColor: '#fff',
-            elevation: 5,
-            shadowColor: '#000',
-            borderRadius: 20,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <AntDesign name="filter" size={30} color={theme.colors.primary} />
-        </TouchableOpacity>
-      </View>
-      <View>
-        <FlatList
-          data={category}
-          horizontal
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity
-                style={{
-                  flex: 1,
-                  marginTop: 15,
-                  padding: 10,
-                  backgroundColor:
-                    index === selectedCategory ? theme.colors.primary : '#fff',
-                  elevation: 2,
-                  shadowColor: theme.colors.primary,
-                  borderRadius: 20,
-                  borderColor: theme.colors.primary,
-                  borderWidth: 1,
-                  marginRight:
-                    index === 0 && index === category?.length - 1 ? 0 : 10,
-                }}
-                onPress={() => setSelectedIdCategory(index)}>
-                <Text
-                  style={{
-                    color:
-                      index === selectedCategory
-                        ? '#fff'
-                        : theme.colors.primary,
-                  }}>
-                  {item.label}
-                </Text>
-              </TouchableOpacity>
-            );
-          }}
-          keyExtractor={item => item.value}
-        />
+      <View
+        style={{
+          paddingBottom: 10,
+          backgroundColor: '#fff',
+          elevation: 5,
+          shadowColor: '#000',
+          paddingHorizontal: 10,
+          paddingTop: 20,
+        }}>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+            onPress={() => navigate.navigate('SearchItem')}
+            style={{
+              flex: 5,
+              height: 55,
+              backgroundColor: '#fff',
+              elevation: 5,
+              shadowColor: '#000',
+              borderRadius: 20,
+              marginRight: 20,
+              flexDirection: 'row',
+              paddingLeft: 10,
+              alignItems: 'center',
+            }}>
+            <AntDesign name="search1" size={30} color={theme.colors.divider} />
+            <Text
+              variant="titleMedium"
+              style={{color: theme.colors.divider, marginLeft: 10}}>
+              What do you want ?
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              height: 55,
+              backgroundColor: '#fff',
+              elevation: 5,
+              shadowColor: '#000',
+              borderRadius: 20,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <AntDesign name="filter" size={30} color={theme.colors.primary} />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Chip
+            data={category}
+            selectedCategory={selectedCategory}
+            setSelectedIdCategory={setSelectedIdCategory}
+            keyExtractor={item => item.value}
+          />
+        </View>
       </View>
       <View
         style={{
-          marginBottom: 110,
+          marginBottom: 140,
+          paddingHorizontal: 10,
         }}>
         <ProductCard data={product} keyExtractor={item => item.label} />
       </View>
