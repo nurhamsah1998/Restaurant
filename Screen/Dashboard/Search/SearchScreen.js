@@ -39,8 +39,23 @@ function SearchScreen({navigation}) {
       label: 'Burger Giant',
       price: 'Rp12.000',
       review: '1.2k',
+      desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
       imgLink:
         'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      images: [
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+      ],
     },
     {
       label: 'Burger Armagedon',
@@ -94,6 +109,10 @@ function SearchScreen({navigation}) {
   ];
   const [selectedCategory, setSelectedIdCategory] = React.useState(null);
   const navigate = useNavigation();
+
+  const onPressItem = i => {
+    navigate.navigate('RootDashboard', {screen: 'ProductDetail', params: {i}});
+  };
   return (
     <View
       style={{
@@ -159,7 +178,11 @@ function SearchScreen({navigation}) {
           marginBottom: 140,
           paddingHorizontal: 10,
         }}>
-        <ProductCard data={product} keyExtractor={item => item.label} />
+        <ProductCard
+          onPressItem={onPressItem}
+          data={product}
+          keyExtractor={item => item.label}
+        />
       </View>
     </View>
   );

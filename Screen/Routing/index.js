@@ -8,6 +8,7 @@ import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
 import OnBoardding from '../Auth/OnBoardding';
 import {AuthToken} from './contextHelper';
+import ProductDetail from '../Dashboard/Search/ProductDetail';
 
 function Index() {
   const navigation = useNavigation();
@@ -56,6 +57,11 @@ function Index() {
         <RootDashboardNavigationStack.Screen
           name="OnBoardding"
           component={OnBoardding}
+        />
+        <RootDashboardNavigationStack.Screen
+          options={{headerShown: false}}
+          name="ProductDetail"
+          component={ProductDetail}
         />
       </RootDashboardNavigationStack.Navigator>
     );

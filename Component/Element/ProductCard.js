@@ -11,7 +11,7 @@ import {Text} from 'react-native-paper';
 
 import {theme} from '../../App';
 
-function ProductCard({data, keyExtractor}) {
+function ProductCard({data, keyExtractor, onPressItem}) {
   const {width} = Dimensions.get('window');
   return (
     <FlatList
@@ -20,11 +20,13 @@ function ProductCard({data, keyExtractor}) {
       renderItem={({item, index}) => {
         return (
           <TouchableOpacity
+            onPress={() => onPressItem(item)}
             style={{
               margin: 5,
               marginTop: 10,
-              borderBottomColor: theme.colors.divider,
-              borderBottomWidth: 1,
+              // borderBottomColor: theme.colors.divider,
+              // borderBottomWidth: 1,
+              paddingBottom: 10,
             }}>
             <View
               style={{
