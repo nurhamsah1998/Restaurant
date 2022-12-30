@@ -4,7 +4,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 
 import HomeScreen from '../Dashboard/HomeScreen/HomeScreen';
-import SettingsScreen from '../Dashboard/Setting/SettingsScreen';
+import CartScreen from '../Dashboard/Cart/CartScreen';
 import AccountScreen from '../Dashboard/Account/AccountScreen';
 import SearchScreenRouting from './SearchScreenRouting';
 import {theme} from '../../App';
@@ -14,7 +14,7 @@ function DashboardRouteStack(route) {
   const iconNavbar = [
     {iconName: 'home', name: 'Home'},
     {iconName: 'search1', name: 'Search'},
-    {iconName: 'setting', name: 'Setting'},
+    {iconName: 'shoppingcart', name: 'Cart'},
     {iconName: 'user', name: 'Account'},
   ];
   const handleNavbar = ({route}) => ({
@@ -43,8 +43,8 @@ function DashboardRouteStack(route) {
       />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}
-        name="Setting"
-        component={SettingsScreen}
+        name="Cart"
+        component={CartScreen}
       />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}
