@@ -6,6 +6,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyButton from '../../Component/Element/MyButton';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
@@ -44,11 +45,14 @@ export default function Register({navigation}) {
             </View>
             <SafeAreaView>
               <Formik
-                initialValues={{email: '', password: ''}}
+                initialValues={{email: 'nurhamsah', password: '2'}}
                 onSubmit={async values => {
-                  navigation.navigate('OnBoardding', {
-                    screen: 'Hello',
-                  });
+                  const jsonValue = JSON.stringify(values);
+                  await AsyncStorage.setItem('@access_token', jsonValue).then(
+                    res => {
+                      navigate.navigate('OnBoardding');
+                    },
+                  );
                 }}>
                 {({handleChange, handleBlur, handleSubmit, values}) => (
                   <View>

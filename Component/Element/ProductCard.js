@@ -9,6 +9,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Text} from 'react-native-paper';
 
+import {FormatCurrency} from '../../Component/FormatCurrency';
 import {theme} from '../../App';
 
 function ProductCard({data, keyExtractor, onPressItem}) {
@@ -89,7 +90,7 @@ function ProductCard({data, keyExtractor, onPressItem}) {
               <Text
                 variant="titleLarge"
                 style={{marginTop: 10, fontWeight: '700'}}>
-                {item.price}
+                {FormatCurrency(item.price)}
               </Text>
             </View>
           </TouchableOpacity>

@@ -14,6 +14,7 @@ import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
 import {AuthToken} from '../Routing/contextHelper';
 import {Text} from 'react-native-paper';
+import Snackbar from 'react-native-snackbar';
 
 export const DismissKeyBoard = ({children}) => {
   return (
@@ -57,7 +58,11 @@ export default function Login() {
                       await AsyncStorage.setItem('@access_token', jsonValue);
                       signIn();
                     } else {
-                      console.warn('Error');
+                      Snackbar.show({
+                        text: 'Check your email or password!',
+                        duration: Snackbar.LENGTH_SHORT,
+                        backgroundColor: theme.colors.error,
+                      });
                     }
                   } catch (e) {
                     console.warn(e);
@@ -113,7 +118,7 @@ export default function Login() {
                       />
                     </View>
                     <MyButton
-                      onPress={() => navigation.push('Register')}
+                      onPress={() => navigate.navigate('Register')}
                       mode="contained"
                       size="large"
                       title="Register"

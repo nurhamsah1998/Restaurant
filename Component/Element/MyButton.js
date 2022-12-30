@@ -8,17 +8,20 @@ function MyButton({
   size,
   sx,
   color = 'primary',
+  disabled,
+  small = false,
   ...props
 }) {
   /// this is func for pick variant size of button
+  const isOutled = mode.includes('outlined')
+    ? theme.colors[color]
+    : theme.colors.secondary;
   return (
     <Button
-      contentStyle={{height: 55}}
+      contentStyle={{height: small ? null : 55}}
       style={{
         borderRadius: 5,
-        borderColor: mode.includes('outlined')
-          ? theme.colors[color]
-          : theme.colors.secondary,
+        borderColor: disabled ? theme.colors.backdrop : isOutled,
         ...sx,
       }}
       mode={mode}
@@ -31,6 +34,7 @@ function MyButton({
         mode.includes('outlined') ? theme.colors[color] : theme.colors.white
       }
       uppercase={false}
+      disabled={disabled}
       {...props}>
       {title}
     </Button>

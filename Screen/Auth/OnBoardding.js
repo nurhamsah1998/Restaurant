@@ -6,6 +6,7 @@ import {Button, Text} from 'react-native-paper';
 import {Alert, ImageBackground} from 'react-native';
 import MyButton from '../../Component/Element/MyButton';
 import {theme} from '../../App';
+import {AuthToken} from '../Routing/contextHelper';
 
 function OnBoardding() {
   const [navTo, setNavTo] = React.useState('');
@@ -157,6 +158,7 @@ function OnBoardding() {
   }
   const navigate = useNavigation();
   const AuthNavigationStack = createNativeStackNavigator();
+  const {signUp} = React.useContext(AuthToken);
   return (
     <View style={{flex: 1}}>
       <AuthNavigationStack.Navigator
@@ -187,7 +189,7 @@ function OnBoardding() {
           }}>
           {navTo.includes('Done') ? (
             <MyButton
-              onPress={() => navigate.navigate('Dashboard', {screen: 'Home'})}
+              onPress={signUp}
               title="Finish"
               mode="contained"
               color="primary"

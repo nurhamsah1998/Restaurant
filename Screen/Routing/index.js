@@ -6,7 +6,6 @@ import {useNavigation} from '@react-navigation/native';
 import AuthRouteStack from './AuthRouteStack';
 import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
-import OnBoardding from '../Auth/OnBoardding';
 import {AuthToken} from './contextHelper';
 import ProductDetail from '../Dashboard/Search/ProductDetail';
 
@@ -44,6 +43,9 @@ function Index() {
       signOut: () => {
         setLoading({isLoading: false, isAuth: false});
       },
+      signUp: () => {
+        setLoading({isLoading: false, isAuth: true});
+      },
     };
   }, []);
   const RootDashboard = () => {
@@ -53,10 +55,6 @@ function Index() {
         <RootDashboardNavigationStack.Screen
           name="Dashboard"
           component={DashboardRouteStack}
-        />
-        <RootDashboardNavigationStack.Screen
-          name="OnBoardding"
-          component={OnBoardding}
         />
         <RootDashboardNavigationStack.Screen
           options={{headerShown: false}}

@@ -7,6 +7,7 @@ function IconContained({
   backgroundColor = '#fff',
   icon = 'star',
   iconColor = '#000',
+  ...props
 }) {
   return (
     <TouchableOpacity
@@ -19,7 +20,8 @@ function IconContained({
         backgroundColor: backgroundColor,
         justifyContent: 'center',
         alignItems: 'center',
-      }}>
+      }}
+      {...props}>
       <AntDesign name={icon} size={size} color={iconColor} />
     </TouchableOpacity>
   );
