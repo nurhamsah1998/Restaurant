@@ -4,20 +4,21 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 
 import HomeScreen from '../Dashboard/HomeScreen/HomeScreen';
-import CartScreen from '../Dashboard/Cart/CartScreen';
+import OrdersScreen from '../Dashboard/Orders/OrdersScreen';
 import AccountScreen from '../Dashboard/Account/AccountScreen';
 import SearchScreenRouting from './SearchScreenRouting';
 import {theme} from '../../App';
+import {View} from 'react-native';
 
 function DashboardRouteStack(route) {
   const DashboardNavigationStackTabs = createBottomTabNavigator();
   const iconNavbar = [
     {iconName: 'home', name: 'Home'},
     {iconName: 'search1', name: 'Search'},
-    {iconName: 'shoppingcart', name: 'Cart'},
+    {iconName: 'filetext1', name: 'Orders'},
     {iconName: 'user', name: 'Account'},
   ];
-  const handleNavbar = ({route}) => ({
+  const handleNavbar = ({route, focused}) => ({
     headerShown: false,
     tabBarIcon: ({focused, color, size}) => {
       let iconName;
@@ -30,6 +31,24 @@ function DashboardRouteStack(route) {
     },
     tabBarActiveTintColor: theme.colors.primary,
     tabBarInactiveTintColor: 'gray',
+    tabBarLabelStyle: {fontSize: 15, paddingBottom: 10, fontWeight: 'bold'},
+    tabBarStyle: {
+      margin: 15,
+      position: 'absolute',
+      borderRadius: 20,
+      height: 60,
+      padding: 5,
+    },
+    tabBarBackground: () => (
+      <View
+        style={{
+          backgroundColor: theme.colors.white,
+          width: '100%',
+          height: '100%',
+          borderRadius: 20,
+        }}></View>
+    ),
+    // tabBarActiveBackgroundColor: theme.colors.primary,
   });
   return (
     <DashboardNavigationStackTabs.Navigator
@@ -43,8 +62,8 @@ function DashboardRouteStack(route) {
       />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}
-        name="Cart"
-        component={CartScreen}
+        name="Orders"
+        component={OrdersScreen}
       />
       <DashboardNavigationStackTabs.Screen
         options={{headerShown: false}}

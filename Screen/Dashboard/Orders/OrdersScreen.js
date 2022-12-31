@@ -7,7 +7,7 @@ import DineIn from './DineIn';
 import Delivery from './Delivery';
 import {theme} from '../../../App';
 
-function Cart({navigation}) {
+function OrdersScreen({navigation}) {
   const [tabs, setTabs] = React.useState(0);
 
   return (
@@ -54,4 +54,4 @@ function Cart({navigation}) {
   );
 }
 
-export default Cart;
+export default OrdersScreen;
