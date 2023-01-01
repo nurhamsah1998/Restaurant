@@ -3,6 +3,7 @@ import {View, FlatList, Image, Dimensions, ScrollView} from 'react-native';
 import {Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
@@ -15,6 +16,38 @@ function ProductDetail(route) {
     route?.route?.params?.i;
   const {width} = Dimensions.get('window');
   const [quantity, setQuantity] = React.useState(1);
+  const [cart, setCart] = React.useState([]);
+
+  const onAddCart = async () => {
+    const clone = [...cart];
+    const body = {...route?.route?.params?.i, quantity, tota: price * quantity};
+    clone.push(body);
+    const jsonValue = JSON.stringify(clone);
+    await AsyncStorage.setItem('@cart', jsonValue).then(res => {
+      navigate.goBack();
+    });
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@cart');
+      if (value !== null) {
+        const jsonValue = JSON.parse(value);
+        setCart(jsonValue || []);
+        // navigation.navigate('Dashboard');
+      } else {
+        setCart([]);
+        // navigation.navigate('AuthRouteStack');
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(cart, 'OOOO');
   return (
     <View style={{flex: 1}}>
       <ScrollView>
@@ -151,7 +184,11 @@ function ProductDetail(route) {
           shadowColor: '#000',
           elevation: 10,
         }}>
-        <MyButton title="Add to cart" sx={{marginRight: 20}} />
+        <MyButton
+          title="Add to cart"
+          onPress={onAddCart}
+          sx={{marginRight: 20}}
+        />
         <MyButton title="Checkout" sx={{flex: 1}} mode="contained" />
       </View>
     </View>

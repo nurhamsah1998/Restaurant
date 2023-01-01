@@ -1,14 +1,20 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {View, TouchableOpacity} from 'react-native';
+import {Badge} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
 import HomeScreen from '../Dashboard/HomeScreen/HomeScreen';
 import OrdersScreen from '../Dashboard/Orders/OrdersScreen';
 import AccountScreen from '../Dashboard/Account/AccountScreen';
 import SearchScreenRouting from './SearchScreenRouting';
+import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
-import {View} from 'react-native';
+import SearchHeader from './Header/SearchHeader';
+import OrdersHeader from './Header/OrdersHeader';
 
 function DashboardRouteStack(route) {
   const DashboardNavigationStackTabs = createBottomTabNavigator();
@@ -19,7 +25,6 @@ function DashboardRouteStack(route) {
     {iconName: 'user', name: 'Account'},
   ];
   const handleNavbar = ({route, focused}) => ({
-    headerShown: false,
     tabBarIcon: ({focused, color, size}) => {
       let iconName;
       const pick = iconNavbar.find(i => i?.name === route.name);
@@ -46,7 +51,8 @@ function DashboardRouteStack(route) {
           width: '100%',
           height: '100%',
           borderRadius: 20,
-        }}></View>
+        }}
+      />
     ),
     // tabBarActiveBackgroundColor: theme.colors.primary,
   });
@@ -56,12 +62,16 @@ function DashboardRouteStack(route) {
       screenOptions={handleNavbar}>
       <DashboardNavigationStackTabs.Screen name="Home" component={HomeScreen} />
       <DashboardNavigationStackTabs.Screen
-        options={{headerShown: false}}
+        options={{
+          header: () => <SearchHeader />,
+        }}
         name="Search"
         component={SearchScreenRouting}
       />
       <DashboardNavigationStackTabs.Screen
-        options={{headerShown: false}}
+        options={{
+          header: () => <OrdersHeader />,
+        }}
         name="Orders"
         component={OrdersScreen}
       />

@@ -224,9 +224,9 @@ function SearchScreen({navigation}) {
           elevation: 5,
           shadowColor: '#000',
           paddingHorizontal: 10,
-          paddingTop: 20,
+          paddingTop: 10,
         }}>
-        <View style={{flexDirection: 'row'}}>
+        {/* <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             onPress={() => navigate.navigate('SearchItem')}
             style={{
@@ -261,7 +261,7 @@ function SearchScreen({navigation}) {
             }}>
             <AntDesign name="filter" size={30} color={theme.colors.primary} />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View>
           <Chip
             data={category}
