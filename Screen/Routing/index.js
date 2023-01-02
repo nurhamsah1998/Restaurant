@@ -8,6 +8,7 @@ import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
 import {AuthToken} from './contextHelper';
 import ProductDetail from '../Dashboard/Search/ProductDetail';
+import CartList from '../Dashboard/Orders/CartList';
 
 function Index() {
   const navigation = useNavigation();
@@ -60,6 +61,11 @@ function Index() {
           options={{headerShown: false}}
           name="ProductDetail"
           component={ProductDetail}
+        />
+        <RootDashboardNavigationStack.Screen
+          options={{headerShown: false}}
+          name="CartList"
+          component={CartList}
         />
       </RootDashboardNavigationStack.Navigator>
     );

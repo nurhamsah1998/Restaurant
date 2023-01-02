@@ -3,12 +3,14 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {View, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import MyTextField from '../../../Component/Element/MyTextField';
 import {theme} from '../../../App';
 import Cart from './Cart';
 
-function OrdersHeader(props) {
+function OrdersHeader() {
+  const navigation = useNavigation();
   const [cart, setCart] = React.useState([]);
   const getData = async () => {
     try {
@@ -36,7 +38,6 @@ function OrdersHeader(props) {
     }
   }, [isFocused]);
   /// stackoverflow End
-  console.log('tes loop');
   return (
     <View
       style={{
@@ -60,9 +61,12 @@ function OrdersHeader(props) {
           flexDirection: 'row',
         }}>
         <TouchableOpacity>
-          <Entypo name="heart" size={30} color={theme.colors.white} />
+          <Entypo name="heart" size={25} color={theme.colors.white} />
         </TouchableOpacity>
-        <Cart badge={cart?.length} />
+        <Cart
+          onPress={() => navigation.navigate('CartList')}
+          badge={cart?.length}
+        />
       </View>
     </View>
   );

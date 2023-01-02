@@ -4,9 +4,9 @@ import {TouchableOpacity} from 'react-native';
 import {Badge} from 'react-native-paper';
 import {theme} from '../../../App';
 
-function Cart({badge = 0}) {
+function Cart({badge = 0, onPress}) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Badge
         children={badge}
         style={{
@@ -17,7 +17,7 @@ function Cart({badge = 0}) {
           right: -13,
         }}
       />
-      <Entypo name="shopping-cart" size={30} color={theme.colors.white} />
+      <Entypo name="shopping-cart" size={25} color={theme.colors.white} />
     </TouchableOpacity>
   );
 }

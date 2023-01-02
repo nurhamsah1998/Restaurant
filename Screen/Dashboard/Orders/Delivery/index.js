@@ -1,59 +1,54 @@
 import React from 'react';
 import {View, FlatList, Image} from 'react-native';
 import {Text} from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
 
 import ListProduct from '../../../../Component/Element/ListProduct';
+import {FormatCurrency} from '../../../../Component/FormatCurrency';
 import MyButton from '../../../../Component/Element/MyButton';
+import {theme} from '../../../../App';
 
-function index() {
-  const cartItem = [
-    {
-      label: 'Burger BorBar',
-      price: 2000,
-      quantity: 2,
-      variant: 'adding more tacos on top',
-      imgLink:
-        'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    },
-    {
-      label: 'Pizza ',
-      price: 1200,
-      quantity: 2,
-      variant: 'put meal into peaceas',
-      imgLink:
-        'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    },
-    {
-      label: 'Pizza Elimination',
-      price: 1200,
-      quantity: 2,
-      variant: 'put meal into peaceas',
-      imgLink:
-        'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    },
-    {
-      label: 'Pizza1 ',
-      price: 1200,
-      quantity: 2,
-      variant: 'put meal into peaceas',
-      imgLink:
-        'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    },
-    {
-      label: 'Pizza Eliminatio1n',
-      price: 1200,
-      quantity: 2,
-      variant: 'put meal into peaceas',
-      imgLink:
-        'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    },
-  ];
+function Index({isEmptyCart, totalAmountCart, cart}) {
+  const navigation = useNavigation();
   return (
-    <View style={{paddingBottom: 100}}>
-      <ListProduct data={cartItem} />
-      <MyButton title="Checkout" />
+    <View style={{paddingBottom: 100, height: '100%'}}>
+      {isEmptyCart ? (
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}>
+          <View>
+            <Text
+              variant="headlineMedium"
+              style={{color: theme.colors.backdrop, textAlign: 'center'}}>
+              Your cart is empty
+            </Text>
+            <Text
+              variant="titleMedium"
+              style={{color: theme.colors.backdrop, textAlign: 'center'}}>
+              find the food that suits you{' '}
+              <Text
+                onPress={() => navigation.navigate('Search')}
+                style={{color: theme.colors.primary, fontWeight: 'bold'}}>
+                here!
+              </Text>
+            </Text>
+          </View>
+        </View>
+      ) : (
+        <ListProduct data={cart} />
+      )}
+
+      <MyButton
+        sx={{position: 'absolute', bottom: 20, right: 0, left: 0}}
+        mode="contained"
+        title={`Checkout ${FormatCurrency(totalAmountCart)}`}
+      />
     </View>
   );
 }
 
-export default index;
+export default Index;

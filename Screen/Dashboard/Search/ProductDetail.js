@@ -4,6 +4,7 @@ import {Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Snackbar from 'react-native-snackbar';
 
 import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
@@ -19,8 +20,17 @@ function ProductDetail(route) {
   const [cart, setCart] = React.useState([]);
 
   const onAddCart = async () => {
+    Snackbar.show({
+      text: 'Successfully added to cart',
+      duration: Snackbar.LENGTH_SHORT,
+      backgroundColor: theme.colors.primary,
+    });
     const clone = [...cart];
-    const body = {...route?.route?.params?.i, quantity, tota: price * quantity};
+    const body = {
+      ...route?.route?.params?.i,
+      quantity,
+      total: price * quantity,
+    };
     clone.push(body);
     const jsonValue = JSON.stringify(clone);
     await AsyncStorage.setItem('@cart', jsonValue).then(res => {
@@ -47,7 +57,6 @@ function ProductDetail(route) {
     getData();
   }, []);
 
-  console.log(cart, 'OOOO');
   return (
     <View style={{flex: 1}}>
       <ScrollView>
