@@ -45,23 +45,28 @@ function OrdersHeader() {
         borderBottomEndRadius: 20,
         borderBottomStartRadius: 20,
         padding: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
       }}>
-      <MyTextField sx={{flex: 4, marginRight: 10}} />
+      <MyTextField fontSize={17} height={40} sx={{flex: 2, marginRight: 10}} />
       <View
         style={{
           flex: 1,
-          height: 50,
+          height: 40,
           borderRadius: 20,
-          justifyContent: 'space-between',
+          justifyContent: 'space-evenly',
           alignItems: 'center',
           flexDirection: 'row',
         }}>
         <TouchableOpacity>
-          <Entypo name="heart" size={25} color={theme.colors.white} />
+          <Entypo
+            name="heart"
+            style={{marginHorizontal: 15}}
+            size={25}
+            color={theme.colors.white}
+          />
         </TouchableOpacity>
         <Cart
           onPress={() => navigation.navigate('CartList')}

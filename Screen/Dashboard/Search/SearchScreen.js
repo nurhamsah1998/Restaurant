@@ -33,6 +33,10 @@ function SearchScreen({navigation}) {
       label: 'Snack',
       value: 'snack',
     },
+    {
+      label: 'Junik',
+      value: 'junik',
+    },
   ];
   const product = [
     {
@@ -204,6 +208,90 @@ function SearchScreen({navigation}) {
       imgLink:
         'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     },
+    {
+      label: 'Special Edition! Burger',
+      price: 10000,
+      review: '6.7k',
+      images: [
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+      ],
+      imgLink:
+        'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      label: 'Special Edition! Burger',
+      price: 10000,
+      review: '6.7k',
+      images: [
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+      ],
+      imgLink:
+        'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      label: 'Special Edition! Burger',
+      price: 10000,
+      review: '6.7k',
+      images: [
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+      ],
+      imgLink:
+        'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      label: 'Special Edition! Burger',
+      price: 10000,
+      review: '6.7k',
+      images: [
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+        {
+          imgLink:
+            'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        },
+      ],
+      imgLink:
+        'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
   ];
   const [selectedCategory, setSelectedIdCategory] = React.useState(null);
   const navigate = useNavigation();
@@ -214,15 +302,11 @@ function SearchScreen({navigation}) {
   return (
     <View
       style={{
-        backgroundColor: theme.colors.white,
         flex: 1,
       }}>
       <View
         style={{
           paddingBottom: 10,
-          backgroundColor: '#fff',
-          elevation: 5,
-          shadowColor: '#000',
           paddingHorizontal: 10,
           paddingTop: 10,
         }}>
@@ -273,8 +357,8 @@ function SearchScreen({navigation}) {
       </View>
       <View
         style={{
-          marginBottom: 140,
           paddingHorizontal: 10,
+          flex: 1,
         }}>
         <ProductCard
           onPressItem={onPressItem}

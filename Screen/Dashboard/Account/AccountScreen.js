@@ -150,6 +150,7 @@ function AccountScreen() {
               }}
               key={index}>
               <View
+                // eslint-disable-next-line react-native/no-inline-styles
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',

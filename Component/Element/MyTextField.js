@@ -7,6 +7,9 @@ function MyTextField({
   size,
   sx,
   secure = false,
+  height = 55,
+  fontSize = 20,
+  roundness = 10,
   ...props
 }) {
   return (
@@ -22,8 +25,8 @@ function MyTextField({
       /// answered by Ray : https://stackoverflow.com/users/5841629/ray
       placeholderTextColor={theme.colors.divider}
       /// stackoverflow END
-      theme={{roundness: 20}}
-      style={{height: 50, marginTop: -6, fontSize: 20, ...sx}}
+      theme={{roundness}}
+      style={{height, marginTop: -6, fontSize, ...sx}}
       mode={variant}
       {...props}
     />

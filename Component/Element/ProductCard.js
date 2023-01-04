@@ -17,6 +17,7 @@ function ProductCard({data, keyExtractor, onPressItem}) {
   return (
     <FlatList
       numColumns={2}
+      ListFooterComponent={<View style={{height: 80, width: '100%'}} />}
       data={data}
       renderItem={({item, index}) => {
         return (
