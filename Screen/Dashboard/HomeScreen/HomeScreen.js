@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Button, Text, Divider} from 'react-native-paper';
 import 'react-native-reanimated';
 import Search from './Search';
@@ -51,30 +52,11 @@ function HomeScreen() {
   }, [isScroll]);
 
   return (
-    <View>
+    <GestureHandlerRootView>
       <Search />
-      <ScrollView
-        onScrollBeginDrag={even => {
-          const coordinatesPOsitionLayout = Math.floor(
-            even.nativeEvent.contentOffset.y,
-          );
-          if (coordinatesPOsitionLayout >= 205) {
-            console.log('benar');
-          }
-        }}
-        scrollEnabled={isScroll}>
-        {/* <View
-          onMoveShouldSetResponder={() => {
-            setIsScroll(false);
-          }}>
-          <Banner />
-        </View> */}
+      <ScrollView>
+        {/* <Banner /> */}
         <View
-          onResponderGrant={e => console.log(e)}
-          onMoveShouldSetResponderCapture={() => {
-            setIsScroll(true);
-          }}
-          onTouchStart={() => setIsScroll(true)}
           style={{
             backgroundColor: '#fff',
             padding: 10,
@@ -111,7 +93,7 @@ function HomeScreen() {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </GestureHandlerRootView>
   );
 }
 

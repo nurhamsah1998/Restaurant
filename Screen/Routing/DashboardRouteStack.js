@@ -60,7 +60,11 @@ function DashboardRouteStack(route) {
     <DashboardNavigationStackTabs.Navigator
       initialRouteName={'Home'}
       screenOptions={handleNavbar}>
-      <DashboardNavigationStackTabs.Screen name="Home" component={HomeScreen} />
+      <DashboardNavigationStackTabs.Screen
+        options={{headerShown: false}}
+        name="Home"
+        component={HomeScreen}
+      />
       <DashboardNavigationStackTabs.Screen
         options={{
           header: () => <SearchHeader />,

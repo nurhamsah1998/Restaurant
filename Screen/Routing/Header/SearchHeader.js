@@ -43,8 +43,8 @@ function SearchHeader() {
     <View
       style={{
         backgroundColor: theme.colors.primary,
-        borderBottomEndRadius: 20,
-        borderBottomStartRadius: 20,
+        borderBottomRightRadius: 20,
+        borderBottomLeftRadius: 20,
         padding: 10,
         paddingHorizontal: 10,
         width: '100%',
