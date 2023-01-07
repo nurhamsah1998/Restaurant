@@ -38,9 +38,7 @@ function DashboardRouteStack(route) {
     tabBarInactiveTintColor: 'gray',
     tabBarLabelStyle: {fontSize: 15, paddingBottom: 10, fontWeight: 'bold'},
     tabBarStyle: {
-      margin: 15,
       position: 'absolute',
-      borderRadius: 20,
       height: 60,
       padding: 5,
     },
@@ -50,7 +48,8 @@ function DashboardRouteStack(route) {
           backgroundColor: theme.colors.white,
           width: '100%',
           height: '100%',
-          borderRadius: 20,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
         }}
       />
     ),
