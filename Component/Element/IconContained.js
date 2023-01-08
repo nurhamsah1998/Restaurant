@@ -7,6 +7,7 @@ function IconContained({
   backgroundColor = '#fff',
   icon = 'star',
   iconColor = '#000',
+  sx,
   ...props
 }) {
   return (
@@ -20,6 +21,7 @@ function IconContained({
         backgroundColor: backgroundColor,
         justifyContent: 'center',
         alignItems: 'center',
+        ...sx,
       }}
       {...props}>
       <AntDesign name={icon} size={size} color={iconColor} />

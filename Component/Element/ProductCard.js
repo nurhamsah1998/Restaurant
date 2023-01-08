@@ -3,7 +3,7 @@ import {
   FlatList,
   TouchableOpacity,
   View,
-  ImageBackground,
+  Image,
   Dimensions,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -17,6 +17,7 @@ function ProductCard({data, keyExtractor, onPressItem}) {
   return (
     <FlatList
       numColumns={2}
+      showsVerticalScrollIndicator={false}
       ListFooterComponent={<View style={{height: 80, width: '100%'}} />}
       data={data}
       renderItem={({item, index}) => {
@@ -26,31 +27,12 @@ function ProductCard({data, keyExtractor, onPressItem}) {
             style={{
               margin: 5,
               marginTop: 10,
-              // borderBottomColor: theme.colors.divider,
-              // borderBottomWidth: 1,
               paddingBottom: 10,
             }}>
-            <View
-              style={{
-                width: width / 2.21,
-                height: 150,
-                elevation: 5,
-                shadowColor: '#000',
-                backgroundColor: theme.colors.white,
-                borderRadius: 20,
-              }}>
-              <ImageBackground
-                source={{uri: item.imgLink}}
-                /// stackoverflow START
-                /// question : https://stackoverflow.com/questions/49442165/how-do-you-add-borderradius-to-imagebackground
-                /// answer by GollyJer : https://stackoverflow.com/users/25197/gollyjer
-                imageStyle={{
-                  borderRadius: 20,
-                }}
-                /// stackoverflow END
-                style={{width: '100%', height: 150}}
-              />
-            </View>
+            <Image
+              source={{uri: item.imgLink}}
+              style={{width: width / 2.21, height: 150, borderRadius: 20}}
+            />
             <View style={{marginTop: 5, paddingBottom: 5}}>
               <Text variant="bodyLarge">{item.label}</Text>
               <View

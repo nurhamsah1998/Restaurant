@@ -81,7 +81,7 @@ function OrdersScreen({navigation}) {
     },
     labelTabActive: {
       textAlign: 'center',
-      fontWeight: 'bold',
+      fontFamily: 'Poppins-Bold',
       color: theme.colors.primary,
     },
     labelTabNonActive: {
@@ -124,13 +124,12 @@ function OrdersScreen({navigation}) {
       alignItems: 'flex-start',
     },
     sectionTwo: {
-      marginTop: 20,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'flex-end',
     },
     price: {
-      fontWeight: 'bold',
+      fontFamily: 'Poppins-Medium',
       color: theme.colors.primary,
     },
     footerFlatList: {height: 70, width: '100%'},
@@ -139,7 +138,7 @@ function OrdersScreen({navigation}) {
       paddingHorizontal: 18,
       paddingVertical: 5,
       borderRadius: 10,
-      fontWeight: 'bold',
+      fontFamily: 'Poppins-Medium',
       color: theme.colors.errorFont,
       textTransform: 'capitalize',
     },
@@ -148,9 +147,12 @@ function OrdersScreen({navigation}) {
       paddingHorizontal: 18,
       paddingVertical: 5,
       borderRadius: 10,
-      fontWeight: 'bold',
+      fontFamily: 'Poppins-Medium',
       color: theme.colors.successFont,
       textTransform: 'capitalize',
+    },
+    tag: {
+      marginTop: -5,
     },
   });
   return (
@@ -169,7 +171,7 @@ function OrdersScreen({navigation}) {
                   ? style.labelTabActive
                   : style.labelTabNonActive
               }
-              variant="headlineSmall">
+              variant="titleMedium">
               {item.label}
             </Text>
           </TouchableOpacity>
@@ -189,8 +191,9 @@ function OrdersScreen({navigation}) {
                   <View>
                     <Text variant="titleLarge">{item.invoice}</Text>
                     <Text>created at</Text>
-                    <Text>created at</Text>
-                    <Text variant="titleMedium">{item.createdAt}</Text>
+                    <Text variant="titleMedium" style={style.tag}>
+                      {item.createdAt}
+                    </Text>
                   </View>
                   <Text
                     style={
@@ -208,7 +211,9 @@ function OrdersScreen({navigation}) {
                   </Text>
                   <View>
                     <Text>expired at</Text>
-                    <Text variant="titleMedium">{item.expiredAt}</Text>
+                    <Text variant="titleMedium" style={style.tag}>
+                      {item.expiredAt}
+                    </Text>
                   </View>
                 </View>
               </TouchableOpacity>

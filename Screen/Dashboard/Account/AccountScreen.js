@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
+import {Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {theme} from '../../../App';
@@ -61,7 +62,7 @@ function AccountScreen() {
         <Text
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
-            fontWeight: 'bold',
+            fontFamily: 'Poppins-Bold',
             fontSize: 21,
             color: theme.colors.white,
             marginTop: 10,
@@ -97,7 +98,7 @@ function AccountScreen() {
               style={{
                 color: theme.colors.white,
                 fontSize: 15,
-                fontWeight: 'bold',
+                fontFamily: 'Poppins-Bold',
               }}>
               Total Orders
             </Text>
@@ -119,7 +120,7 @@ function AccountScreen() {
               style={{
                 color: theme.colors.white,
                 fontSize: 15,
-                fontWeight: 'bold',
+                fontFamily: 'Poppins-Bold',
               }}>
               Total Poin
             </Text>
@@ -132,7 +133,7 @@ function AccountScreen() {
               style={{
                 color: theme.colors.white,
                 fontSize: 15,
-                fontWeight: 'bold',
+                fontFamily: 'Poppins-Bold',
               }}>
               Total Spend
             </Text>
@@ -166,11 +167,13 @@ function AccountScreen() {
                     style={{
                       fontSize: 18,
                       color: theme.colors.primary,
-                      fontWeight: 'bold',
+                      fontFamily: 'Poppins-Bold',
                     }}>
                     {item.label}
                   </Text>
-                  <Text>{item.tagLabel}</Text>
+                  <Text style={{marginTop: -10, color: theme.colors.backdrop}}>
+                    {item.tagLabel}
+                  </Text>
                 </View>
               </View>
               <AntDesign

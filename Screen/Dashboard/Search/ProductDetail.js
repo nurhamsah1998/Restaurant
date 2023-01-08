@@ -1,24 +1,27 @@
 import React from 'react';
 import {View, FlatList, Image, Dimensions, ScrollView} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Portal, Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
+import BottomSheetComponent from '../../../Component/Element/BottomSheetComponent';
 
 import {theme} from '../../../App';
+import CheckoutContent from './CheckoutContent';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 import IconContained from '../../../Component/Element/IconContained';
 import MyButton from '../../../Component/Element/MyButton';
 
 function ProductDetail(route) {
+  const [tabs, setTabs] = React.useState(null);
+  const [visible, setVisible] = React.useState(false);
   const navigate = useNavigation();
   const {label, images, review, duration, desc, price} =
     route?.route?.params?.i;
   const {width} = Dimensions.get('window');
   const [quantity, setQuantity] = React.useState(1);
   const [cart, setCart] = React.useState([]);
-
   const onAddCart = async () => {
     Snackbar.show({
       text: 'Successfully added to cart',
@@ -59,6 +62,16 @@ function ProductDetail(route) {
 
   return (
     <View style={{flex: 1}}>
+      <BottomSheetComponent
+        content={<CheckoutContent tabs={tabs} setTabs={setTabs} />}
+        isVisible={visible}
+        disabledOnSubmit={!Boolean(tabs)}
+        submitTitle="Checkout"
+        onDismiss={() => {
+          setVisible(false);
+          setTabs(null);
+        }}
+      />
       <ScrollView>
         <View style={{position: 'relative'}}>
           <FlatList
@@ -92,7 +105,7 @@ function ProductDetail(route) {
         <View
           style={{
             padding: 20,
-            backgroundColor: '#fff',
+            backgroundColor: theme.colors.white,
             borderRadius: 20,
             marginTop: -20,
           }}>
@@ -198,7 +211,12 @@ function ProductDetail(route) {
           onPress={onAddCart}
           sx={{marginRight: 20}}
         />
-        <MyButton title="Checkout" sx={{flex: 1}} mode="contained" />
+        <MyButton
+          onPress={() => setVisible(true)}
+          title="Checkout"
+          sx={{flex: 1}}
+          mode="contained"
+        />
       </View>
     </View>
   );

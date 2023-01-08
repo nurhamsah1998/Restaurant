@@ -43,7 +43,8 @@ function Index({isEmptyCart, totalAmountCart, cart}) {
       )}
 
       <MyButton
-        sx={{position: 'absolute', bottom: 20, right: 0, left: 0}}
+        disabled={cart?.length <= 0}
+        sx={{position: 'absolute', bottom: 10, right: 0, left: 0}}
         mode="contained"
         title={`Checkout ${FormatCurrency(totalAmountCart)}`}
       />

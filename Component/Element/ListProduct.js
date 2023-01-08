@@ -15,7 +15,6 @@ function ListProduct({data}) {
               flexDirection: 'row',
               alignItems: 'flex-start',
               borderRadius: 20,
-              padding: 10,
             }}>
             <View
               style={{

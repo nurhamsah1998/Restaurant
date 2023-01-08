@@ -2,10 +2,12 @@ import React from 'react';
 import {View, Alert} from 'react-native';
 import {Text, Button} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import MyButton from '../../../Component/Element/MyButton';
 import DineIn from './DineIn';
 import Delivery from './Delivery';
 import {theme} from '../../../App';
+import HeaderBack from '../../../Component/Element/HeaderBack';
 
 function CartList() {
   const [tabs, setTabs] = React.useState(0);
@@ -33,6 +35,7 @@ function CartList() {
   }, []);
   return (
     <View style={{flex: 1, padding: 20, backgroundColor: theme.colors.white}}>
+      <HeaderBack title="Cart" />
       <View style={{flexDirection: 'row'}}>
         <MyButton
           onPress={() => setTabs(0)}
