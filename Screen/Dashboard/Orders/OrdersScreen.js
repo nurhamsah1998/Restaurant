@@ -1,11 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import {Button} from 'react-native-paper';
 import {Text} from 'react-native-paper';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import MyButton from '../../../Component/Element/MyButton';
-import DineIn from './DineIn';
-import Delivery from './Delivery';
 import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 

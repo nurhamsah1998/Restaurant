@@ -2,8 +2,6 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import SearchScreen from '../../Dashboard/Search/SearchScreen';
-import SearchItem from '../../Dashboard/Search/SearchItem';
-import ProductDetail from '../../Dashboard/Search/ProductDetail';
 
 function Index({navigation, route}) {
   const SearchScreenStack = createNativeStackNavigator();
@@ -14,11 +12,6 @@ function Index({navigation, route}) {
         options={{headerShown: false}}
         name="SearchScreen"
         component={SearchScreen}
-      />
-      <SearchScreenStack.Screen
-        options={{headerShown: false}}
-        name="SearchItem"
-        component={SearchItem}
       />
     </SearchScreenStack.Navigator>
   );

@@ -5,8 +5,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {theme} from '../../../App';
+import {FormatCurrency} from '../../../Component/FormatCurrency';
 
-function CheckoutContent({tabs, setTabs}) {
+function CheckoutContent({tabs, setTabs, total}) {
   const style = StyleSheet.create({
     box: {
       justifyContent: 'center',
@@ -31,6 +32,13 @@ function CheckoutContent({tabs, setTabs}) {
     titleContainer: {
       marginBottom: 20,
     },
+    payment: {
+      marginTop: 10,
+    },
+    total: {
+      color: theme.colors.primary,
+      fontFamily: 'Poppins-Bold',
+    },
   });
   return (
     <View>
@@ -42,50 +50,74 @@ function CheckoutContent({tabs, setTabs}) {
       </View>
       <View style={style.boxContainer}>
         <TouchableOpacity
-          onPress={() => setTabs(1)}
+          onPress={() => setTabs('delivery')}
           style={[
             style.box,
             {
-              backgroundColor:
-                tabs === 1 ? theme.colors.primary : theme.colors.background,
+              backgroundColor: tabs?.includes('delivery')
+                ? theme.colors.primary
+                : theme.colors.background,
             },
           ]}>
           <MaterialIcons
             name="delivery-dining"
             size={50}
-            color={tabs === 1 ? theme.colors.white : theme.colors.primary}
+            color={
+              tabs?.includes('delivery')
+                ? theme.colors.white
+                : theme.colors.primary
+            }
           />
           <Text
             style={[
               style.tabTitle,
-              {color: tabs === 1 ? theme.colors.white : theme.colors.primary},
+              {
+                color: tabs?.includes('delivery')
+                  ? theme.colors.white
+                  : theme.colors.primary,
+              },
             ]}>
             Delivery
           </Text>
         </TouchableOpacity>
         <View style={style.separator} />
         <TouchableOpacity
-          onPress={() => setTabs(2)}
+          onPress={() => setTabs('dine_in')}
           style={[
             style.box,
             {
-              backgroundColor:
-                tabs === 2 ? theme.colors.primary : theme.colors.background,
+              backgroundColor: tabs?.includes('dine_in')
+                ? theme.colors.primary
+                : theme.colors.background,
             },
           ]}>
           <Ionicons
             name="fast-food-outline"
             size={50}
-            color={tabs === 2 ? theme.colors.white : theme.colors.primary}
+            color={
+              tabs?.includes('dine_in')
+                ? theme.colors.white
+                : theme.colors.primary
+            }
           />
           <Text
             style={[
               style.tabTitle,
-              {color: tabs === 2 ? theme.colors.white : theme.colors.primary},
+              {
+                color: tabs?.includes('dine_in')
+                  ? theme.colors.white
+                  : theme.colors.primary,
+              },
             ]}>
             Dine in
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={style.payment}>
+        <Text>
+          Your total payment is{' '}
+          <Text style={style.total}>{FormatCurrency(total)}</Text>
+        </Text>
       </View>
     </View>
   );

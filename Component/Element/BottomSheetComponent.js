@@ -16,8 +16,10 @@ export default function SheetModal({
   content,
   submitTitle,
   disabledOnSubmit,
+  onPressSubmit,
+  title,
+  readOnly,
 }) {
-  console.log(disabledOnSubmit);
   const styles = StyleSheet.create({
     modal: {
       margin: 0,
@@ -63,7 +65,7 @@ export default function SheetModal({
           renderHeader={() => (
             <View style={styles.sheetHeader}>
               <View style={styles.panelHeader}>
-                <Text variant="headlineSmall">Choose Orders</Text>
+                <Text variant="headlineSmall">{title}</Text>
               </View>
             </View>
           )}
@@ -79,17 +81,21 @@ export default function SheetModal({
                 {content}
                 <View style={styles.bottomButton}>
                   <MyButton
-                    sx={{flex: 1, marginRight: 10}}
-                    color="error"
+                    sx={{flex: 1, marginRight: readOnly ? 0 : 10}}
+                    color={readOnly ? 'info' : 'error'}
                     title="Close"
+                    mode={readOnly ? 'contained' : 'outlined'}
                     onPress={onDismiss}
                   />
-                  <MyButton
-                    disabled={disabledOnSubmit}
-                    sx={{flex: 1}}
-                    mode="contained"
-                    title={submitTitle}
-                  />
+                  {readOnly ? null : (
+                    <MyButton
+                      disabled={disabledOnSubmit}
+                      sx={{flex: 1}}
+                      mode="contained"
+                      onPress={onPressSubmit}
+                      title={submitTitle}
+                    />
+                  )}
                 </View>
               </View>
             </View>

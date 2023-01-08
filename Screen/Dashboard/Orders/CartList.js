@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MyButton from '../../../Component/Element/MyButton';
 import DineIn from './DineIn';
-import Delivery from './Delivery';
+import Items from './Items';
 import {theme} from '../../../App';
 import HeaderBack from '../../../Component/Element/HeaderBack';
 
@@ -21,12 +21,11 @@ function CartList() {
       if (value !== null) {
         const jsonValue = JSON.parse(value);
         setCart(jsonValue || []);
-        // navigation.navigate('Dashboard');
       } else {
         setCart([]);
-        // navigation.navigate('AuthRouteStack');
       }
     } catch (e) {
+      console.log(e);
       // error reading value
     }
   };
@@ -34,23 +33,10 @@ function CartList() {
     getData();
   }, []);
   return (
-    <View style={{flex: 1, padding: 20, backgroundColor: theme.colors.white}}>
+    <View style={{flex: 1, padding: 10, backgroundColor: theme.colors.white}}>
       <HeaderBack title="Cart" />
-      <View style={{flexDirection: 'row'}}>
-        <MyButton
-          onPress={() => setTabs(0)}
-          sx={{flex: 1}}
-          mode={tabs === 0 ? 'contained' : 'outlined'}
-          title="Delivery"
-        />
-        <MyButton
-          onPress={() => setTabs(1)}
-          sx={{flex: 1}}
-          mode={tabs === 1 ? 'contained' : 'outlined'}
-          title="Dine In"
-        />
-      </View>
       <View
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           flexDirection: 'row',
           alignItems: 'center',
@@ -80,30 +66,17 @@ function CartList() {
               ],
             )
           }
-          textColor={theme.colors.white}
-          mode="contained"
-          buttonColor={theme.colors.error}>
+          textColor={theme.colors.error}
+          mode="text">
           Clear all
         </Button>
       </View>
       <View style={{flex: 1}}>
-        {[
-          {
-            id: 0,
-            component: (
-              <Delivery
-                cart={cart}
-                isEmptyCart={isEmptyCart}
-                totalAmountCart={totalAmountCart}
-              />
-            ),
-          },
-          {id: 1, component: <DineIn />},
-        ].map((x, y) => (
-          <View key={y} style={{display: y === tabs ? 'flex' : 'none'}}>
-            {x.component}
-          </View>
-        ))}
+        <Items
+          cart={cart}
+          isEmptyCart={isEmptyCart}
+          totalAmountCart={totalAmountCart}
+        />
       </View>
     </View>
   );

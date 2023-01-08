@@ -8,6 +8,7 @@ import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
 import {AuthToken} from './contextHelper';
 import ProductDetail from '../Dashboard/Search/ProductDetail';
+import Orders from '../Dashboard/Search/Orders';
 import CartList from '../Dashboard/Orders/CartList';
 
 function Index() {
@@ -61,6 +62,11 @@ function Index() {
           options={{headerShown: false}}
           name="ProductDetail"
           component={ProductDetail}
+        />
+        <RootDashboardNavigationStack.Screen
+          options={{headerShown: false}}
+          name="Orders"
+          component={Orders}
         />
         <RootDashboardNavigationStack.Screen
           options={{headerShown: false}}

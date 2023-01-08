@@ -43,9 +43,7 @@ function ListProduct({data}) {
                   {FormatCurrency(item.price)} x {item.quantity}
                 </Text>
               </View>
-              <Text
-                variant="headlineSmall"
-                style={{color: theme.colors.primary, fontWeight: 'bold'}}>
+              <Text variant="titleLarge" style={{color: theme.colors.primary}}>
                 {FormatCurrency(item.price * item.quantity)}
               </Text>
             </View>

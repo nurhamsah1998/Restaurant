@@ -14,14 +14,14 @@ import IconContained from '../../../Component/Element/IconContained';
 import MyButton from '../../../Component/Element/MyButton';
 
 function ProductDetail(route) {
-  const [tabs, setTabs] = React.useState(null);
+  const [tabs, setTabs] = React.useState('');
   const [visible, setVisible] = React.useState(false);
+  const [cart, setCart] = React.useState([]);
   const navigate = useNavigation();
   const {label, images, review, duration, desc, price} =
     route?.route?.params?.i;
   const {width} = Dimensions.get('window');
   const [quantity, setQuantity] = React.useState(1);
-  const [cart, setCart] = React.useState([]);
   const onAddCart = async () => {
     Snackbar.show({
       text: 'Successfully added to cart',
@@ -56,6 +56,24 @@ function ProductDetail(route) {
       // error reading value
     }
   };
+
+  const onPressSubmit = async () => {
+    const body = {
+      ...route?.route?.params?.i,
+      quantity,
+      total: price * quantity,
+      status: 'unpaid',
+      type: tabs,
+    };
+    const data = JSON.stringify(body);
+    await AsyncStorage.setItem('@orders', data).then(res => {
+      navigate.navigate('RootDashboard', {
+        screen: 'Orders',
+        params: body,
+      });
+    });
+  };
+
   React.useEffect(() => {
     getData();
   }, []);
@@ -63,7 +81,14 @@ function ProductDetail(route) {
   return (
     <View style={{flex: 1}}>
       <BottomSheetComponent
-        content={<CheckoutContent tabs={tabs} setTabs={setTabs} />}
+        title="Choose Orders"
+        content={
+          <CheckoutContent
+            tabs={tabs}
+            total={price * quantity}
+            setTabs={setTabs}
+          />
+        }
         isVisible={visible}
         disabledOnSubmit={!Boolean(tabs)}
         submitTitle="Checkout"
@@ -71,6 +96,7 @@ function ProductDetail(route) {
           setVisible(false);
           setTabs(null);
         }}
+        onPressSubmit={onPressSubmit}
       />
       <ScrollView>
         <View style={{position: 'relative'}}>
@@ -193,9 +219,7 @@ function ProductDetail(route) {
               />
             </View>
           </View>
-          <Text style={{marginTop: 20}} variant="titleLarge">
-            {desc}
-          </Text>
+          <Text style={{marginTop: 20}}>{desc}</Text>
         </View>
       </ScrollView>
       <View
