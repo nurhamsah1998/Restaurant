@@ -8,11 +8,51 @@ import ListProduct from '../../../../Component/Element/ListProduct';
 import {FormatCurrency} from '../../../../Component/FormatCurrency';
 import MyButton from '../../../../Component/Element/MyButton';
 import {theme} from '../../../../App';
+import BottomSheetComponent from '../../../../Component/Element/BottomSheetComponent';
+import CheckoutContent from '../../Search/CheckoutContent';
 
 function Index({isEmptyCart, totalAmountCart, cart}) {
+  const totalPriceCart =
+    cart?.length <= 0 ? 0 : cart?.map(i => i?.price)?.reduce((x, y) => x + y);
   const navigation = useNavigation();
+  const [tabs, setTabs] = React.useState('');
+  const [visible, setVisible] = React.useState(false);
+  const onPressSubmit = async () => {
+    const body = {
+      // ...route?.route?.params?.i,
+      // quantity,
+      // total: price * quantity,
+      status: 'unpaid',
+      type: tabs,
+    };
+    const data = JSON.stringify(body);
+    await AsyncStorage.setItem('@orders', data).then(res => {
+      navigation.navigate('RootDashboard', {
+        screen: 'Orders',
+        params: body,
+      });
+    });
+  };
   return (
-    <View style={{paddingBottom: 100, height: '100%'}}>
+    <View style={{paddingBottom: 0, height: '100%'}}>
+      <BottomSheetComponent
+        title="Choose Orders"
+        content={
+          <CheckoutContent
+            tabs={tabs}
+            total={totalPriceCart}
+            setTabs={setTabs}
+          />
+        }
+        isVisible={visible}
+        disabledOnSubmit={!Boolean(tabs)}
+        submitTitle="Checkout"
+        onDismiss={() => {
+          setVisible(false);
+          setTabs(null);
+        }}
+        onPressSubmit={onPressSubmit}
+      />
       {isEmptyCart ? (
         <View
           style={{
@@ -44,9 +84,10 @@ function Index({isEmptyCart, totalAmountCart, cart}) {
 
       <MyButton
         disabled={cart?.length <= 0}
-        sx={{position: 'absolute', bottom: 10, right: 0, left: 0}}
+        sx={{position: 'absolute', bottom: 0, right: 0, left: 0}}
         mode="contained"
-        title={`Checkout ${FormatCurrency(totalAmountCart)}`}
+        onPress={() => setVisible(true)}
+        title={`Checkout`}
       />
     </View>
   );

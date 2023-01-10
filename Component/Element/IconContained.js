@@ -3,7 +3,7 @@ import {TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 function IconContained({
-  size = 25,
+  size = 18,
   backgroundColor = '#fff',
   icon = 'star',
   iconColor = '#000',
@@ -13,8 +13,8 @@ function IconContained({
   return (
     <TouchableOpacity
       style={{
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
         borderRadius: 20,
         elevation: 8,
         shadowColor: '#000',

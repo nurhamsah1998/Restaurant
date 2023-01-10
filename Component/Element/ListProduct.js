@@ -8,12 +8,13 @@ import {theme} from '../../App';
 function ListProduct({data}) {
   return (
     <FlatList
+      ItemSeparatorComponent={<View style={{height: 20}} />}
+      ListFooterComponent={<View style={{height: 80, width: '100%'}} />}
       renderItem={({item, index}) => {
         return (
           <View
             style={{
               flexDirection: 'row',
-              alignItems: 'flex-start',
               borderRadius: 20,
             }}>
             <View
@@ -26,24 +27,23 @@ function ListProduct({data}) {
               <Image
                 source={{uri: item.imgLink}}
                 resizeMode="cover"
-                style={{height: 120, width: 120, borderRadius: 20}}
+                style={{height: 100, width: 100, borderRadius: 20}}
               />
             </View>
             <View
               style={{
                 marginLeft: 10,
-                justifyContent: 'space-between',
               }}>
               <View>
-                <Text variant="headlineSmall">{item.label}</Text>
+                <Text variant="titleMedium">{item.label}</Text>
                 <Text style={{fontSize: 17, color: theme.colors.backdrop}}>
-                  {item.variant}
+                  {item.variant || '-'}
                 </Text>
-                <Text style={{fontSize: 15}}>
+                <Text style={{fontSize: 14, color: theme.colors.backdrop}}>
                   {FormatCurrency(item.price)} x {item.quantity}
                 </Text>
               </View>
-              <Text variant="titleLarge" style={{color: theme.colors.primary}}>
+              <Text variant="titleMedium" style={{color: theme.colors.primary}}>
                 {FormatCurrency(item.price * item.quantity)}
               </Text>
             </View>

@@ -184,7 +184,7 @@ function OrdersScreen({navigation}) {
               <TouchableOpacity style={style.card}>
                 <View style={style.sectionOne}>
                   <View>
-                    <Text variant="titleLarge">{item.invoice}</Text>
+                    <Text variant="titleMedium">{item.invoice}</Text>
                     <Text>created at</Text>
                     <Text variant="titleMedium" style={style.tag}>
                       {item.createdAt}
@@ -201,7 +201,7 @@ function OrdersScreen({navigation}) {
                   </Text>
                 </View>
                 <View style={style.sectionTwo}>
-                  <Text variant="headlineSmall" style={style.price}>
+                  <Text variant="titleMedium" style={style.price}>
                     {FormatCurrency(item.price)}
                   </Text>
                   <View>

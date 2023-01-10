@@ -1,5 +1,5 @@
 import React from 'react';
-import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {View, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
@@ -61,7 +61,7 @@ function OrdersHeader() {
           flexDirection: 'row',
         }}>
         <TouchableOpacity>
-          <Entypo
+          <AntDesign
             name="heart"
             style={{marginHorizontal: 15}}
             size={25}

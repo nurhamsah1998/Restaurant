@@ -5,18 +5,23 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheetComponent from '../../../Component/Element/BottomSheetComponent';
 
 import {theme} from '../../../App';
+import ProductCard from '../../../Component/Element/ProductCard';
+import {product} from './SearchScreen';
 import CheckoutContent from './CheckoutContent';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 import IconContained from '../../../Component/Element/IconContained';
 import MyButton from '../../../Component/Element/MyButton';
+import SugestionSection from './SugestionSection';
 
 function ProductDetail(route) {
   const [tabs, setTabs] = React.useState('');
   const [visible, setVisible] = React.useState(false);
   const [cart, setCart] = React.useState([]);
+  const [isFavorite, setIsFavorite] = React.useState(false);
   const navigate = useNavigation();
   const {label, images, review, duration, desc, price} =
     route?.route?.params?.i;
@@ -74,6 +79,19 @@ function ProductDetail(route) {
     });
   };
 
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    Snackbar.show({
+      text: 'Successfully added to your fovorite list',
+      duration: Snackbar.LENGTH_SHORT,
+      backgroundColor: theme.colors.primary,
+    });
+  };
+
+  const onPressItem = i => {
+    navigate.navigate('RootDashboard', {screen: 'ProductDetail', params: {i}});
+  };
+
   React.useEffect(() => {
     getData();
   }, []);
@@ -98,137 +116,28 @@ function ProductDetail(route) {
         }}
         onPressSubmit={onPressSubmit}
       />
-      <ScrollView>
-        <View style={{position: 'relative'}}>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            pagingEnabled
-            horizontal
-            data={images}
-            keyExtractor={item => item.imgLink}
-            renderItem={({item, index}) => {
-              return (
-                <Image
-                  source={{uri: item.imgLink}}
-                  resizeMode="cover"
-                  style={{width: width, height: 300}}
-                />
-              );
-            }}
-          />
-          <View
-            style={{
-              position: 'absolute',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: width,
-              padding: 20,
-            }}>
-            <IconContained onPress={() => navigate.goBack()} icon="back" />
-            <IconContained icon="sharealt" iconColor={theme.colors.primary} />
-          </View>
-        </View>
-        <View
-          style={{
-            padding: 20,
-            backgroundColor: theme.colors.white,
-            borderRadius: 20,
-            marginTop: -20,
-          }}>
-          <Text variant="headlineLarge" style={{fontWeight: '700'}}>
-            {label}
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginRight: 10,
-              }}>
-              <AntDesign name="star" size={20} color={theme.colors.primary} />
-              <Text
-                variant="titleMedium"
-                style={{marginLeft: 2, color: theme.colors.primary}}>
-                {`${review} Review`}
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <AntDesign
-                name="clockcircle"
-                size={20}
-                color={theme.colors.primary}
-              />
-              <Text
-                variant="titleMedium"
-                style={{marginLeft: 2, color: theme.colors.primary}}>
-                {duration || '5 min'}
-              </Text>
-            </View>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'flex-end',
-                marginTop: 10,
-              }}>
-              <Text variant="headlineSmall" style={{fontWeight: '600'}}>
-                {FormatCurrency(price * quantity)}
-              </Text>
-              {/* <Text style={{color: theme.colors.backdrop}}>/porsi</Text> */}
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              <MyButton
-                disabled={quantity <= 1}
-                onPress={() => setQuantity(quantity - 1)}
-                small
-                mode="contained"
-                title="-"
-              />
-              <View
-                style={{
-                  borderColor: theme.colors.backdrop,
-                  borderWidth: 1,
-                  borderRadius: 5,
-                  width: 40,
-                  height: 40,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Text style={{fontSize: 20}}>{quantity}</Text>
-              </View>
-              <MyButton
-                onPress={() => setQuantity(quantity + 1)}
-                small
-                title="+"
-                mode="contained"
-              />
-            </View>
-          </View>
-          <Text style={{marginTop: 20}}>{desc}</Text>
-        </View>
-      </ScrollView>
+      <View>
+        <SugestionSection
+          onPressItem={onPressItem}
+          handleFavorite={handleFavorite}
+          isFavorite={isFavorite}
+          navigate={navigate}
+          setQuantity={setQuantity}
+          quantity={quantity}
+          params={route?.route?.params?.i}
+        />
+      </View>
       <View
         style={{
           flexDirection: 'row',
-          padding: 20,
+          paddingHorizontal: 10,
+          paddingBottom: 10,
+          position: 'absolute',
+          bottom: 0,
+
           backgroundColor: theme.colors.white,
-          shadowColor: '#000',
-          elevation: 10,
+          // shadowColor: '#000',
+          // elevation: 10,
         }}>
         <MyButton
           title="Add to cart"

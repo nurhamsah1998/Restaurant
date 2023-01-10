@@ -1,5 +1,5 @@
 import React from 'react';
-import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useIsFocused} from '@react-navigation/native';
 import {View, TouchableOpacity} from 'react-native';
@@ -65,7 +65,7 @@ function SearchHeader() {
           <FontAwesome name="filter" size={25} color={theme.colors.white} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Entypo
+          <AntDesign
             name="heart"
             size={25}
             style={{marginHorizontal: 15}}
