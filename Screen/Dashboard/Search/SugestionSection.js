@@ -35,6 +35,20 @@ function SugestionSection({
           label: 'Pizza Mercury',
           price: 12000,
           review: '1.2k',
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
             'https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -43,6 +57,20 @@ function SugestionSection({
           id: '15',
           label: 'Cappucino Ice',
           price: 12000,
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           review: '1.2k',
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
@@ -52,6 +80,20 @@ function SugestionSection({
           id: '16',
           label: 'Noodle Spicy',
           price: 12000,
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           review: '1.2k',
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
@@ -61,6 +103,20 @@ function SugestionSection({
           id: '17',
           label: 'Chicken Strip',
           price: 12000,
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           review: '1.2k',
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
@@ -75,6 +131,20 @@ function SugestionSection({
           id: '1',
           label: 'Rice Bowl',
           price: 12000,
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           review: '1.2k',
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
@@ -84,6 +154,20 @@ function SugestionSection({
           id: '12',
           label: 'Beef Melt',
           price: 12000,
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           review: '1.2k',
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
@@ -93,6 +177,20 @@ function SugestionSection({
           id: '190',
           label: 'Orange Juice',
           price: 12000,
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           review: '1.2k',
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
@@ -102,6 +200,20 @@ function SugestionSection({
           id: '13',
           label: 'Dragon Fruit Juice',
           price: 12000,
+          images: [
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+            {
+              imgLink:
+                'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            },
+          ],
           review: '1.2k',
           desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
           imgLink:
@@ -159,13 +271,14 @@ function SugestionSection({
                 width: '100%',
                 height: '100%',
               }}>
-              <Text variant="headlineLarge" style={{fontWeight: '700'}}>
+              <Text variant="headlineMedium" style={{}}>
                 {label}
               </Text>
               <View
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
+                  marginTop: 20,
                 }}>
                 <View
                   style={{
@@ -211,9 +324,8 @@ function SugestionSection({
                   style={{
                     flexDirection: 'row',
                     alignItems: 'flex-end',
-                    marginTop: 10,
                   }}>
-                  <Text variant="headlineSmall" style={{fontWeight: '600'}}>
+                  <Text variant="headlineSmall" style={{}}>
                     {FormatCurrency(price * quantity)}
                   </Text>
                   {/* <Text style={{color: theme.colors.backdrop}}>/porsi</Text> */}
@@ -254,7 +366,7 @@ function SugestionSection({
         ListFooterComponent={<View style={{height: 80, width: '100%'}} />}
         renderSectionHeader={({section}) => (
           <View style={{padding: 10, backgroundColor: theme.colors.white}}>
-            <Text variant="titleMedium" style={{fontFamily: 'Poppins-Bold'}}>
+            <Text variant="titleLarge" style={{fontFamily: 'Poppins-Bold'}}>
               {section.title}
             </Text>
             <FlatList

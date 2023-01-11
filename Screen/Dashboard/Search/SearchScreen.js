@@ -165,8 +165,50 @@ export const product = [
       'https://images.pexels.com/photos/2280573/pexels-photo-2280573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   },
   {
-    label: 'Special Edition! Burger',
-    price: 10000,
+    label: 'Soup',
+    price: 20100,
+    review: '6.7k',
+    images: [
+      {
+        imgLink:
+          'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        imgLink:
+          'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        imgLink:
+          'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+    ],
+    imgLink:
+      'https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  },
+  {
+    label: 'Tuna',
+    price: 5500,
+    review: '6.7k',
+    images: [
+      {
+        imgLink:
+          'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        imgLink:
+          'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        imgLink:
+          'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+    ],
+    imgLink:
+      'https://images.pexels.com/photos/952647/pexels-photo-952647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  },
+  {
+    label: 'Bread',
+    price: 2500,
     review: '6.7k',
     images: [
       {
@@ -186,8 +228,8 @@ export const product = [
       'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   },
   {
-    label: 'Special Edition! Burger',
-    price: 10000,
+    label: 'Ice Tea',
+    price: 12500,
     review: '6.7k',
     images: [
       {
@@ -204,11 +246,11 @@ export const product = [
       },
     ],
     imgLink:
-      'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/792613/pexels-photo-792613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   },
   {
-    label: 'Special Edition! Burger',
-    price: 10000,
+    label: 'Beef Burger',
+    price: 4500,
     review: '6.7k',
     images: [
       {
@@ -225,49 +267,7 @@ export const product = [
       },
     ],
     imgLink:
-      'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    label: 'Special Edition! Burger',
-    price: 10000,
-    review: '6.7k',
-    images: [
-      {
-        imgLink:
-          'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-      {
-        imgLink:
-          'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-      {
-        imgLink:
-          'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-    ],
-    imgLink:
-      'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    label: 'Special Edition! Burger',
-    price: 10000,
-    review: '6.7k',
-    images: [
-      {
-        imgLink:
-          'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-      {
-        imgLink:
-          'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-      {
-        imgLink:
-          'https://images.pexels.com/photos/115740/pexels-photo-115740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-    ],
-    imgLink:
-      'https://images.pexels.com/photos/2983104/pexels-photo-2983104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/2089717/pexels-photo-2089717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   },
 ];
 function SearchScreen({navigation}) {
