@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, FlatList, Image} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Text, IconButton} from 'react-native-paper';
 
 import {FormatCurrency} from '../FormatCurrency';
 import {theme} from '../../App';
+import IconContained from './IconContained';
 
 function ListProduct({data}) {
   return (
@@ -32,20 +33,35 @@ function ListProduct({data}) {
             </View>
             <View
               style={{
-                marginLeft: 10,
+                flexDirection: 'row',
+                flex: 1,
+                justifyContent: 'space-between',
               }}>
-              <View>
-                <Text variant="titleMedium">{item.label}</Text>
-                <Text style={{fontSize: 17, color: theme.colors.backdrop}}>
-                  {item.variant || '-'}
-                </Text>
-                <Text style={{fontSize: 14, color: theme.colors.backdrop}}>
-                  {FormatCurrency(item.price)} x {item.quantity}
+              <View
+                style={{
+                  marginLeft: 10,
+                }}>
+                <View>
+                  <Text variant="titleMedium">{item.label}</Text>
+                  <Text style={{fontSize: 17, color: theme.colors.backdrop}}>
+                    {item.variant || '-'}
+                  </Text>
+                  <Text style={{fontSize: 14, color: theme.colors.backdrop}}>
+                    {FormatCurrency(item.price)} x {item.quantity}
+                  </Text>
+                </View>
+                <Text
+                  variant="titleMedium"
+                  style={{color: theme.colors.primary}}>
+                  {FormatCurrency(item.price * item.quantity)}
                 </Text>
               </View>
-              <Text variant="titleMedium" style={{color: theme.colors.primary}}>
-                {FormatCurrency(item.price * item.quantity)}
-              </Text>
+              <IconContained
+                backgroundColor={theme.colors.error}
+                size={40}
+                icon="delete"
+                iconColor={theme.colors.background}
+              />
             </View>
           </View>
         );

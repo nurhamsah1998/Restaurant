@@ -4,7 +4,7 @@ import {Text} from 'react-native-paper';
 import IconContained from './IconContained';
 import {useNavigation} from '@react-navigation/native';
 
-function HeaderBack({title, marginBottom = 30}) {
+function HeaderBack({title, marginBottom = 10}) {
   const navigate = useNavigation();
   return (
     <View

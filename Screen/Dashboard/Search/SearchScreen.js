@@ -289,8 +289,8 @@ function SearchScreen({navigation}) {
       value: 'snack',
     },
     {
-      label: 'Junik',
-      value: 'junik',
+      label: 'Drink',
+      value: 'drink',
     },
   ];
 

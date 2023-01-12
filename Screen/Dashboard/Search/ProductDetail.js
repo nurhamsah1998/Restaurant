@@ -1,23 +1,17 @@
 import React from 'react';
-import {View, FlatList, Image, Dimensions, ScrollView} from 'react-native';
-import {Portal, Text} from 'react-native-paper';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import {View, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheetComponent from '../../../Component/Element/BottomSheetComponent';
 
 import {theme} from '../../../App';
-import ProductCard from '../../../Component/Element/ProductCard';
-import {product} from './SearchScreen';
 import CheckoutContent from './CheckoutContent';
-import {FormatCurrency} from '../../../Component/FormatCurrency';
-import IconContained from '../../../Component/Element/IconContained';
 import MyButton from '../../../Component/Element/MyButton';
 import SugestionSection from './SugestionSection';
 
 function ProductDetail(route) {
+  const ref = React.useRef();
   const [tabs, setTabs] = React.useState('');
   const [visible, setVisible] = React.useState(false);
   const [cart, setCart] = React.useState([]);
