@@ -11,40 +11,19 @@ import Animated, {
 } from 'react-native-reanimated';
 import {theme} from '../../../../App';
 
-function Index() {
+function BannerImageCarousel({data = [], autoPlay = false}) {
   const {width} = Dimensions.get('window');
   const [isVertical, setIsVertical] = React.useState(false);
   const progressValue = useSharedValue(0);
   const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399'];
-  const data = [
-    {
-      img: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      color: 'red',
-    },
-    {
-      img: 'https://images.pexels.com/photos/10883402/pexels-photo-10883402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      color: 'green',
-    },
-    {
-      img: 'https://images.pexels.com/photos/6752365/pexels-photo-6752365.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      color: 'blue',
-    },
-    {
-      img: 'https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      color: 'black',
-    },
-    {
-      img: 'https://images.pexels.com/photos/708488/pexels-photo-708488.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      color: 'orange',
-    },
-  ];
+
   return (
     <View>
       <Carousel
         loop
         width={width}
         height={width / 1.5}
-        autoPlay={true}
+        autoPlay={autoPlay}
         data={data}
         panGestureHandlerProps={{
           activeOffsetX: [-10, 10],
@@ -150,4 +129,4 @@ const PaginationItem = props => {
   );
 };
 
-export default Index;
+export default BannerImageCarousel;

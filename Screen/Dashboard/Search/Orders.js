@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image, FlatList} from 'react-native';
 import {Text} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 
 import HeaderBack from '../../../Component/Element/HeaderBack';
 import {theme} from '../../../App';
@@ -60,9 +61,14 @@ function Orders(route) {
   });
   const [visible, setVisible] = React.useState(false);
   const listOrders = [route?.route?.params];
+  const navigate = useNavigation();
   return (
     <View style={style.container}>
-      <HeaderBack marginBottom={0} title="Orders" />
+      <HeaderBack
+        onPressBack={() => navigate.navigate('Dashboard', {screen: 'Search'})}
+        marginBottom={0}
+        title="Orders"
+      />
       <View style={style.main}>
         <View>
           <Text variant="displaySmall" style={style.displayTitle}>

@@ -130,7 +130,7 @@ function OrdersScreen({navigation}) {
     footerFlatList: {height: 70, width: '100%'},
     statusUnpaid: {
       backgroundColor: theme.colors.errorBackground,
-      paddingHorizontal: 18,
+      paddingHorizontal: 10,
       paddingVertical: 5,
       borderRadius: 10,
       fontFamily: 'Poppins-Medium',
@@ -139,7 +139,7 @@ function OrdersScreen({navigation}) {
     },
     statusPaid: {
       backgroundColor: theme.colors.successBackground,
-      paddingHorizontal: 18,
+      paddingHorizontal: 10,
       paddingVertical: 5,
       borderRadius: 10,
       fontFamily: 'Poppins-Medium',
@@ -196,7 +196,7 @@ function OrdersScreen({navigation}) {
                         ? style.statusPaid
                         : style.statusUnpaid
                     }
-                    variant="titleLarge">
+                    variant="titleSmall">
                     {item.status}
                   </Text>
                 </View>

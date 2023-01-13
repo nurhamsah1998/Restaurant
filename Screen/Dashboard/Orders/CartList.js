@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Alert} from 'react-native';
-import {Text, Button} from 'react-native-paper';
+import {Text, Button, ActivityIndicator} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MyButton from '../../../Component/Element/MyButton';
@@ -10,7 +10,7 @@ import {theme} from '../../../App';
 import HeaderBack from '../../../Component/Element/HeaderBack';
 
 function CartList() {
-  const [tabs, setTabs] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
   const [cart, setCart] = React.useState([]);
   const totalAmountCart =
     cart?.length <= 0 ? 0 : cart?.map(i => i?.total).reduce((a, b) => a + b);
@@ -20,11 +20,18 @@ function CartList() {
       const value = await AsyncStorage.getItem('@cart');
       if (value !== null) {
         const jsonValue = JSON.parse(value);
-        setCart(jsonValue || []);
+        setTimeout(() => {
+          setLoading(false);
+          setCart(jsonValue || []);
+        }, 2000);
       } else {
-        setCart([]);
+        setTimeout(() => {
+          setLoading(false);
+          setCart([]);
+        }, 2000);
       }
     } catch (e) {
+      setLoading(false);
       console.log(e);
       // error reading value
     }
@@ -72,11 +79,23 @@ function CartList() {
         </Button>
       </View>
       <View style={{flex: 1}}>
-        <Items
-          cart={cart}
-          isEmptyCart={isEmptyCart}
-          totalAmountCart={totalAmountCart}
-        />
+        {loading ? (
+          <View
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <ActivityIndicator
+              animating={true}
+              color={theme.colors.primary}
+              size={50}
+            />
+            <Text style={{marginTop: 20}}>Please wait</Text>
+          </View>
+        ) : (
+          <Items
+            cart={cart}
+            isEmptyCart={isEmptyCart}
+            totalAmountCart={totalAmountCart}
+          />
+        )}
       </View>
     </View>
   );
