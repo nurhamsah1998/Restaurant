@@ -15,6 +15,7 @@ import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
 import SearchHeader from './Header/SearchHeader';
 import OrdersHeader from './Header/OrdersHeader';
+import DashboardHeader from './Header/DashboardHeader';
 
 function DashboardRouteStack(route) {
   const DashboardNavigationStackTabs = createBottomTabNavigator();
@@ -60,7 +61,7 @@ function DashboardRouteStack(route) {
       initialRouteName={'Home'}
       screenOptions={handleNavbar}>
       <DashboardNavigationStackTabs.Screen
-        options={{headerShown: false}}
+        options={{header: () => <DashboardHeader />}}
         name="Home"
         component={HomeScreen}
       />

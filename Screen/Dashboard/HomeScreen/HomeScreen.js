@@ -60,7 +60,6 @@ function HomeScreen() {
           style={{
             backgroundColor: '#fff',
             padding: 10,
-            marginTop: -20,
             borderTopLeftRadius: 15,
             borderTopRightRadius: 15,
           }}>
