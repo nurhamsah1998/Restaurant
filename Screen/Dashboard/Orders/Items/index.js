@@ -17,21 +17,30 @@ function Index({isEmptyCart, totalAmountCart, cart}) {
   const navigation = useNavigation();
   const [tabs, setTabs] = React.useState('');
   const [visible, setVisible] = React.useState(false);
+  const randomNUm = Math.floor(Math.random * 999 + 1);
+
   const onPressSubmit = async () => {
     const body = {
-      // ...route?.route?.params?.i,
-      // quantity,
-      // total: price * quantity,
-      status: 'unpaid',
+      items: cart,
+      createdAt: new Date.now(),
+      expiredAt: '01:34:00',
+      id: 1,
       type: tabs,
+      invoice: `ORDER - INV${1}`,
+      total: totalPriceCart,
+      status: 'unpaid',
     };
     const data = JSON.stringify(body);
-    await AsyncStorage.setItem('@orders', data).then(res => {
-      navigation.navigate('RootDashboard', {
-        screen: 'Orders',
-        params: body,
+    await AsyncStorage.setItem('@orders', data)
+      .then(res => {
+        navigation.navigate('RootDashboard', {
+          screen: 'Orders',
+          params: body,
+        });
+      })
+      .catch(error => {
+        console.log(error, 'ooo');
       });
-    });
   };
   return (
     <View style={{paddingBottom: 0, height: '100%'}}>

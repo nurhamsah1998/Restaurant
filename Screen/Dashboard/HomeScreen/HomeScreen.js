@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, ScrollView, TouchableOpacity} from 'react-native';
+import {View, ScrollView, TouchableOpacity, Dimensions} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Text} from 'react-native-paper';
 import 'react-native-reanimated';
@@ -41,6 +41,29 @@ function HomeScreen() {
       tag: 'khas nusantara',
       imgUrl:
         'https://images.pexels.com/photos/12842992/pexels-photo-12842992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+  ];
+  const {width} = Dimensions.get('window');
+  const content = [
+    {
+      label: 'Fresh Vegetables',
+      tag: 'be healty and eat healty',
+      color: theme.colors.greenTeal,
+    },
+    {
+      label: 'Coffee Break',
+      tag: 'we have the best coffee in town',
+      color: theme.colors.brown,
+    },
+    {
+      label: 'Beef Food',
+      tag: 'indulge your tongue',
+      color: theme.colors.errorBackground,
+    },
+    {
+      label: 'Juice',
+      tag: 'many varieties of juices',
+      color: theme.colors.aqua,
     },
   ];
   React.useEffect(() => {
@@ -113,6 +136,45 @@ function HomeScreen() {
                 isDivider={y !== 0}
                 imgUrl={x.imgUrl}
               />
+            ))}
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
+            }}>
+            {content.map((item, index) => (
+              <TouchableOpacity
+                style={{
+                  width: width / 2.2,
+                  backgroundColor: item.color,
+                  marginTop: 20,
+                  height: width / 2.2,
+                  justifyContent: 'center',
+                  borderRadius: 10,
+                  padding: 10,
+                  elevation: 5,
+                  shadowColor: '#000',
+                }}
+                key={index}>
+                <Text
+                  style={{
+                    color: theme.colors.white,
+                    fontFamily: 'Poppins-Bold',
+                    fontSize: 23,
+                    textAlign: 'center',
+                  }}>
+                  {item.label}
+                </Text>
+                <Text
+                  style={{
+                    color: theme.colors.white,
+                    textAlign: 'center',
+                  }}>
+                  {item.tag}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
           <SugestionSection />

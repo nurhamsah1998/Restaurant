@@ -1,11 +1,14 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {Text} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
+
 import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 
 function OrdersScreen({navigation}) {
   const [tabValue, setTabValue] = React.useState(0);
+  const navigate = useNavigation();
   const tabs = [
     {
       label: 'Delivery',
@@ -95,13 +98,6 @@ function OrdersScreen({navigation}) {
       borderBottomColor: theme.colors.white,
       paddingBottom: 10,
     },
-    // headerItem: {
-    //   paddingHorizontal: 10,
-    //   flexDirection: 'row',
-    //   justifyContent: 'space-between',
-    //   marginTop: 10,
-    //   marginBottom: 1,
-    // },
     card: {
       backgroundColor: theme.colors.white,
       elevation: 5,
@@ -150,6 +146,12 @@ function OrdersScreen({navigation}) {
       marginTop: -5,
     },
   });
+  const handlePressOrder = item => {
+    navigate.navigate('RootDashboard', {
+      screen: 'Orders',
+      params: item,
+    });
+  };
   return (
     <View style={style.container}>
       <View style={style.tab}>
@@ -172,16 +174,15 @@ function OrdersScreen({navigation}) {
           </TouchableOpacity>
         ))}
       </View>
-      {/* <Text style={style.headerItem} variant="titleLarge">
-        23 Total
-      </Text> */}
       <View style={style.containerCard}>
         <FlatList
           data={data}
           ListFooterComponent={<View style={style.footerFlatList} />}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity style={style.card}>
+              <TouchableOpacity
+                style={style.card}
+                onPress={() => handlePressOrder(item)}>
                 <View style={style.sectionOne}>
                   <View>
                     <Text variant="titleMedium">{item.invoice}</Text>

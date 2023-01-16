@@ -240,10 +240,7 @@ function ProductDetail(route) {
           paddingBottom: 10,
           position: 'absolute',
           bottom: 0,
-
           backgroundColor: theme.colors.white,
-          // shadowColor: '#000',
-          // elevation: 10,
         }}>
         <MyButton
           title="Add to cart"

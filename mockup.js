@@ -20,6 +20,7 @@ export const data = [
     color: 'orange',
   },
 ];
+
 export const sectionData = [
   {
     title: 'Best Seller',

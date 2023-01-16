@@ -23,6 +23,8 @@ export const theme = {
     secondary: '#1e88e5',
     typography: '#0d0d0d',
     greenTeal: '#00e673',
+    brown: '#e6c600',
+    aqua: '#00e6bf',
     divider: '#d2d2d2',
     white: '#FFFF',
     warning: '#ffb300',
