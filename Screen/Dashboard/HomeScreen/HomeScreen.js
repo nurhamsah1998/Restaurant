@@ -1,18 +1,16 @@
 import * as React from 'react';
-import {
-  View,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import {View, ScrollView, TouchableOpacity} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Button, Text, Divider} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import 'react-native-reanimated';
-import Search from './Search';
-import Banner from './Banner';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import Card from '../../../Component/Element/Card';
 import {theme} from '../../../App';
+import MyTextField from '../../../Component/Element/MyTextField';
+import BannerImageCarousel from './Banner';
+import {data} from '../../../mockup';
+import SugestionSection from '../Search/SugestionSection';
 
 function HomeScreen() {
   const [isScroll, setIsScroll] = React.useState(true);
@@ -53,16 +51,43 @@ function HomeScreen() {
 
   return (
     <GestureHandlerRootView>
-      <Search />
-      <ScrollView>
-        {/* <Banner /> */}
+      <ScrollView style={{backgroundColor: theme.colors.white}}>
+        <View style={{flexDirection: 'row', padding: 10, alignItems: 'center'}}>
+          <MyTextField
+            leftIcon="magnify"
+            fontSize={15}
+            sx={{marginRight: 10, flex: 5}}
+          />
+          <TouchableOpacity
+            style={{
+              backgroundColor: theme.colors.white,
+              flex: 1,
+              height: '100%',
+              borderRadius: 10,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              elevation: 5,
+              shadowColor: '#000',
+            }}>
+            <Ionicons
+              name="notifications"
+              style={{marginHorizontal: 15}}
+              size={25}
+              color={theme.colors.primary}
+            />
+          </TouchableOpacity>
+        </View>
+        {/* <BannerImageCarousel isBanner autoPlay mode="parallax" data={data} /> */}
+
         <View
           style={{
             backgroundColor: '#fff',
-            padding: 10,
             borderTopLeftRadius: 15,
             borderTopRightRadius: 15,
+            margin: 10,
           }}>
+          <SugestionSection />
           <View
             style={{
               flexDirection: 'row',
@@ -90,6 +115,7 @@ function HomeScreen() {
               />
             ))}
           </View>
+          <SugestionSection />
         </View>
       </ScrollView>
     </GestureHandlerRootView>

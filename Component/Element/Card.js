@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TouchableOpacity, Image} from 'react-native';
 import {Text, Button, Divider} from 'react-native-paper';
+import {theme} from '../../App';
 
 function Card({title, tag, price, location, review, isDivider, imgUrl}) {
   return (
@@ -8,9 +9,15 @@ function Card({title, tag, price, location, review, isDivider, imgUrl}) {
       {isDivider ? <Divider /> : null}
       <View style={{marginVertical: 15}}>
         <View style={{flex: 1, height: 200}}>
-          <View>
+          <View
+            style={{
+              elevation: 5,
+              shadowColor: '#000',
+              backgroundColor: theme.colors.white,
+              borderRadius: 10,
+            }}>
             <Image
-              style={{width: '100%', height: '100%', borderRadius: 20}}
+              style={{width: '100%', height: '100%', borderRadius: 10}}
               source={{
                 uri: imgUrl,
               }}

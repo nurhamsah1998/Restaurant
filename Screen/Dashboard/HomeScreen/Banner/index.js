@@ -11,7 +11,12 @@ import Animated, {
 } from 'react-native-reanimated';
 import {theme} from '../../../../App';
 
-function BannerImageCarousel({data = [], autoPlay = false}) {
+function BannerImageCarousel({
+  data = [],
+  autoPlay = false,
+  mode = '',
+  isBanner = false,
+}) {
   const {width} = Dimensions.get('window');
   const [isVertical, setIsVertical] = React.useState(false);
   const progressValue = useSharedValue(0);
@@ -21,6 +26,7 @@ function BannerImageCarousel({data = [], autoPlay = false}) {
     <View>
       <Carousel
         loop
+        mode={mode}
         width={width}
         height={width / 1.5}
         autoPlay={autoPlay}
@@ -28,47 +34,55 @@ function BannerImageCarousel({data = [], autoPlay = false}) {
         panGestureHandlerProps={{
           activeOffsetX: [-10, 10],
         }}
-        autoPlayInterval={1500}
-        pagingEnabled
+        autoPlayInterval={2500}
         onProgressChange={(_, absoluteProgress) =>
           (progressValue.value = absoluteProgress)
         }
-        renderItem={({index}) => (
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: data[index].color,
-            }}>
-            <Image
-              style={{flex: 1}}
-              source={{
-                uri: `${data[index]?.img}`,
-              }}
-            />
-          </View>
-        )}
+        renderItem={({item, index}) => {
+          return (
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: item?.color,
+                borderRadius: isBanner ? 10 : 0,
+                width: '100%',
+                elevation: 5,
+                shadowColor: '#000',
+              }}>
+              <Image
+                style={{flex: 1, borderRadius: isBanner ? 10 : 0}}
+                source={{
+                  uri: `${item?.img}`,
+                }}
+              />
+            </View>
+          );
+        }}
       />
       <View
         style={{
-          flexDirection: 'row',
           position: 'absolute',
-          bottom: '15%',
-          right: '5%',
+          bottom: isBanner ? 0 : 27,
+          width: '100%',
+          flexDirection: 'row',
+          justifyContent: 'center',
         }}>
-        {Array(5)
-          .fill(theme.colors.primary)
-          .map((backgroundColor, index) => {
-            return (
-              <PaginationItem
-                backgroundColor={backgroundColor}
-                animValue={progressValue}
-                index={index}
-                key={index}
-                isRotate={isVertical}
-                length={colors.length}
-              />
-            );
-          })}
+        <View style={{flexDirection: 'row'}}>
+          {Array(5)
+            .fill(theme.colors.primary)
+            .map((backgroundColor, index) => {
+              return (
+                <PaginationItem
+                  backgroundColor={backgroundColor}
+                  animValue={progressValue}
+                  index={index}
+                  key={index}
+                  isRotate={isVertical}
+                  length={colors.length}
+                />
+              );
+            })}
+        </View>
       </View>
     </View>
   );
@@ -104,6 +118,8 @@ const PaginationItem = props => {
     <View
       style={{
         backgroundColor: theme.colors.background,
+        shadowColor: '#000',
+        elevation: 4,
         width,
         height: width,
         borderRadius: 50,

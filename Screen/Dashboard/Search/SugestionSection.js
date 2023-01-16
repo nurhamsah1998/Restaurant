@@ -18,7 +18,6 @@ function SugestionSection({onPressItem}) {
   return (
     <View style={{marginTop: 20, marginBottom: 60}}>
       {sectionData.map((item, index) => {
-        console.log(item.title, '====');
         return (
           <View key={index}>
             <Text style={{fontSize: 19, fontFamily: 'Poppins-Bold'}}>
@@ -34,14 +33,23 @@ function SugestionSection({onPressItem}) {
                     marginTop: 10,
                     paddingBottom: 10,
                   }}>
-                  <Image
-                    source={{uri: content.imgLink}}
+                  <View
                     style={{
-                      width: width / 2.21,
-                      height: 150,
-                      borderRadius: 20,
-                    }}
-                  />
+                      elevation: 5,
+                      shadowColor: '#000',
+                      backgroundColor: theme.colors.white,
+                      borderRadius: 10,
+                    }}>
+                    <Image
+                      source={{uri: content.imgLink}}
+                      style={{
+                        width: width / 2.21,
+                        height: 150,
+                        borderRadius: 10,
+                      }}
+                    />
+                  </View>
+
                   <View style={{marginTop: 5, paddingBottom: 5}}>
                     <Text variant="bodyLarge">{content.label}</Text>
                     <View

@@ -1,10 +1,10 @@
 import React from 'react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+
 import {View, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
-import {Avatar} from 'react-native-paper';
+import {Avatar, Text} from 'react-native-paper';
 
 import {theme} from '../../../App';
 import Cart from './Cart';
@@ -48,35 +48,37 @@ function DashboardHeader() {
         paddingHorizontal: 10,
         width: '100%',
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
       }}>
-      <Avatar.Image
-        size={24}
-        source={{
-          uri: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        }}
-      />
-      <View
-        style={{
-          flex: 1,
-          height: 40,
-          borderRadius: 20,
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          flexDirection: 'row',
-        }}>
-        <TouchableOpacity>
-          <AntDesign
-            name="heart"
-            style={{marginHorizontal: 15}}
-            size={25}
-            color={theme.colors.white}
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View
+          style={{
+            padding: 3,
+            backgroundColor: theme.colors.white,
+            borderRadius: 100,
+          }}>
+          <Avatar.Image
+            size={40}
+            source={require('../../../Component/Asset/profile.jpg')}
           />
-        </TouchableOpacity>
-        <Cart
-          onPress={() => navigation.navigate('CartList')}
-          badge={cart?.length}
-        />
+        </View>
+        <View>
+          <Text
+            style={{fontSize: 20, color: theme.colors.white, marginLeft: 10}}>
+            Hello, Nurhamsah
+          </Text>
+          <Text
+            style={{
+              fontSize: 16,
+              color: theme.colors.white,
+              marginLeft: 10,
+              marginTop: -8,
+              fontFamily: 'Poppins-Bold',
+            }}>
+            Gold Badge
+          </Text>
+        </View>
       </View>
     </View>
   );
