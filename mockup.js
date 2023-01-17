@@ -30,6 +30,8 @@ export const sectionData = [
         label: 'Pizza Mercury',
         price: 12000,
         review: '1.2k',
+        isDeliver: true,
+        isDineIn: true,
         images: [
           {
             imgLink:
@@ -52,6 +54,8 @@ export const sectionData = [
         id: '15',
         label: 'Cappucino Ice',
         price: 32000,
+        isDeliver: true,
+        isDineIn: true,
         images: [
           {
             imgLink:
@@ -74,6 +78,8 @@ export const sectionData = [
       {
         id: '16',
         label: 'Noodle Spicy',
+        isDeliver: true,
+        isDineIn: true,
         price: 9800,
         images: [
           {
@@ -97,6 +103,8 @@ export const sectionData = [
       {
         id: '17',
         label: 'Chicken Strip',
+        isDeliver: false,
+        isDineIn: true,
         price: 5500,
         images: [
           {
@@ -126,6 +134,8 @@ export const sectionData = [
         id: '1',
         label: 'Rice Bowl',
         price: 2300,
+        isDeliver: true,
+        isDineIn: false,
         images: [
           {
             imgLink:
@@ -149,6 +159,8 @@ export const sectionData = [
         id: '12',
         label: 'Beef Melt',
         price: 5500,
+        isDeliver: false,
+        isDineIn: true,
         images: [
           {
             imgLink:
@@ -172,6 +184,8 @@ export const sectionData = [
         id: '190',
         label: 'Orange Juice',
         price: 9000,
+        isDeliver: false,
+        isDineIn: true,
         images: [
           {
             imgLink:
@@ -195,6 +209,8 @@ export const sectionData = [
         id: '13',
         label: 'Salad',
         price: 20000,
+        isDeliver: true,
+        isDineIn: true,
         images: [
           {
             imgLink:

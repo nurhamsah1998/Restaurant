@@ -68,6 +68,7 @@ function CheckoutContent({tabs, setTabs, total}) {
                 : theme.colors.primary
             }
           />
+
           <Text
             style={[
               style.tabTitle,
@@ -91,8 +92,8 @@ function CheckoutContent({tabs, setTabs, total}) {
                 : theme.colors.background,
             },
           ]}>
-          <Ionicons
-            name="fast-food-outline"
+          <MaterialIcons
+            name="local-dining"
             size={50}
             color={
               tabs?.includes('dine_in')

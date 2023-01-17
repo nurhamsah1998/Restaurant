@@ -19,7 +19,8 @@ function Chip({setSelectedIdCategory, data, selectedCategory, keyExtractor}) {
           <TouchableOpacity
             style={{
               flex: 1,
-              padding: 10,
+              paddingHorizontal: 10,
+              paddingVertical: 5,
               backgroundColor:
                 index === selectedCategory ? theme.colors.primary : '#eeeeee',
               elevation: 2,

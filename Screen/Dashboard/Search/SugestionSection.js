@@ -8,15 +8,16 @@ import {
 } from 'react-native';
 import {Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 import {sectionData} from '../../../mockup';
 
-function SugestionSection({onPressItem}) {
+function SugestionSection({onPressItem, disabledMArginBottom = false}) {
   const {width} = Dimensions.get('window');
   return (
-    <View style={{marginTop: 20, marginBottom: 60}}>
+    <View style={{marginTop: 20, marginBottom: disabledMArginBottom ? 0 : 60}}>
       {sectionData.map((item, index) => {
         return (
           <View key={index}>
@@ -94,6 +95,40 @@ function SugestionSection({onPressItem}) {
                           {content.duration || '5 min'}
                         </Text>
                       </View>
+                    </View>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      {content?.isDeliver ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginRight: 8,
+                          }}>
+                          <MaterialIcons
+                            name="delivery-dining"
+                            size={20}
+                            style={{marginRight: 5}}
+                            color={theme.colors.primary}
+                          />
+                          <Text>Delivery</Text>
+                        </View>
+                      ) : null}
+                      {content?.isDineIn ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginRight: 15,
+                          }}>
+                          <MaterialIcons
+                            name="local-dining"
+                            size={20}
+                            style={{marginRight: 5}}
+                            color={theme.colors.primary}
+                          />
+                          <Text>Dine in</Text>
+                        </View>
+                      ) : null}
                     </View>
                     <Text
                       variant="titleLarge"

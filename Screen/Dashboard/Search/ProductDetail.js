@@ -18,9 +18,9 @@ import {data, sectionData} from '../../../mockup';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 
 function ProductDetail(route) {
-  const ref = React.useRef();
   const [tabs, setTabs] = React.useState('');
   const [visible, setVisible] = React.useState(false);
+  const [offside, setOffside] = React.useState({x: 0, y: 0});
   const [cart, setCart] = React.useState([]);
   const [isFavorite, setIsFavorite] = React.useState(false);
   const navigate = useNavigation();
@@ -88,9 +88,15 @@ function ProductDetail(route) {
       backgroundColor: theme.colors.primary,
     });
   };
-
   const onPressItem = i => {
+    setOffside(prevValue => {
+      if (Boolean(prevValue.y)) {
+        return {x: 0, y: 0};
+      }
+      return {x: 0, y: 1};
+    });
     navigate.navigate('RootDashboard', {screen: 'ProductDetail', params: {i}});
+    // setOffside({x: 0, y: 0});
   };
 
   React.useEffect(() => {
@@ -118,7 +124,7 @@ function ProductDetail(route) {
         onPressSubmit={onPressSubmit}
       />
       <GestureHandlerRootView>
-        <ScrollView>
+        <ScrollView contentOffset={offside}>
           <BannerImageCarousel data={data} />
           <View
             style={{
@@ -237,10 +243,12 @@ function ProductDetail(route) {
         style={{
           flexDirection: 'row',
           paddingHorizontal: 10,
-          paddingBottom: 10,
+          paddingVertical: 5,
           position: 'absolute',
           bottom: 0,
           backgroundColor: theme.colors.white,
+          borderTopColor: theme.colors.divider,
+          borderTopWidth: 1,
         }}>
         <MyButton
           title="Add to cart"

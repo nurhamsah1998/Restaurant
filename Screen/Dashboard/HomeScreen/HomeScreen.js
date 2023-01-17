@@ -4,6 +4,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Text} from 'react-native-paper';
 import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Card from '../../../Component/Element/Card';
 import {theme} from '../../../App';
@@ -48,7 +49,7 @@ function HomeScreen() {
     {
       label: 'Fresh Vegetables',
       tag: 'be healty and eat healty',
-      color: theme.colors.greenTeal,
+      color: theme.colors.green,
     },
     {
       label: 'Coffee Break',
@@ -58,12 +59,26 @@ function HomeScreen() {
     {
       label: 'Beef Food',
       tag: 'indulge your tongue',
-      color: theme.colors.errorBackground,
+      color: theme.colors.warning,
     },
     {
       label: 'Juice',
       tag: 'many varieties of juices',
-      color: theme.colors.aqua,
+      color: theme.colors.cyan,
+    },
+  ];
+  const Ordertype = [
+    {
+      label: 'Dine in',
+      tag: 'Feel the satisfaction of ordering at our restaurant',
+      color: theme.colors.blue,
+      icon: 'local-dining',
+    },
+    {
+      label: 'Delivery Orders',
+      tag: 'Lazy to go out? Relax, you can order delivery',
+      color: theme.colors.deepPurple,
+      icon: 'delivery-dining',
     },
   ];
   React.useEffect(() => {
@@ -101,8 +116,7 @@ function HomeScreen() {
             />
           </TouchableOpacity>
         </View>
-        {/* <BannerImageCarousel isBanner autoPlay mode="parallax" data={data} /> */}
-
+        <BannerImageCarousel isBanner autoPlay mode="parallax" data={data} />
         <View
           style={{
             backgroundColor: '#fff',
@@ -110,24 +124,59 @@ function HomeScreen() {
             borderTopRightRadius: 15,
             margin: 10,
           }}>
-          <SugestionSection />
+          <SugestionSection disabledMArginBottom />
+          <View>
+            <Text style={{fontSize: 19, fontFamily: 'Poppins-Bold'}}>
+              Control is in your hands
+            </Text>
+            {Ordertype.map((item, index) => (
+              <TouchableOpacity
+                style={{
+                  width: '100%',
+                  backgroundColor: item.color,
+                  marginTop: index === 1 ? 20 : 10,
+                  borderRadius: 10,
+                  padding: 10,
+                  elevation: 5,
+                  shadowColor: '#000',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+                key={index}>
+                <MaterialIcons
+                  name={item.icon}
+                  size={50}
+                  style={{marginRight: 10}}
+                  color={theme.colors.white}
+                />
+                <Text
+                  style={{
+                    color: theme.colors.white,
+                    fontFamily: 'Poppins-Bold',
+                    fontSize: 20,
+                  }}>
+                  {item.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
+              marginTop: 20,
             }}>
-            <Text variant="headlineSmall" style={{fontWeight: '700'}}>
-              Best Seller
+            <Text style={{fontSize: 19, fontFamily: 'Poppins-Bold'}}>
+              Family Time
             </Text>
-            <Text variant="titleMedium" style={{color: theme.colors.primary}}>
-              View All
-            </Text>
+            <Text style={{color: theme.colors.primary}}>View All</Text>
           </View>
           <View>
             {dataCard.map((x, y) => (
               <Card
                 key={y}
+                index={y}
                 title={x.title}
                 tag={x.tag}
                 price={x.price}
@@ -138,6 +187,9 @@ function HomeScreen() {
               />
             ))}
           </View>
+          <Text style={{fontSize: 19, fontFamily: 'Poppins-Bold'}}>
+            Just choose what you want
+          </Text>
           <View
             style={{
               flexDirection: 'row',
@@ -149,7 +201,7 @@ function HomeScreen() {
                 style={{
                   width: width / 2.2,
                   backgroundColor: item.color,
-                  marginTop: 20,
+                  marginTop: 10,
                   height: width / 2.2,
                   justifyContent: 'center',
                   borderRadius: 10,
