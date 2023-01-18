@@ -1,5 +1,11 @@
 import * as React from 'react';
-import {View, ScrollView, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Text} from 'react-native-paper';
 import 'react-native-reanimated';
@@ -81,6 +87,26 @@ function HomeScreen() {
       icon: 'delivery-dining',
     },
   ];
+
+  /// stackoverflow START
+  /// quuestion :https://stackoverflow.com/questions/71476444/react-native-how-to-add-images-with-map
+  /// answer by Fiston Emmanuel : https://stackoverflow.com/users/12431576/fiston-emmanuel
+  const bannerImage = [
+    {
+      img: require('../../../Component/Asset/pic-1.png'),
+    },
+    {
+      img: require('../../../Component/Asset/pic-2.png'),
+    },
+    {
+      img: require('../../../Component/Asset/pic-3.png'),
+    },
+    {
+      img: require('../../../Component/Asset/pic-4.png'),
+    },
+  ];
+  /// stackoverflow END
+
   React.useEffect(() => {
     if (isScroll) {
       setIsScroll(true);
@@ -90,7 +116,13 @@ function HomeScreen() {
   return (
     <GestureHandlerRootView>
       <ScrollView style={{backgroundColor: theme.colors.white}}>
-        <View style={{flexDirection: 'row', padding: 10, alignItems: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            padding: 10,
+            alignItems: 'center',
+            marginBottom: -20,
+          }}>
           <MyTextField
             leftIcon="magnify"
             fontSize={15}
@@ -116,7 +148,12 @@ function HomeScreen() {
             />
           </TouchableOpacity>
         </View>
-        <BannerImageCarousel isBanner autoPlay mode="parallax" data={data} />
+        <BannerImageCarousel
+          isBanner
+          autoPlay
+          mode="parallax"
+          data={bannerImage}
+        />
         <View
           style={{
             backgroundColor: '#fff',

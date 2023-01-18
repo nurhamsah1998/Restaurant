@@ -28,7 +28,7 @@ function BannerImageCarousel({
         loop
         mode={mode}
         width={width}
-        height={width / 1.5}
+        height={width / 1.4}
         autoPlay={autoPlay}
         data={data}
         panGestureHandlerProps={{
@@ -39,6 +39,7 @@ function BannerImageCarousel({
           (progressValue.value = absoluteProgress)
         }
         renderItem={({item, index}) => {
+          console.log(item.img, 'pppppp');
           return (
             <View
               style={{
@@ -50,10 +51,14 @@ function BannerImageCarousel({
                 shadowColor: '#000',
               }}>
               <Image
-                style={{flex: 1, borderRadius: isBanner ? 10 : 0}}
-                source={{
-                  uri: `${item?.img}`,
+                style={{
+                  flex: 1,
+                  borderRadius: isBanner ? 10 : 0,
+                  width: '100%',
+                  height: '100%',
                 }}
+                resizeMode="cover"
+                source={item.img}
               />
             </View>
           );
