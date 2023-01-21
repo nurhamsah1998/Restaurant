@@ -39,7 +39,6 @@ function BannerImageCarousel({
           (progressValue.value = absoluteProgress)
         }
         renderItem={({item, index}) => {
-          console.log(item.img, 'pppppp');
           return (
             <View
               style={{

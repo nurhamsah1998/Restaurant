@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function IconContained({
   size = 30,
@@ -24,7 +24,7 @@ function IconContained({
         ...sx,
       }}
       {...props}>
-      <AntDesign name={icon} size={size / 1.7} color={iconColor} />
+      <MaterialIcons name={icon} size={size / 1.7} color={iconColor} />
     </TouchableOpacity>
   );
 }

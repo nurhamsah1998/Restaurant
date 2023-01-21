@@ -1,23 +1,24 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {View, Dimensions, ScrollView} from 'react-native';
 import {Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
-import BottomSheetComponent from '../../../Component/Element/BottomSheetComponent';
+import BottomSheetScrollViewComponent from '../../../Component/Element/BottomSheetScrollViewComponent';
 import {theme} from '../../../App';
 import IconContained from '../../../Component/Element/IconContained';
-import CheckoutContent from './CheckoutContent';
 import MyButton from '../../../Component/Element/MyButton';
 import SugestionSection from './SugestionSection';
 import BannerImageCarousel from '../HomeScreen/Banner';
-import {data, sectionData} from '../../../mockup';
+import {data} from '../../../mockup';
+import CheckoutContent from './CheckoutContent';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 
-function ProductDetail(route) {
+const ProductDetail = route => {
+  const sheetRef = useRef(null);
+  // hooks
   const [tabs, setTabs] = React.useState('');
   const [visible, setVisible] = React.useState(false);
   const [offside, setOffside] = React.useState({x: 0, y: 0});
@@ -72,14 +73,14 @@ function ProductDetail(route) {
       type: tabs,
     };
     const data = JSON.stringify(body);
-    await AsyncStorage.setItem('@orders', data).then(res => {
-      navigate.navigate('RootDashboard', {
-        screen: 'Orders',
-        params: body,
-      });
-    });
+    console.log(body, 'inside');
+    // await AsyncStorage.setItem('@orders', data).then(res => {
+    //   navigate.navigate('RootDashboard', {
+    //     screen: 'Orders',
+    //     params: body,
+    //   });
+    // });
   };
-
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
     Snackbar.show({
@@ -103,27 +104,26 @@ function ProductDetail(route) {
     getData();
   }, []);
 
+  const tes = React.useMemo(
+    () => <SugestionSection onPressItem={onPressItem} />,
+    [],
+  );
   return (
-    <View style={{flex: 1}}>
-      <BottomSheetComponent
-        title="Choose Orders"
-        content={
-          <CheckoutContent
-            tabs={tabs}
-            total={price * quantity}
-            setTabs={setTabs}
-          />
-        }
-        isVisible={visible}
-        disabledOnSubmit={!Boolean(tabs)}
-        submitTitle="Checkout"
-        onDismiss={() => {
-          setVisible(false);
-          setTabs(null);
-        }}
-        onPressSubmit={onPressSubmit}
-      />
-      <GestureHandlerRootView>
+    <BottomSheetScrollViewComponent
+      title="Choose Order Type"
+      sheetRef={sheetRef}
+      onPressSubmit={onPressSubmit}
+      submitLabel="Checkout"
+      cancelLabel="Cancel"
+      quantity={quantity}
+      content={
+        <CheckoutContent
+          tabs={tabs}
+          total={price * quantity}
+          setTabs={setTabs}
+        />
+      }>
+      <View>
         <ScrollView contentOffset={offside}>
           <BannerImageCarousel data={data} />
           <View
@@ -134,10 +134,13 @@ function ProductDetail(route) {
               width: width,
               padding: 10,
             }}>
-            <IconContained onPress={() => navigate.goBack()} icon="left" />
+            <IconContained
+              onPress={() => navigate.goBack()}
+              icon="arrow-back"
+            />
             <IconContained
               onPress={handleFavorite}
-              icon={isFavorite ? 'heart' : 'hearto'}
+              icon={isFavorite ? 'favorite' : 'favorite-border'}
               iconColor={theme.colors.primary}
             />
           </View>
@@ -209,7 +212,7 @@ function ProductDetail(route) {
               <View style={{flexDirection: 'row'}}>
                 <MyButton
                   disabled={quantity <= 1}
-                  onPress={() => setQuantity(quantity - 1)}
+                  onPress={() => setQuantity(prev => prev - 1)}
                   small
                   mode="contained"
                   title="-"
@@ -227,7 +230,7 @@ function ProductDetail(route) {
                   <Text style={{fontSize: 20}}>{quantity}</Text>
                 </View>
                 <MyButton
-                  onPress={() => setQuantity(quantity + 1)}
+                  onPress={() => setQuantity(prev => prev + 1)}
                   small
                   title="+"
                   mode="contained"
@@ -235,35 +238,35 @@ function ProductDetail(route) {
               </View>
             </View>
             <Text style={{marginTop: 20}}>{desc}</Text>
-            <SugestionSection onPressItem={onPressItem} />
+            {tes}
           </View>
         </ScrollView>
-      </GestureHandlerRootView>
-      <View
-        style={{
-          flexDirection: 'row',
-          paddingHorizontal: 10,
-          paddingVertical: 5,
-          position: 'absolute',
-          bottom: 0,
-          backgroundColor: theme.colors.white,
-          borderTopColor: theme.colors.divider,
-          borderTopWidth: 1,
-        }}>
-        <MyButton
-          title="Add to cart"
-          onPress={onAddCart}
-          sx={{marginRight: 20}}
-        />
-        <MyButton
-          onPress={() => setVisible(true)}
-          title="Checkout"
-          sx={{flex: 1}}
-          mode="contained"
-        />
+        <View
+          style={{
+            flexDirection: 'row',
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            position: 'absolute',
+            bottom: 0,
+            backgroundColor: theme.colors.white,
+            borderTopColor: theme.colors.divider,
+            borderTopWidth: 1,
+          }}>
+          <MyButton
+            title="Add to cart"
+            onPress={onAddCart}
+            sx={{marginRight: 20}}
+          />
+          <MyButton
+            onPress={() => sheetRef.current?.snapToIndex(1)}
+            title="Checkout"
+            sx={{flex: 1}}
+            mode="contained"
+          />
+        </View>
       </View>
-    </View>
+    </BottomSheetScrollViewComponent>
   );
-}
+};
 
 export default ProductDetail;

@@ -16,6 +16,7 @@ import {sectionData} from '../../../mockup';
 
 function SugestionSection({onPressItem, disabledMArginBottom = false}) {
   const {width} = Dimensions.get('window');
+  console.log('SugestionSection - re-render');
   return (
     <View style={{marginTop: 20, marginBottom: disabledMArginBottom ? 0 : 60}}>
       {sectionData.map((item, index) => {

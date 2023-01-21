@@ -27,6 +27,7 @@ function SearchScreen({navigation}) {
     <View
       style={{
         flex: 1,
+        backgroundColor: theme.colors.white,
       }}>
       <View
         style={{

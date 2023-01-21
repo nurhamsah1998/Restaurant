@@ -4,17 +4,17 @@ import {Text} from 'react-native-paper';
 import IconContained from './IconContained';
 import {useNavigation} from '@react-navigation/native';
 
-function HeaderBack({title, marginBottom = 10, onPressBack}) {
+function HeaderBack({title, onPressBack}) {
   const navigate = useNavigation();
   return (
     <View
       style={{
-        marginBottom,
+        paddingVertical: 10,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
       }}>
-      <IconContained onPress={onPressBack} icon="left" />
+      <IconContained onPress={onPressBack} icon="arrow-back" />
       <Text variant="headlineSmall">{title}</Text>
       <View style={{width: 40, height: 40}} />
     </View>

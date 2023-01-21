@@ -19,6 +19,7 @@ export default function SheetModal({
   onPressSubmit,
   title,
   readOnly,
+  height = '50%',
 }) {
   const styles = StyleSheet.create({
     modal: {
@@ -29,7 +30,6 @@ export default function SheetModal({
     },
     sheetHeader: {
       backgroundColor: theme.colors.white,
-
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
     },
@@ -60,7 +60,7 @@ export default function SheetModal({
       <View style={styles.container} pointerEvents="box-none">
         <BottomSheet
           initialSnap={0}
-          snapPoints={['50%', 0]}
+          snapPoints={[height, 0]}
           onCloseEnd={onDismiss}
           renderHeader={() => (
             <View style={styles.sheetHeader}>

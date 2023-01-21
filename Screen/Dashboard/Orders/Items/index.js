@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, Image} from 'react-native';
+import {View, FlatList, Image, Dimensions} from 'react-native';
 import {Text} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
@@ -18,11 +18,11 @@ function Index({isEmptyCart, totalAmountCart, cart}) {
   const [tabs, setTabs] = React.useState('');
   const [visible, setVisible] = React.useState(false);
   const randomNUm = Math.floor(Math.random * 999 + 1);
-
+  const {height} = Dimensions.get('window');
   const onPressSubmit = async () => {
     const body = {
       items: cart,
-      createdAt: new Date.now(),
+      createdAt: new Date().toISOString(),
       expiredAt: '01:34:00',
       id: 1,
       type: tabs,
@@ -43,7 +43,7 @@ function Index({isEmptyCart, totalAmountCart, cart}) {
       });
   };
   return (
-    <View style={{paddingBottom: 0, height: '100%'}}>
+    <View style={{paddingBottom: 0, height: height / 1.2}}>
       <BottomSheetComponent
         title="Choose Orders"
         content={
@@ -90,14 +90,6 @@ function Index({isEmptyCart, totalAmountCart, cart}) {
       ) : (
         <ListProduct data={cart} />
       )}
-
-      <MyButton
-        disabled={cart?.length <= 0}
-        sx={{position: 'absolute', bottom: 0, right: 0, left: 0}}
-        mode="contained"
-        onPress={() => setVisible(true)}
-        title={`Checkout`}
-      />
     </View>
   );
 }

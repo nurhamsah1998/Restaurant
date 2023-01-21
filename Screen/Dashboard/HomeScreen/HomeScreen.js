@@ -60,7 +60,7 @@ function HomeScreen() {
     {
       label: 'Coffee Break',
       tag: 'we have the best coffee in town',
-      color: theme.colors.brown,
+      color: theme.colors.cyan,
     },
     {
       label: 'Beef Food',
@@ -70,7 +70,7 @@ function HomeScreen() {
     {
       label: 'Juice',
       tag: 'many varieties of juices',
-      color: theme.colors.cyan,
+      color: theme.colors.error,
     },
   ];
   const Ordertype = [
@@ -161,6 +161,24 @@ function HomeScreen() {
             borderTopRightRadius: 15,
             margin: 10,
           }}>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            style={{flexDirection: 'row', height: 70}}>
+            {content.map((item, index) => (
+              <TouchableOpacity
+                style={{
+                  width: 130,
+                  height: 65,
+                  backgroundColor: item.color,
+                  borderRadius: 10,
+                  marginRight: 10,
+                  shadowColor: '#000',
+                  elevation: 5,
+                }}
+                key={index}></TouchableOpacity>
+            ))}
+          </ScrollView>
           <SugestionSection disabledMArginBottom />
           <View>
             <Text style={{fontSize: 19, fontFamily: 'Poppins-Bold'}}>

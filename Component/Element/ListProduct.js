@@ -9,6 +9,7 @@ import IconContained from './IconContained';
 function ListProduct({data}) {
   return (
     <FlatList
+      showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={<View style={{height: 20}} />}
       ListFooterComponent={<View style={{height: 80, width: '100%'}} />}
       renderItem={({item, index}) => {
@@ -17,6 +18,7 @@ function ListProduct({data}) {
             style={{
               flexDirection: 'row',
               borderRadius: 20,
+              marginTop: index === 0 ? 10 : 0,
             }}>
             <View
               style={{
@@ -60,7 +62,7 @@ function ListProduct({data}) {
                 backgroundColor={theme.colors.error}
                 size={40}
                 icon="delete"
-                iconColor={theme.colors.background}
+                iconColor={theme.colors.white}
               />
             </View>
           </View>

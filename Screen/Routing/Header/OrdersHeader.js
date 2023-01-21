@@ -39,39 +39,45 @@ function OrdersHeader() {
   }, [isFocused]);
   /// stackoverflow End
   return (
-    <View
-      style={{
-        backgroundColor: theme.colors.primary,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20,
-        padding: 10,
-        paddingHorizontal: 10,
-        width: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}>
-      <MyTextField fontSize={17} height={40} sx={{flex: 2, marginRight: 10}} />
+    <View style={{backgroundColor: theme.colors.white}}>
       <View
         style={{
-          flex: 1,
-          height: 40,
-          borderRadius: 20,
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
+          backgroundColor: theme.colors.primary,
+          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 20,
+          padding: 10,
+          paddingHorizontal: 10,
+          width: '100%',
           flexDirection: 'row',
+          alignItems: 'center',
         }}>
-        <TouchableOpacity>
-          <AntDesign
-            name="heart"
-            style={{marginHorizontal: 15}}
-            size={25}
-            color={theme.colors.white}
-          />
-        </TouchableOpacity>
-        <Cart
-          onPress={() => navigation.navigate('CartList')}
-          badge={cart?.length}
+        <MyTextField
+          fontSize={17}
+          height={40}
+          sx={{flex: 2, marginRight: 10}}
         />
+        <View
+          style={{
+            flex: 1,
+            height: 40,
+            borderRadius: 20,
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity>
+            <AntDesign
+              name="heart"
+              style={{marginHorizontal: 15}}
+              size={25}
+              color={theme.colors.white}
+            />
+          </TouchableOpacity>
+          <Cart
+            onPress={() => navigation.navigate('CartList')}
+            badge={cart?.length}
+          />
+        </View>
       </View>
     </View>
   );

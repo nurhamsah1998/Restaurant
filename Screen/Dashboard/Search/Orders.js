@@ -45,6 +45,17 @@ function Orders(route) {
       fontFamily: 'Poppins-Bold',
       fontSize: 19,
     },
+    totalPaymentTitle: {
+      marginTop: 20,
+      textAlign: 'center',
+      fontSize: 17,
+    },
+    totalPayment: {
+      textAlign: 'center',
+      fontSize: 19,
+      color: theme.colors.primary,
+      fontFamily: 'Poppins-Bold',
+    },
     containerList: {
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -52,15 +63,31 @@ function Orders(route) {
     price: {
       color: theme.colors.primary,
       fontFamily: 'Poppins-Bold',
+      fontSize: 17,
+    },
+    priceItem: {
+      color: theme.colors.primary,
+    },
+    label: {
+      fontSize: 17,
     },
     main: {
       justifyContent: 'center',
       alignItems: 'center',
       flex: 1,
     },
+    ItemSeparatorComponent: {
+      height: 10,
+    },
   });
   const [visible, setVisible] = React.useState(false);
   const listOrders = [route?.route?.params];
+  const {items, type} = listOrders[0];
+  console.log(type);
+  const totalPayment =
+    items?.length <= 0
+      ? 0
+      : items?.map(i => i?.price * i?.quantity)?.reduce((x, y) => x + y);
   const navigate = useNavigation();
   return (
     <View style={style.container}>
@@ -80,6 +107,7 @@ function Orders(route) {
           </Text>
 
           <View style={style.qrContainer}>
+            <Text style={style.qrCode}>INV-UI9909IKJU9989</Text>
             <View style={style.qr}>
               <Image
                 resizeMode="cover"
@@ -87,7 +115,10 @@ function Orders(route) {
                 source={require('../../../Component/Asset/qr.png')}
               />
             </View>
-            <Text style={style.qrCode}>INV-UI9909IKJU9989</Text>
+            <Text style={style.totalPaymentTitle}>Total Payment</Text>
+            <Text style={style.totalPayment}>
+              {FormatCurrency(totalPayment)}
+            </Text>
           </View>
           <Text style={style.displayTitleTag}>
             the cashier will scan the qr code for payment verification.
@@ -104,18 +135,25 @@ function Orders(route) {
         readOnly
         content={
           <FlatList
-            data={listOrders}
+            ItemSeparatorComponent={
+              <View style={style.ItemSeparatorComponent} />
+            }
+            data={items}
             renderItem={({item, index}) => {
               return (
                 <View key={index} style={style.containerList}>
                   <View>
-                    <Text variant="titleLarge">{item?.label}</Text>
-                    <Text variant="titleSmall">
-                      {item?.quantity} x {FormatCurrency(item?.price)}
+                    <Text style={style.label}>{item?.label}</Text>
+                    <Text>
+                      {item?.quantity} x
+                      <Text style={style.priceItem}>
+                        {' '}
+                        {FormatCurrency(item?.price)}
+                      </Text>
                     </Text>
                   </View>
-                  <Text style={style.price} variant="titleLarge">
-                    {FormatCurrency(item?.price)}
+                  <Text style={style.price}>
+                    {FormatCurrency(item?.price * item?.quantity)}
                   </Text>
                 </View>
               );

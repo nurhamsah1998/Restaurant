@@ -39,45 +39,47 @@ function DashboardHeader() {
   }, [isFocused]);
   /// stackoverflow End
   return (
-    <View
-      style={{
-        backgroundColor: theme.colors.primary,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20,
-        padding: 10,
-        paddingHorizontal: 10,
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View
-          style={{
-            padding: 3,
-            backgroundColor: theme.colors.white,
-            borderRadius: 100,
-          }}>
-          <Avatar.Image
-            size={40}
-            source={require('../../../Component/Asset/profile.jpg')}
-          />
-        </View>
-        <View>
-          <Text
-            style={{fontSize: 20, color: theme.colors.white, marginLeft: 10}}>
-            Hello, Nurhamsah
-          </Text>
-          <Text
+    <View style={{backgroundColor: theme.colors.white}}>
+      <View
+        style={{
+          backgroundColor: theme.colors.primary,
+          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 20,
+          padding: 10,
+          paddingHorizontal: 10,
+          width: '100%',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View
             style={{
-              fontSize: 16,
-              color: theme.colors.white,
-              marginLeft: 10,
-              marginTop: -8,
-              fontFamily: 'Poppins-Bold',
+              padding: 3,
+              backgroundColor: theme.colors.white,
+              borderRadius: 100,
             }}>
-            Gold Badge
-          </Text>
+            <Avatar.Image
+              size={40}
+              source={require('../../../Component/Asset/profile.jpg')}
+            />
+          </View>
+          <View>
+            <Text
+              style={{fontSize: 20, color: theme.colors.white, marginLeft: 10}}>
+              Hello, Nurhamsah
+            </Text>
+            <Text
+              style={{
+                fontSize: 16,
+                color: theme.colors.white,
+                marginLeft: 10,
+                marginTop: -8,
+                fontFamily: 'Poppins-Bold',
+              }}>
+              Gold Badge
+            </Text>
+          </View>
         </View>
       </View>
     </View>
