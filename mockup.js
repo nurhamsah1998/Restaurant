@@ -233,6 +233,218 @@ export const sectionData = [
     ],
   },
 ];
+export const secondSectionData = [
+  {
+    title: 'BreakFast Time',
+    data: [
+      {
+        id: '14',
+        label: 'Noodle Midlle',
+        price: 12000,
+        review: '1.2k',
+        isDeliver: true,
+        isDineIn: true,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/101533/pexels-photo-101533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/793785/pexels-photo-793785.jpeg',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/2205270/pexels-photo-2205270.jpeg',
+          },
+        ],
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        id: '15',
+        label: 'Bread Egg',
+        price: 32000,
+        isDeliver: true,
+        isDineIn: true,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/186857/pexels-photo-186857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/1473714/pexels-photo-1473714.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+        ],
+        review: '1.2k',
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/2297961/pexels-photo-2297961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        id: '16',
+        label: 'Noodle Spicy',
+        isDeliver: true,
+        isDineIn: true,
+        price: 9800,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/154145/pexels-photo-154145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/884600/pexels-photo-884600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+        ],
+        review: '1.2k',
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/5745757/pexels-photo-5745757.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        id: '17',
+        label: 'Soup Megh',
+        isDeliver: false,
+        isDineIn: true,
+        price: 5500,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/5724555/pexels-photo-5724555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+        ],
+        review: '1.2k',
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/1703272/pexels-photo-1703272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+    ],
+  },
+  {
+    title: 'Dinner Time',
+    data: [
+      {
+        id: '1',
+        label: 'Egg Rice',
+        price: 2300,
+        isDeliver: true,
+        isDineIn: false,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/812868/pexels-photo-812868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/2284604/pexels-photo-2284604.jpeg',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/2942319/pexels-photo-2942319.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+        ],
+        review: '1.2k',
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/1410236/pexels-photo-1410236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        id: '12',
+        label: 'Potato',
+        price: 5500,
+        isDeliver: false,
+        isDineIn: true,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/65175/pexels-photo-65175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/6166801/pexels-photo-6166801.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/128401/pexels-photo-128401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+        ],
+        review: '1.2k',
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        id: '190',
+        label: 'Pan Cake',
+        price: 9000,
+        isDeliver: false,
+        isDineIn: true,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/3584/healthy-grass-orange-juice-health.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/4725692/pexels-photo-4725692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/3603/healthy-breakfast-orange-juice-health.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+        ],
+        review: '1.2k',
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/6773051/pexels-photo-6773051.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+      {
+        id: '13',
+        label: 'Chiken Geprek',
+        price: 20000,
+        isDeliver: true,
+        isDineIn: true,
+        images: [
+          {
+            imgLink:
+              'https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/1213710/pexels-photo-1213710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+          {
+            imgLink:
+              'https://images.pexels.com/photos/3026019/pexels-photo-3026019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          },
+        ],
+        review: '1.2k',
+        desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
+        imgLink:
+          'https://images.pexels.com/photos/14098784/pexels-photo-14098784.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+    ],
+  },
+];
 export const category = [
   {
     label: 'Chicken',

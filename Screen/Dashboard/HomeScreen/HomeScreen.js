@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  ImageBackground,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Text} from 'react-native-paper';
@@ -16,38 +17,35 @@ import Card from '../../../Component/Element/Card';
 import {theme} from '../../../App';
 import MyTextField from '../../../Component/Element/MyTextField';
 import BannerImageCarousel from './Banner';
-import {data} from '../../../mockup';
+import {secondSectionData} from '../../../mockup';
 import SugestionSection from '../Search/SugestionSection';
 
 function HomeScreen() {
   const [isScroll, setIsScroll] = React.useState(true);
   const dataCard = [
     {
-      title: 'Chinese Food All Star',
-      price: 'Rp12.000',
+      title: 'Budling Package - Healty Chalange',
+      price: 'Rp65.000',
       review: '1k review',
       location: 'Njabon, kediri',
       tag: 'asian food',
-      imgUrl:
-        'https://images.pexels.com/photos/3763792/pexels-photo-3763792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      path: require('../../../Component/Asset/posterLandscape_1.png'),
     },
     {
-      title: 'Makarani Pedas Toping Ayam',
+      title: 'Premium Coffee - Bundling Price',
       review: '1.5k review',
       location: 'Mbabal, ngadi',
-      price: 'Rp9.000',
+      price: 'Rp34.000',
       tag: 'makan siang',
-      imgUrl:
-        'https://images.pexels.com/photos/2232433/pexels-photo-2232433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      path: require('../../../Component/Asset/posterLandscape_2.png'),
     },
     {
-      title: 'Ayam Goreng Kemangi',
+      title: 'Family Burger Universe',
       review: '345 review',
       location: 'Botoran, tulungagung',
-      price: 'Rp16.500',
+      price: 'Rp56.500',
       tag: 'khas nusantara',
-      imgUrl:
-        'https://images.pexels.com/photos/12842992/pexels-photo-12842992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      path: require('../../../Component/Asset/posterLandscape_3.png'),
     },
   ];
   const {width} = Dimensions.get('window');
@@ -103,6 +101,24 @@ function HomeScreen() {
     },
     {
       img: require('../../../Component/Asset/pic-4.png'),
+    },
+  ];
+  const secondBannerImage = [
+    {
+      path: require('../../../Component/Asset/second_banner_1.png'),
+      label: 'Ice Cream',
+    },
+    {
+      path: require('../../../Component/Asset/second_banner_2.png'),
+      label: 'Juice',
+    },
+    {
+      path: require('../../../Component/Asset/second_banner_3.png'),
+      label: 'Calories',
+    },
+    {
+      path: require('../../../Component/Asset/second_banner_4.png'),
+      label: 'Healthy',
     },
   ];
   /// stackoverflow END
@@ -165,18 +181,32 @@ function HomeScreen() {
             showsHorizontalScrollIndicator={false}
             horizontal
             style={{flexDirection: 'row', height: 70}}>
-            {content.map((item, index) => (
-              <TouchableOpacity
+            {secondBannerImage.map((item, index) => (
+              <ImageBackground
                 style={{
                   width: 130,
                   height: 65,
-                  backgroundColor: item.color,
-                  borderRadius: 10,
                   marginRight: 10,
                   shadowColor: '#000',
                   elevation: 5,
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  flexDirection: 'row',
                 }}
-                key={index}></TouchableOpacity>
+                key={index}
+                imageStyle={{borderRadius: 10}}
+                source={item.path}>
+                <Text
+                  style={{
+                    fontFamily: 'Poppins-Bold',
+                    color: theme.colors.white,
+                    fontSize: 17,
+                    marginLeft: 10,
+                    maxWidth: 74,
+                  }}>
+                  {item.label}
+                </Text>
+              </ImageBackground>
             ))}
           </ScrollView>
           <SugestionSection disabledMArginBottom />
@@ -237,8 +267,8 @@ function HomeScreen() {
                 price={x.price}
                 location={x.location}
                 review={x.review}
-                isDivider={y !== 0}
-                imgUrl={x.imgUrl}
+                isDivider
+                source={x.path}
               />
             ))}
           </View>
@@ -284,7 +314,7 @@ function HomeScreen() {
               </TouchableOpacity>
             ))}
           </View>
-          <SugestionSection />
+          <SugestionSection data={secondSectionData} />
         </View>
       </ScrollView>
     </GestureHandlerRootView>

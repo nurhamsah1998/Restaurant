@@ -5,7 +5,17 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {theme} from '../../App';
 
-function Card({title, tag, price, location, review, isDivider, imgUrl, index}) {
+function Card({
+  title,
+  tag,
+  price,
+  location,
+  review,
+  isDivider,
+  imgUrl,
+  index,
+  source = false,
+}) {
   return (
     <View>
       {isDivider ? <Divider /> : null}
@@ -20,9 +30,11 @@ function Card({title, tag, price, location, review, isDivider, imgUrl, index}) {
             }}>
             <Image
               style={{width: '100%', height: '100%', borderRadius: 10}}
-              source={{
-                uri: imgUrl,
-              }}
+              source={
+                source || {
+                  uri: imgUrl,
+                }
+              }
             />
           </View>
         </View>
@@ -44,7 +56,12 @@ function Card({title, tag, price, location, review, isDivider, imgUrl, index}) {
             />
             <Text>Dine in</Text>
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginRight: 20,
+            }}>
             <MaterialIcons
               name="delivery-dining"
               size={25}
@@ -53,32 +70,24 @@ function Card({title, tag, price, location, review, isDivider, imgUrl, index}) {
             />
             <Text>Delivery</Text>
           </View>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <MaterialIcons
+              name="people"
+              size={25}
+              style={{marginRight: 5}}
+              color={theme.colors.primary}
+            />
+            <Text>5</Text>
+          </View>
         </View>
-        <View
+        {/* <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
             marginTop: -8,
           }}>
-          {/* <Text variant="titleMedium" style={{color: '#868686'}}>
-            {tag}
-          </Text> */}
           <View
             style={{marginTop: 10, flexDirection: 'row', alignItems: 'center'}}>
-            {/* <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginRight: 20,
-              }}>
-              <MaterialIcons
-                name="star-rate"
-                size={25}
-                style={{marginRight: 10}}
-                color={theme.colors.primary}
-              />
-              <Text>{review}</Text>
-            </View> */}
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <MaterialIcons
                 name="people"
@@ -86,10 +95,10 @@ function Card({title, tag, price, location, review, isDivider, imgUrl, index}) {
                 style={{marginRight: 5}}
                 color={theme.colors.primary}
               />
-              <Text>23</Text>
+              <Text>5</Text>
             </View>
           </View>
-        </View>
+        </View> */}
 
         <Text style={{fontSize: 25, fontFamily: 'Poppins-Bold'}}>{price}</Text>
       </View>

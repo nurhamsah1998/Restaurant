@@ -14,12 +14,17 @@ import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 import {sectionData} from '../../../mockup';
 
-function SugestionSection({onPressItem, disabledMArginBottom = false}) {
+function SugestionSection({
+  onPressItem,
+  disabledMArginBottom = false,
+  data = false,
+}) {
   const {width} = Dimensions.get('window');
   console.log('SugestionSection - re-render');
+  const isData = data || sectionData;
   return (
     <View style={{marginTop: 20, marginBottom: disabledMArginBottom ? 0 : 60}}>
-      {sectionData.map((item, index) => {
+      {isData.map((item, index) => {
         return (
           <View key={index}>
             <Text style={{fontSize: 19, fontFamily: 'Poppins-Bold'}}>
