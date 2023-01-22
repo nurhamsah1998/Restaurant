@@ -73,13 +73,12 @@ const ProductDetail = route => {
       type: tabs,
     };
     const data = JSON.stringify(body);
-    console.log(body, 'inside');
-    // await AsyncStorage.setItem('@orders', data).then(res => {
-    //   navigate.navigate('RootDashboard', {
-    //     screen: 'Orders',
-    //     params: body,
-    //   });
-    // });
+    await AsyncStorage.setItem('@orders', data).then(res => {
+      navigate.navigate('RootDashboard', {
+        screen: 'Orders',
+        params: body,
+      });
+    });
   };
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);

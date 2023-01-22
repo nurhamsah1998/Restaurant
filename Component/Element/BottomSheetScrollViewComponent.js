@@ -17,7 +17,7 @@ const BottomSheetScrollViewComponent = ({
   onPressSubmit,
   cancelLabel,
   submitLabel,
-  quantity,
+  triggerCallBack,
 }) => {
   // hooks
 
@@ -44,8 +44,10 @@ const BottomSheetScrollViewComponent = ({
     },
     title: {
       fontFamily: 'Poppins-Bold',
-      fontSize: 20,
+      fontSize: 22,
       color: '#000',
+      paddingHorizontal: 20,
+      paddingBottom: 5,
     },
     myButton: {
       flexDirection: 'row',
@@ -82,7 +84,7 @@ const BottomSheetScrollViewComponent = ({
         </BottomSheetFooter>
       );
     },
-    [quantity],
+    [triggerCallBack],
   );
   const renderBackdrop = useCallback(
     props => (
@@ -104,8 +106,8 @@ const BottomSheetScrollViewComponent = ({
         snapPoints={snapPoints}
         backdropComponent={renderBackdrop}
         footerComponent={renderFooter}>
+        <Text style={styles.title}>{title}</Text>
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
-          <Text style={styles.title}>{title}</Text>
           {content}
         </BottomSheetScrollView>
       </BottomSheet>

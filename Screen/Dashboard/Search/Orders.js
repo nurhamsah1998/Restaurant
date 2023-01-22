@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, StyleSheet, Image, FlatList} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Divider, Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
 import HeaderBack from '../../../Component/Element/HeaderBack';
 import {theme} from '../../../App';
 import MyButton from '../../../Component/Element/MyButton';
-import BottomSheetComponent from '../../../Component/Element/BottomSheetComponent';
+import BottomSheetScrollViewComponent from '../../../Component/Element/BottomSheetScrollViewComponent';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 
 function Orders(route) {
@@ -14,6 +14,9 @@ function Orders(route) {
     container: {
       padding: 10,
       flex: 1,
+    },
+    list: {
+      paddingBottom: 75,
     },
     displayTitle: {
       textAlign: 'center',
@@ -83,91 +86,87 @@ function Orders(route) {
   const [visible, setVisible] = React.useState(false);
   const listOrders = [route?.route?.params];
   const {items, type} = listOrders[0];
-  console.log(type);
   const totalPayment =
     items?.length <= 0
       ? 0
       : items?.map(i => i?.price * i?.quantity)?.reduce((x, y) => x + y);
   const navigate = useNavigation();
-  return (
-    <View style={style.container}>
-      <HeaderBack
-        onPressBack={() => navigate.navigate('Dashboard', {screen: 'Search'})}
-        marginBottom={0}
-        title="Orders"
-      />
-      <View style={style.main}>
-        <View>
-          <Text variant="displaySmall" style={style.displayTitle}>
-            One More Step
-          </Text>
-          <Text style={style.displayTitleTag}>
-            Come to the cashier then show the unique uni code for the payment
-            process.
-          </Text>
-
-          <View style={style.qrContainer}>
-            <Text style={style.qrCode}>INV-UI9909IKJU9989</Text>
-            <View style={style.qr}>
-              <Image
-                resizeMode="cover"
-                style={style.images}
-                source={require('../../../Component/Asset/qr.png')}
-              />
+  const sheetRef = React.useRef(null);
+  const List = () => {
+    return (
+      <View style={style.list}>
+        {items?.map((value, index) => (
+          <View key={index}>
+            <View style={style.containerList}>
+              <View>
+                <Text style={style.label}>{value?.label}</Text>
+                <Text>
+                  {value?.quantity} x
+                  <Text style={style.priceItem}>
+                    {' '}
+                    {FormatCurrency(value?.price)}
+                  </Text>
+                </Text>
+              </View>
+              <Text style={style.price}>
+                {FormatCurrency(value?.price * value?.quantity)}
+              </Text>
             </View>
-            <Text style={style.totalPaymentTitle}>Total Payment</Text>
-            <Text style={style.totalPayment}>
-              {FormatCurrency(totalPayment)}
-            </Text>
+            <Divider style={{marginVertical: 5}} />
           </View>
-          <Text style={style.displayTitleTag}>
-            the cashier will scan the qr code for payment verification.
-          </Text>
-          <MyButton
-            mode="contained"
-            onPress={() => setVisible(true)}
-            sx={{marginTop: 10}}
-            title="See My Order"
-          />
+        ))}
+      </View>
+    );
+  };
+  return (
+    <BottomSheetScrollViewComponent
+      title="All Your Menu List"
+      sheetRef={sheetRef}
+      cancelLabel="Cancel"
+      content={<List />}>
+      <View style={style.container}>
+        <HeaderBack
+          onPressBack={() => navigate.navigate('Dashboard', {screen: 'Search'})}
+          marginBottom={0}
+          title="Orders"
+        />
+        <View style={style.main}>
+          <View>
+            <Text variant="displaySmall" style={style.displayTitle}>
+              One More Step
+            </Text>
+            <Text style={style.displayTitleTag}>
+              Come to the cashier then show the unique uni code for the payment
+              process.
+            </Text>
+
+            <View style={style.qrContainer}>
+              <Text style={style.qrCode}>INV-UI9909IKJU9989</Text>
+              <View style={style.qr}>
+                <Image
+                  resizeMode="cover"
+                  style={style.images}
+                  source={require('../../../Component/Asset/qr.png')}
+                />
+              </View>
+              <Text style={style.totalPaymentTitle}>Total Payment</Text>
+              <Text style={style.totalPayment}>
+                {FormatCurrency(totalPayment)}
+              </Text>
+            </View>
+            <Text style={style.displayTitleTag}>
+              the cashier will scan the qr code for payment verification.
+            </Text>
+            <MyButton
+              mode="contained"
+              sx={{marginTop: 10}}
+              onPress={() => sheetRef.current?.snapToIndex(1)}
+              title="See My Order"
+            />
+          </View>
         </View>
       </View>
-      <BottomSheetComponent
-        readOnly
-        content={
-          <FlatList
-            ItemSeparatorComponent={
-              <View style={style.ItemSeparatorComponent} />
-            }
-            data={items}
-            renderItem={({item, index}) => {
-              return (
-                <View key={index} style={style.containerList}>
-                  <View>
-                    <Text style={style.label}>{item?.label}</Text>
-                    <Text>
-                      {item?.quantity} x
-                      <Text style={style.priceItem}>
-                        {' '}
-                        {FormatCurrency(item?.price)}
-                      </Text>
-                    </Text>
-                  </View>
-                  <Text style={style.price}>
-                    {FormatCurrency(item?.price * item?.quantity)}
-                  </Text>
-                </View>
-              );
-            }}
-          />
-        }
-        title="Order List"
-        isVisible={visible}
-        submitTitle="Checkout"
-        onDismiss={() => {
-          setVisible(false);
-        }}
-      />
-    </View>
+    </BottomSheetScrollViewComponent>
   );
 }
 

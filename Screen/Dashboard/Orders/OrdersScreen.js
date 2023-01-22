@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {Text} from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
 import {theme} from '../../../App';
@@ -8,7 +9,10 @@ import {FormatCurrency} from '../../../Component/FormatCurrency';
 
 function OrdersScreen({navigation}) {
   const [tabValue, setTabValue] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
+  const [orders, setOrders] = React.useState([]);
   const navigate = useNavigation();
+  console.log(orders, 'orders');
   const tabs = [
     {
       label: 'Delivery',
@@ -152,6 +156,32 @@ function OrdersScreen({navigation}) {
       params: item,
     });
   };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@cart');
+      if (value !== null) {
+        const jsonValue = JSON.parse(value);
+        setTimeout(() => {
+          setLoading(false);
+          setOrders(jsonValue || []);
+        }, 2000);
+      } else {
+        setTimeout(() => {
+          setLoading(false);
+          setOrders([]);
+        }, 2000);
+      }
+    } catch (e) {
+      setLoading(false);
+      console.log(e);
+      // error reading value
+    }
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
   return (
     <View style={style.container}>
       <View style={style.tab}>

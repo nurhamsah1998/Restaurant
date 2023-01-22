@@ -13,6 +13,7 @@ import MyButton from '../../../Component/Element/MyButton';
 
 function CartList() {
   const navigation = useNavigation();
+  const [tabs, setTabs] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [cart, setCart] = React.useState([]);
   const totalAmountCart =
@@ -39,17 +40,43 @@ function CartList() {
       // error reading value
     }
   };
+  const randomNUm = Math.floor(Math.random() * 999 + 1);
+  const hanfleSubmit = async () => {
+    const body = {
+      items: cart,
+      createdAt: new Date().toISOString(),
+      expiredAt: '01:34:00',
+      id: randomNUm,
+      type: tabs,
+      invoice: `ORDER - INV${1}`,
+      total: totalAmountCart,
+      status: 'unpaid',
+    };
+    const data = JSON.stringify(body);
+    await AsyncStorage.setItem('@orders', data)
+      .then(res => {
+        navigation.navigate('RootDashboard', {
+          screen: 'Orders',
+          params: body,
+        });
+      })
+      .catch(error => {
+        console.log(error, 'ooo');
+      });
+  };
   React.useEffect(() => {
     getData();
   }, []);
   const sheetRef = React.useRef(null);
   return (
     <BottomSheetScrollViewComponent
+      triggerCallBack={tabs}
       title="Choose Order Type"
       sheetRef={sheetRef}
       submitLabel="Checkout"
       cancelLabel="Cancel"
-      content={<CheckoutContent />}>
+      onPressSubmit={hanfleSubmit}
+      content={<CheckoutContent tabs={tabs} setTabs={setTabs} />}>
       <View
         style={{
           paddingHorizontal: 10,
