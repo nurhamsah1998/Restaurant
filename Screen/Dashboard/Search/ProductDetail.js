@@ -73,9 +73,10 @@ const ProductDetail = route => {
       type: tabs,
     };
     const data = JSON.stringify(body);
+    console.log(body);
     await AsyncStorage.setItem('@orders', data).then(res => {
       navigate.navigate('RootDashboard', {
-        screen: 'Orders',
+        screen: 'OrdersDetails',
         params: body,
       });
     });
@@ -114,7 +115,7 @@ const ProductDetail = route => {
       onPressSubmit={onPressSubmit}
       submitLabel="Checkout"
       cancelLabel="Cancel"
-      quantity={quantity}
+      triggerCallBack={quantity}
       content={
         <CheckoutContent
           tabs={tabs}

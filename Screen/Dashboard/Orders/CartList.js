@@ -16,22 +16,27 @@ function CartList() {
   const [tabs, setTabs] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [cart, setCart] = React.useState([]);
+  const [orders, setOrders] = React.useState([]);
   const totalAmountCart =
     cart?.length <= 0 ? 0 : cart?.map(i => i?.total).reduce((a, b) => a + b);
   const isEmptyCart = cart?.length <= 0;
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('@cart');
-      if (value !== null) {
+      const valueOrders = await AsyncStorage.getItem('@orders');
+      if (value !== null || valueOrders !== null) {
         const jsonValue = JSON.parse(value);
+        const jsonValueOrders = JSON.parse(valueOrders);
         setTimeout(() => {
           setLoading(false);
           setCart(jsonValue || []);
+          setOrders(jsonValueOrders || []);
         }, 2000);
       } else {
         setTimeout(() => {
           setLoading(false);
           setCart([]);
+          setOrders([]);
         }, 2000);
       }
     } catch (e) {
@@ -41,27 +46,30 @@ function CartList() {
     }
   };
   const randomNUm = Math.floor(Math.random() * 999 + 1);
-  const hanfleSubmit = async () => {
+  const handleSubmit = async () => {
+    const clone = [...orders];
     const body = {
       items: cart,
       createdAt: new Date().toISOString(),
       expiredAt: '01:34:00',
-      id: randomNUm,
+      id: randomNUm + 1,
       type: tabs,
       invoice: `ORDER - INV${1}`,
       total: totalAmountCart,
       status: 'unpaid',
     };
-    const data = JSON.stringify(body);
+    clone.push(body);
+    const data = JSON.stringify(clone);
     await AsyncStorage.setItem('@orders', data)
-      .then(res => {
+      .then(async res => {
+        await AsyncStorage.removeItem('@cart');
         navigation.navigate('RootDashboard', {
-          screen: 'Orders',
-          params: body,
+          screen: 'OrdersDetails',
+          params: {body, backPath: {parent: 'Dashboard', child: 'Search'}},
         });
       })
       .catch(error => {
-        console.log(error, 'ooo');
+        console.log(error, 'Error');
       });
   };
   React.useEffect(() => {
@@ -75,8 +83,14 @@ function CartList() {
       sheetRef={sheetRef}
       submitLabel="Checkout"
       cancelLabel="Cancel"
-      onPressSubmit={hanfleSubmit}
-      content={<CheckoutContent tabs={tabs} setTabs={setTabs} />}>
+      onPressSubmit={handleSubmit}
+      content={
+        <CheckoutContent
+          total={totalAmountCart}
+          tabs={tabs}
+          setTabs={setTabs}
+        />
+      }>
       <View
         style={{
           paddingHorizontal: 10,

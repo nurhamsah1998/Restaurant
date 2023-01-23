@@ -12,7 +12,7 @@ function OrdersScreen({navigation}) {
   const [loading, setLoading] = React.useState(true);
   const [orders, setOrders] = React.useState([]);
   const navigate = useNavigation();
-  console.log(orders, 'orders');
+  console.log(orders, '====');
   const tabs = [
     {
       label: 'Delivery',
@@ -150,16 +150,16 @@ function OrdersScreen({navigation}) {
       marginTop: -5,
     },
   });
-  const handlePressOrder = item => {
+  const handlePressOrder = body => {
     navigate.navigate('RootDashboard', {
-      screen: 'Orders',
-      params: item,
+      screen: 'OrdersDetails',
+      params: {body, backPath: {parent: 'Dashboard', child: 'Orders'}},
     });
   };
 
   const getData = async () => {
     try {
-      const value = await AsyncStorage.getItem('@cart');
+      const value = await AsyncStorage.getItem('@orders');
       if (value !== null) {
         const jsonValue = JSON.parse(value);
         setTimeout(() => {
@@ -206,7 +206,7 @@ function OrdersScreen({navigation}) {
       </View>
       <View style={style.containerCard}>
         <FlatList
-          data={data}
+          data={orders}
           ListFooterComponent={<View style={style.footerFlatList} />}
           renderItem={({item}) => {
             return (
@@ -233,7 +233,7 @@ function OrdersScreen({navigation}) {
                 </View>
                 <View style={style.sectionTwo}>
                   <Text variant="titleMedium" style={style.price}>
-                    {FormatCurrency(item.price)}
+                    {FormatCurrency(item.total)}
                   </Text>
                   <View>
                     <Text>expired at</Text>

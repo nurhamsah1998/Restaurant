@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Image, FlatList} from 'react-native';
+import {View, StyleSheet, Image, BackHandler, Alert} from 'react-native';
 import {Divider, Text} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect, use} from '@react-navigation/native';
 
 import HeaderBack from '../../../Component/Element/HeaderBack';
 import {theme} from '../../../App';
@@ -83,15 +83,34 @@ function Orders(route) {
       height: 10,
     },
   });
-  const [visible, setVisible] = React.useState(false);
   const listOrders = [route?.route?.params];
-  const {items, type} = listOrders[0];
+
+  const {
+    body: {items, type},
+    backPath: {parent, child},
+  } = listOrders[0];
   const totalPayment =
     items?.length <= 0
       ? 0
       : items?.map(i => i?.price * i?.quantity)?.reduce((x, y) => x + y);
   const navigate = useNavigation();
   const sheetRef = React.useRef(null);
+
+  /// Preventing going back
+  React.useEffect(() => {
+    const backAction = () => {
+      navigate.navigate(parent, {screen: child});
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   const List = () => {
     return (
       <View style={style.list}>
@@ -126,7 +145,7 @@ function Orders(route) {
       content={<List />}>
       <View style={style.container}>
         <HeaderBack
-          onPressBack={() => navigate.navigate('Dashboard', {screen: 'Search'})}
+          onPressBack={() => navigate.navigate(parent, {screen: child})}
           marginBottom={0}
           title="Orders"
         />
