@@ -13,7 +13,7 @@ import MyTypography from '../../Component/Element/MyTypography';
 import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
 import {AuthToken} from '../Routing/contextHelper';
-import {Text} from 'react-native-paper';
+import {Button, Text} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
 
 export const DismissKeyBoard = ({children}) => {
@@ -36,14 +36,10 @@ export default function Login() {
           alignItems: 'center',
           backgroundColor: theme.colors.white,
         }}>
-        <View style={{marginHorizontal: 15}}>
-          <View style={{width: '100%'}}>
+        <View style={{width: '100%'}}>
+          <View style={{marginHorizontal: 15}}>
             <View style={{marginBottom: 30}}>
-              <MyTypography
-                style={{textAlign: 'left'}}
-                title="Login"
-                variant="h1"
-              />
+              <Text variant="displaySmall">Login</Text>
             </View>
             <SafeAreaView>
               <Formik
@@ -93,37 +89,19 @@ export default function Login() {
                       size="large"
                       title="login"
                     />
-
                     <View
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginVertical: 20,
+                        marginTop: 20,
                       }}>
-                      <View
-                        style={{
-                          backgroundColor: theme.colors.divider,
-                          height: 1,
-                          width: '40%',
-                        }}
-                      />
-                      <Text style={{marginHorizontal: 10}}>Or</Text>
-                      <View
-                        style={{
-                          backgroundColor: theme.colors.divider,
-                          height: 1,
-                          width: '40%',
-                        }}
+                      <Text>You don't have an account ?</Text>
+                      <MyButton
+                        onPress={() => navigate.navigate('Register')}
+                        mode="contained"
+                        size="large"
+                        title="Register"
+                        color="secondary"
                       />
                     </View>
-                    <MyButton
-                      onPress={() => navigate.navigate('Register')}
-                      mode="contained"
-                      size="large"
-                      title="Register"
-                      color="secondary"
-                    />
                   </View>
                 )}
               </Formik>

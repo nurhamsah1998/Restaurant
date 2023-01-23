@@ -1,76 +1,29 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Text, ActivityIndicator} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 
-function OrdersScreen({navigation}) {
-  const [tabValue, setTabValue] = React.useState(0);
+function OrdersScreen() {
+  const [tabValue, setTabValue] = React.useState('delivery');
   const [loading, setLoading] = React.useState(true);
   const [orders, setOrders] = React.useState([]);
   const navigate = useNavigation();
-  console.log(orders, '====');
+
   const tabs = [
     {
       label: 'Delivery',
-      value: 0,
+      value: 'delivery',
+      icon: 'delivery-dining',
     },
     {
       label: 'Dine In',
-      value: 1,
-    },
-  ];
-  const data = [
-    {
-      invoice: 'ORDER - INV1',
-      id: 1,
-      createdAt: '21 jan 2023  05:11',
-      status: 'unpaid',
-      expiredAt: '01:34:00',
-      price: 30000,
-    },
-    {
-      invoice: 'ORDER - INV1',
-      id: 2,
-      createdAt: '21 jan 2023  05:11',
-      status: 'paid',
-      expiredAt: '01:34:00',
-      price: 30000,
-    },
-    {
-      invoice: 'ORDER - INV1',
-      id: 3,
-      createdAt: '21 jan 2023  05:11',
-      status: 'unpaid',
-      expiredAt: '01:34:00',
-      price: 30000,
-    },
-    {
-      invoice: 'ORDER - INV1',
-      id: 4,
-      createdAt: '21 jan 2023  05:11',
-      status: 'paid',
-      expiredAt: '01:34:00',
-      price: 30000,
-    },
-    {
-      invoice: 'ORDER - INV1',
-      id: 5,
-      createdAt: '21 jan 2023  05:11',
-      status: 'paid',
-      expiredAt: '01:34:00',
-      price: 30000,
-    },
-    {
-      invoice: 'ORDER - INV1',
-      id: 6,
-      createdAt: '21 jan 2023  05:11',
-      status: 'unpaid',
-      expiredAt: '01:34:00',
-      price: 30000,
+      value: 'dine_in',
+      icon: 'local-dining',
     },
   ];
   const style = StyleSheet.create({
@@ -81,6 +34,7 @@ function OrdersScreen({navigation}) {
       marginHorizontal: 10,
       justifyContent: 'space-between',
     },
+    loading: {justifyContent: 'center', alignItems: 'center', flex: 1},
     labelTabActive: {
       textAlign: 'center',
       fontFamily: 'Poppins-Bold',
@@ -94,7 +48,6 @@ function OrdersScreen({navigation}) {
       width: '50%',
       borderBottomWidth: 4,
       borderBottomColor: theme.colors.primary,
-      paddingBottom: 10,
     },
     panelNonActive: {
       width: '50%',
@@ -149,7 +102,11 @@ function OrdersScreen({navigation}) {
     tag: {
       marginTop: -5,
     },
+    iconTabs: {
+      textAlign: 'center',
+    },
   });
+
   const handlePressOrder = body => {
     navigate.navigate('RootDashboard', {
       screen: 'OrdersDetails',
@@ -158,13 +115,18 @@ function OrdersScreen({navigation}) {
   };
 
   const getData = async () => {
+    setLoading(true);
     try {
       const value = await AsyncStorage.getItem('@orders');
       if (value !== null) {
         const jsonValue = JSON.parse(value);
         setTimeout(() => {
+          console.log(loading, '====');
           setLoading(false);
-          setOrders(jsonValue || []);
+          const filterOrdersByType = jsonValue?.filter(
+            i => i.type === tabValue,
+          );
+          setOrders(filterOrdersByType || []);
         }, 2000);
       } else {
         setTimeout(() => {
@@ -181,20 +143,30 @@ function OrdersScreen({navigation}) {
 
   React.useEffect(() => {
     getData();
-  }, []);
+  }, [tabValue]);
   return (
     <View style={style.container}>
       <View style={style.tab}>
         {tabs.map((item, index) => (
           <TouchableOpacity
-            onPress={() => setTabValue(index)}
+            onPress={() => setTabValue(item.value)}
             key={index}
             style={
-              tabValue === index ? style.panelActive : style.panelNonActive
+              tabValue === item.value ? style.panelActive : style.panelNonActive
             }>
+            <MaterialIcons
+              name={item.icon}
+              style={style.iconTabs}
+              size={30}
+              color={
+                tabValue === item.value
+                  ? theme.colors.primary
+                  : theme.colors.backdrop
+              }
+            />
             <Text
               style={
-                tabValue === index
+                tabValue === item.value
                   ? style.labelTabActive
                   : style.labelTabNonActive
               }
@@ -205,48 +177,59 @@ function OrdersScreen({navigation}) {
         ))}
       </View>
       <View style={style.containerCard}>
-        <FlatList
-          data={orders}
-          ListFooterComponent={<View style={style.footerFlatList} />}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                style={style.card}
-                onPress={() => handlePressOrder(item)}>
-                <View style={style.sectionOne}>
-                  <View>
-                    <Text variant="titleMedium">{item.invoice}</Text>
-                    <Text>created at</Text>
-                    <Text variant="titleMedium" style={style.tag}>
-                      {item.createdAt}
+        {loading ? (
+          <View style={style.loading}>
+            <ActivityIndicator
+              animating={true}
+              color={theme.colors.primary}
+              size={50}
+            />
+            <Text style={{marginTop: 20}}>Please wait</Text>
+          </View>
+        ) : (
+          <FlatList
+            data={orders}
+            ListFooterComponent={<View style={style.footerFlatList} />}
+            renderItem={({item}) => {
+              return (
+                <TouchableOpacity
+                  style={style.card}
+                  onPress={() => handlePressOrder(item)}>
+                  <View style={style.sectionOne}>
+                    <View>
+                      <Text variant="titleMedium">{item.invoice}</Text>
+                      <Text>created at</Text>
+                      <Text variant="titleMedium" style={style.tag}>
+                        {item.createdAt}
+                      </Text>
+                    </View>
+                    <Text
+                      style={
+                        item.status === 'paid'
+                          ? style.statusPaid
+                          : style.statusUnpaid
+                      }
+                      variant="titleSmall">
+                      {item.status}
                     </Text>
                   </View>
-                  <Text
-                    style={
-                      item.status === 'paid'
-                        ? style.statusPaid
-                        : style.statusUnpaid
-                    }
-                    variant="titleSmall">
-                    {item.status}
-                  </Text>
-                </View>
-                <View style={style.sectionTwo}>
-                  <Text variant="titleMedium" style={style.price}>
-                    {FormatCurrency(item.total)}
-                  </Text>
-                  <View>
-                    <Text>expired at</Text>
-                    <Text variant="titleMedium" style={style.tag}>
-                      {item.expiredAt}
+                  <View style={style.sectionTwo}>
+                    <Text variant="titleMedium" style={style.price}>
+                      {FormatCurrency(item.total)}
                     </Text>
+                    <View>
+                      <Text>expired at</Text>
+                      <Text variant="titleMedium" style={style.tag}>
+                        {item.expiredAt}
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-          keyExtractor={item => item.id}
-        />
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={item => item.id}
+          />
+        )}
       </View>
     </View>
   );

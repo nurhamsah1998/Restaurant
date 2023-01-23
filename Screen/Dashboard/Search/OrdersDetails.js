@@ -15,6 +15,10 @@ function Orders(route) {
       padding: 10,
       flex: 1,
     },
+    button: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
     list: {
       paddingBottom: 75,
     },
@@ -25,12 +29,11 @@ function Orders(route) {
     },
     displayTitleTag: {
       textAlign: 'center',
-      marginTop: 5,
     },
     qrContainer: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginVertical: 20,
+      marginVertical: 5,
     },
     qr: {
       backgroundColor: theme.colors.white,
@@ -82,6 +85,7 @@ function Orders(route) {
     ItemSeparatorComponent: {
       height: 10,
     },
+    seperatorButton: {marginHorizontal: 5},
   });
   const listOrders = [route?.route?.params];
 
@@ -173,15 +177,29 @@ function Orders(route) {
                 {FormatCurrency(totalPayment)}
               </Text>
             </View>
-            <Text style={style.displayTitleTag}>
+            <Text style={[style.displayTitleTag, {marginBottom: 20}]}>
               the cashier will scan the qr code for payment verification.
             </Text>
-            <MyButton
-              mode="contained"
-              sx={{marginTop: 10}}
-              onPress={() => sheetRef.current?.snapToIndex(1)}
-              title="See My Order"
-            />
+            <View style={style.button}>
+              <MyButton
+                color="error"
+                sx={{flex: 1}}
+                onPress={() =>
+                  Alert.alert(
+                    'Are You Sure?',
+                    'This action will be remove your order in our server',
+                  )
+                }
+                title="Cancel My Order"
+              />
+              <View style={style.seperatorButton} />
+              <MyButton
+                mode="contained"
+                sx={{flex: 1}}
+                onPress={() => sheetRef.current?.snapToIndex(1)}
+                title="See My Order"
+              />
+            </View>
           </View>
         </View>
       </View>

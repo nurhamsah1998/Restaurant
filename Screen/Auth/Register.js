@@ -37,11 +37,7 @@ export default function Register({navigation}) {
         <View style={{marginHorizontal: 15}}>
           <View style={{width: '100%'}}>
             <View style={{marginBottom: 30}}>
-              <MyTypography
-                style={{textAlign: 'left'}}
-                title="Register"
-                variant="h1"
-              />
+              <Text variant="displaySmall">Register</Text>
             </View>
             <SafeAreaView>
               <Formik
@@ -99,11 +95,24 @@ export default function Register({navigation}) {
                     </View>
                     <MyButton
                       onPress={handleSubmit}
-                      variant="contained"
+                      mode="contained"
                       sx={{marginTop: 25}}
                       title="Register"
                       color="secondary"
                     />
+                    <View
+                      style={{
+                        marginTop: 20,
+                      }}>
+                      <Text>Already have an account ?</Text>
+                      <MyButton
+                        onPress={() => navigate.navigate('Login')}
+                        mode="contained"
+                        size="large"
+                        title="Login"
+                        color="primary"
+                      />
+                    </View>
                   </View>
                 )}
               </Formik>

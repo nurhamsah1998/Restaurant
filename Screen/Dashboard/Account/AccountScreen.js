@@ -2,10 +2,13 @@ import * as React from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {theme} from '../../../App';
+import {AuthToken} from '../../Routing/contextHelper';
 
 function AccountScreen() {
+  const {signOut} = React.useContext(AuthToken);
   const buttonList = [
     {
       label: 'Account Setting',
@@ -30,6 +33,10 @@ function AccountScreen() {
       tagLabel: 'log out and delete all saved cart',
       leftIcon: 'logout',
       rightIcon: 'right',
+      action: async () => {
+        await AsyncStorage.clear();
+        signOut();
+      },
     },
   ];
   return (
@@ -142,6 +149,7 @@ function AccountScreen() {
         <View style={{marginTop: 20}}>
           {buttonList.map((item, index) => (
             <TouchableOpacity
+              onPress={item.action}
               // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 marginTop: 10,
@@ -159,7 +167,7 @@ function AccountScreen() {
                 <AntDesign
                   name={item.leftIcon}
                   color={theme.colors.primary}
-                  size={30}
+                  size={25}
                 />
                 <View style={{marginLeft: 15}}>
                   <Text
@@ -167,11 +175,10 @@ function AccountScreen() {
                     style={{
                       fontSize: 18,
                       color: theme.colors.primary,
-                      fontFamily: 'Poppins-Bold',
                     }}>
                     {item.label}
                   </Text>
-                  <Text style={{marginTop: -10, color: theme.colors.backdrop}}>
+                  <Text style={{marginTop: -5, color: theme.colors.backdrop}}>
                     {item.tagLabel}
                   </Text>
                 </View>

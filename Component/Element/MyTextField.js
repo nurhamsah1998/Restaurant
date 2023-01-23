@@ -9,7 +9,7 @@ function MyTextField({
   secure = false,
   height = 30,
   fontSize = 16,
-  roundness = 10,
+  roundness = 5,
   leftIcon = false,
   ...props
 }) {

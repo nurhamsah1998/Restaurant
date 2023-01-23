@@ -20,7 +20,8 @@ const ProductDetail = route => {
   const sheetRef = useRef(null);
   // hooks
   const [tabs, setTabs] = React.useState('');
-  const [visible, setVisible] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [orders, setOrders] = React.useState([]);
   const [offside, setOffside] = React.useState({x: 0, y: 0});
   const [cart, setCart] = React.useState([]);
   const [isFavorite, setIsFavorite] = React.useState(false);
@@ -51,10 +52,15 @@ const ProductDetail = route => {
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('@cart');
-      if (value !== null) {
+      const valueOrders = await AsyncStorage.getItem('@orders');
+      if (value !== null || valueOrders !== null) {
         const jsonValue = JSON.parse(value);
-        setCart(jsonValue || []);
-        // navigation.navigate('Dashboard');
+        const jsonValueOrders = JSON.parse(valueOrders);
+        setTimeout(() => {
+          setLoading(false);
+          setCart(jsonValue || []);
+          setOrders(jsonValueOrders || []);
+        }, 2000);
       } else {
         setCart([]);
         // navigation.navigate('AuthRouteStack');
@@ -64,22 +70,36 @@ const ProductDetail = route => {
     }
   };
 
+  const randomNUm = Math.floor(Math.random() * 999 + 1);
   const onPressSubmit = async () => {
-    const body = {
+    const clone = [...orders];
+    const currentItem = {
       ...route?.route?.params?.i,
       quantity,
+      total: quantity * price,
+    };
+    const body = {
+      items: [currentItem],
+      createdAt: new Date().toISOString(),
+      expiredAt: '01:34:00',
+      id: randomNUm + 1,
+      type: tabs,
+      invoice: `ORDER - INV${1998}`,
       total: price * quantity,
       status: 'unpaid',
-      type: tabs,
     };
-    const data = JSON.stringify(body);
-    console.log(body);
-    await AsyncStorage.setItem('@orders', data).then(res => {
-      navigate.navigate('RootDashboard', {
-        screen: 'OrdersDetails',
-        params: body,
+    clone.push(body);
+    const data = JSON.stringify(clone);
+    await AsyncStorage.setItem('@orders', data)
+      .then(async res => {
+        navigate.navigate('RootDashboard', {
+          screen: 'OrdersDetails',
+          params: {body, backPath: {parent: 'Dashboard', child: 'Search'}},
+        });
+      })
+      .catch(error => {
+        console.log(error, 'Error');
       });
-    });
   };
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -115,7 +135,7 @@ const ProductDetail = route => {
       onPressSubmit={onPressSubmit}
       submitLabel="Checkout"
       cancelLabel="Cancel"
-      triggerCallBack={quantity}
+      triggerCallBack={tabs}
       content={
         <CheckoutContent
           tabs={tabs}
