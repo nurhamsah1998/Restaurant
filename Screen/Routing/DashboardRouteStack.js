@@ -46,11 +46,13 @@ function DashboardRouteStack(route) {
     tabBarBackground: () => (
       <View
         style={{
-          backgroundColor: theme.colors.white,
+          backgroundColor: '#dcefdc',
           width: '100%',
           height: '100%',
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
+          elevation: 20,
+          shadowColor: '#000',
         }}
       />
     ),

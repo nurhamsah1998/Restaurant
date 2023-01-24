@@ -7,6 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {theme} from '../../../App';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
+import {EmptyData} from './Items';
 
 function OrdersScreen() {
   const [tabValue, setTabValue] = React.useState('delivery');
@@ -140,7 +141,63 @@ function OrdersScreen() {
       // error reading value
     }
   };
-
+  console.log(orders, ' INI ITEMS');
+  const IsEmptyOrders = () => {
+    return (
+      <>
+        {orders?.length <= 0 ? (
+          <EmptyData
+            firstTitle="You Have No Orders"
+            secondTitle="ffind food you like"
+            thirtTitle="Here!"
+          />
+        ) : (
+          <FlatList
+            data={orders}
+            ListFooterComponent={<View style={style.footerFlatList} />}
+            renderItem={({item}) => {
+              return (
+                <TouchableOpacity
+                  style={style.card}
+                  onPress={() => handlePressOrder(item)}>
+                  <View style={style.sectionOne}>
+                    <View>
+                      <Text variant="titleMedium">{item.invoice}</Text>
+                      <Text>created at</Text>
+                      <Text variant="titleMedium" style={style.tag}>
+                        {item.createdAt}
+                      </Text>
+                    </View>
+                    <Text
+                      style={
+                        item.status === 'paid'
+                          ? style.statusPaid
+                          : style.statusUnpaid
+                      }
+                      variant="titleSmall">
+                      {item.status}
+                    </Text>
+                  </View>
+                  <View style={style.sectionTwo}>
+                    <Text variant="titleMedium" style={style.price}>
+                      {FormatCurrency(item.total)}
+                    </Text>
+                    <View>
+                      <Text>expired at</Text>
+                      <Text variant="titleMedium" style={style.tag}>
+                        {item.expiredAt}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={item => item.id}
+          />
+        )}
+      </>
+    );
+  };
   React.useEffect(() => {
     getData();
   }, [tabValue]);
@@ -187,48 +244,7 @@ function OrdersScreen() {
             <Text style={{marginTop: 20}}>Please wait</Text>
           </View>
         ) : (
-          <FlatList
-            data={orders}
-            ListFooterComponent={<View style={style.footerFlatList} />}
-            renderItem={({item}) => {
-              return (
-                <TouchableOpacity
-                  style={style.card}
-                  onPress={() => handlePressOrder(item)}>
-                  <View style={style.sectionOne}>
-                    <View>
-                      <Text variant="titleMedium">{item.invoice}</Text>
-                      <Text>created at</Text>
-                      <Text variant="titleMedium" style={style.tag}>
-                        {item.createdAt}
-                      </Text>
-                    </View>
-                    <Text
-                      style={
-                        item.status === 'paid'
-                          ? style.statusPaid
-                          : style.statusUnpaid
-                      }
-                      variant="titleSmall">
-                      {item.status}
-                    </Text>
-                  </View>
-                  <View style={style.sectionTwo}>
-                    <Text variant="titleMedium" style={style.price}>
-                      {FormatCurrency(item.total)}
-                    </Text>
-                    <View>
-                      <Text>expired at</Text>
-                      <Text variant="titleMedium" style={style.tag}>
-                        {item.expiredAt}
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              );
-            }}
-            keyExtractor={item => item.id}
-          />
+          <IsEmptyOrders />
         )}
       </View>
     </View>

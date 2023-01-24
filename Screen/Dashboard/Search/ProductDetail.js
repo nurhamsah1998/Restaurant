@@ -8,6 +8,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import BottomSheetScrollViewComponent from '../../../Component/Element/BottomSheetScrollViewComponent';
 import {theme} from '../../../App';
+import Cart from '../../Routing/Header/Cart';
 import IconContained from '../../../Component/Element/IconContained';
 import MyButton from '../../../Component/Element/MyButton';
 import SugestionSection from './SugestionSection';
@@ -158,11 +159,23 @@ const ProductDetail = route => {
               onPress={() => navigate.goBack()}
               icon="arrow-back"
             />
-            <IconContained
-              onPress={handleFavorite}
-              icon={isFavorite ? 'favorite' : 'favorite-border'}
-              iconColor={theme.colors.primary}
-            />
+            <View style={{flexDirection: 'row'}}>
+              <IconContained
+                sx={{marginRight: 15}}
+                onPress={handleFavorite}
+                icon="shopping-cart"
+                iconColor={theme.colors.primary}
+              />
+              {/* <Cart
+                onPress={() => navigate.navigate('CartList')}
+                badge={cart?.length}
+              /> */}
+              <IconContained
+                onPress={handleFavorite}
+                icon={isFavorite ? 'favorite' : 'favorite-border'}
+                iconColor={theme.colors.primary}
+              />
+            </View>
           </View>
           <View
             style={{

@@ -7,7 +7,7 @@ function MyTextField({
   size,
   sx,
   secure = false,
-  height = 30,
+  height = 90,
   fontSize = 16,
   roundness = 5,
   leftIcon = false,
@@ -26,7 +26,7 @@ function MyTextField({
       /// answered by Ray : https://stackoverflow.com/users/5841629/ray
       placeholderTextColor={theme.colors.divider}
       /// stackoverflow END
-      theme={{roundness, height}}
+      theme={{roundness}}
       style={{marginTop: -6, fontSize, ...sx}}
       mode={variant}
       left={leftIcon && <TextInput.Icon icon={leftIcon} />}

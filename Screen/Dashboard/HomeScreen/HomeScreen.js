@@ -12,6 +12,7 @@ import {Text} from 'react-native-paper';
 import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
 import Card from '../../../Component/Element/Card';
 import {theme} from '../../../App';
@@ -21,6 +22,7 @@ import {secondSectionData} from '../../../mockup';
 import SugestionSection from '../Search/SugestionSection';
 
 function HomeScreen() {
+  const navigate = useNavigation();
   const [isScroll, setIsScroll] = React.useState(true);
   const dataCard = [
     {
@@ -129,6 +131,9 @@ function HomeScreen() {
     }
   }, [isScroll]);
 
+  const onPressItem = i => {
+    navigate.navigate('RootDashboard', {screen: 'ProductDetail', params: {i}});
+  };
   return (
     <GestureHandlerRootView>
       <ScrollView style={{backgroundColor: theme.colors.white}}>
@@ -209,7 +214,7 @@ function HomeScreen() {
               </ImageBackground>
             ))}
           </ScrollView>
-          <SugestionSection disabledMArginBottom />
+          <SugestionSection onPressItem={onPressItem} disabledMArginBottom />
           <View>
             <Text style={{fontSize: 19, fontFamily: 'Poppins-Bold'}}>
               Control is in your hands
@@ -314,7 +319,10 @@ function HomeScreen() {
               </TouchableOpacity>
             ))}
           </View>
-          <SugestionSection data={secondSectionData} />
+          <SugestionSection
+            onPressItem={onPressItem}
+            data={secondSectionData}
+          />
         </View>
       </ScrollView>
     </GestureHandlerRootView>
