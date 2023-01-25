@@ -53,8 +53,9 @@ function SearchHeader() {
           alignItems: 'center',
         }}>
         <MyTextField
-          fontSize={17}
-          height={40}
+          placeholder="Find foods you love"
+          leftIcon="magnify"
+          fontSize={15}
           sx={{flex: 2, marginRight: 10}}
         />
         <View

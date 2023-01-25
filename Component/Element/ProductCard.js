@@ -29,17 +29,10 @@ function ProductCard({data, keyExtractor, onPressItem}) {
               marginTop: 10,
               paddingBottom: 10,
             }}>
-            <View
-              style={{
-                borderRadius: 5,
-                shadowColor: '#000',
-                elevation: 5,
-              }}>
-              <Image
-                source={{uri: item.imgLink}}
-                style={{width: width / 2.21, height: 150, borderRadius: 20}}
-              />
-            </View>
+            <Image
+              source={{uri: item.imgLink}}
+              style={{width: width / 2.21, height: 150, borderRadius: 5}}
+            />
             <View style={{marginTop: 5, paddingBottom: 5}}>
               <Text variant="bodyLarge">{item.label}</Text>
               <View

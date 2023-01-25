@@ -29,6 +29,7 @@ const ProductDetail = route => {
   const navigate = useNavigation();
   const {label, images, review, duration, desc, price} =
     route?.route?.params?.i;
+  console.log(route?.route?.params?.i, '<===');
   const {width} = Dimensions.get('window');
   const [quantity, setQuantity] = React.useState(1);
   const onAddCart = async () => {
@@ -125,7 +126,7 @@ const ProductDetail = route => {
     getData();
   }, []);
 
-  const tes = React.useMemo(
+  const MemoSugestion = React.useMemo(
     () => <SugestionSection onPressItem={onPressItem} />,
     [],
   );
@@ -146,7 +147,7 @@ const ProductDetail = route => {
       }>
       <View>
         <ScrollView contentOffset={offside}>
-          <BannerImageCarousel data={data} />
+          <BannerImageCarousel data={images} />
           <View
             style={{
               position: 'absolute',
@@ -162,14 +163,10 @@ const ProductDetail = route => {
             <View style={{flexDirection: 'row'}}>
               <IconContained
                 sx={{marginRight: 15}}
-                onPress={handleFavorite}
+                onPress={() => navigate.navigate('CartList')}
                 icon="shopping-cart"
                 iconColor={theme.colors.primary}
               />
-              {/* <Cart
-                onPress={() => navigate.navigate('CartList')}
-                badge={cart?.length}
-              /> */}
               <IconContained
                 onPress={handleFavorite}
                 icon={isFavorite ? 'favorite' : 'favorite-border'}
@@ -240,7 +237,6 @@ const ProductDetail = route => {
                 <Text variant="headlineSmall" style={{}}>
                   {FormatCurrency(price * quantity)}
                 </Text>
-                {/* <Text style={{color: theme.colors.backdrop}}>/porsi</Text> */}
               </View>
               <View style={{flexDirection: 'row'}}>
                 <MyButton
@@ -271,7 +267,7 @@ const ProductDetail = route => {
               </View>
             </View>
             <Text style={{marginTop: 20}}>{desc}</Text>
-            {tes}
+            {MemoSugestion}
           </View>
         </ScrollView>
         <View

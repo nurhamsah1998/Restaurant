@@ -28,7 +28,7 @@ function OrdersScreen() {
     },
   ];
   const style = StyleSheet.create({
-    container: {flex: 1},
+    container: {flex: 1, backgroundColor: theme.colors.white},
     tab: {
       flexDirection: 'row',
       marginTop: 20,
@@ -53,7 +53,7 @@ function OrdersScreen() {
     panelNonActive: {
       width: '50%',
       borderBottomWidth: 4,
-      borderBottomColor: theme.colors.white,
+      borderBottomColor: theme.colors.divider,
       paddingBottom: 10,
     },
     card: {

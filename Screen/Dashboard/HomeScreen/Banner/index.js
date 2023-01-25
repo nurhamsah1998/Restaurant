@@ -52,12 +52,13 @@ function BannerImageCarousel({
               <Image
                 style={{
                   flex: 1,
+                  backgroundColor: 'red',
                   borderRadius: isBanner ? 10 : 0,
                   width: '100%',
                   height: '100%',
                 }}
                 resizeMode="cover"
-                source={item.img}
+                source={item.imgLink}
               />
             </View>
           );

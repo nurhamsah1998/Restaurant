@@ -42,8 +42,6 @@ function SugestionSection({
                   }}>
                   <View
                     style={{
-                      elevation: 5,
-                      shadowColor: '#000',
                       backgroundColor: theme.colors.white,
                       borderRadius: 10,
                     }}>

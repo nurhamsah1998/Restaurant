@@ -185,10 +185,7 @@ function Orders(route) {
                 color="error"
                 sx={{flex: 1}}
                 onPress={() =>
-                  Alert.alert(
-                    'Are You Sure?',
-                    'This action will be remove your order in our server',
-                  )
+                  Alert.alert('Doesnt have function', 'put text here')
                 }
                 title="Cancel My Order"
               />

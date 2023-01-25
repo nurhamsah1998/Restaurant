@@ -11,6 +11,7 @@ function MyTextField({
   fontSize = 16,
   roundness = 5,
   leftIcon = false,
+  placeholder,
   ...props
 }) {
   return (
@@ -27,6 +28,7 @@ function MyTextField({
       placeholderTextColor={theme.colors.divider}
       /// stackoverflow END
       theme={{roundness}}
+      placeholder={placeholder}
       style={{marginTop: -6, fontSize, ...sx}}
       mode={variant}
       left={leftIcon && <TextInput.Icon icon={leftIcon} />}

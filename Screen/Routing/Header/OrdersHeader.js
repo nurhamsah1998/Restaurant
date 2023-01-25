@@ -52,8 +52,9 @@ function OrdersHeader() {
           alignItems: 'center',
         }}>
         <MyTextField
-          fontSize={17}
-          height={40}
+          placeholder="Search transaction"
+          leftIcon="magnify"
+          fontSize={15}
           sx={{flex: 2, marginRight: 10}}
         />
         <View

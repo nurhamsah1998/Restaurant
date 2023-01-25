@@ -1,3 +1,5 @@
+import {theme} from './App';
+
 export const data = [
   {
     img: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -20,7 +22,105 @@ export const data = [
     color: 'orange',
   },
 ];
+/// stackoverflow START
+/// quuestion :https://stackoverflow.com/questions/71476444/react-native-how-to-add-images-with-map
+/// answer by Fiston Emmanuel : https://stackoverflow.com/users/12431576/fiston-emmanuel
+export const bannerImage = [
+  {
+    img: require('./Component/Asset/pic-1.png'),
+  },
+  {
+    img: require('./Component/Asset/pic-2.png'),
+  },
+  {
+    img: require('./Component/Asset/pic-3.png'),
+  },
+  {
+    img: require('./Component/Asset/pic-4.png'),
+  },
+];
+export const secondBannerImage = [
+  {
+    path: require('./Component/Asset/second_banner_1.png'),
+    label: 'Ice Cream',
+  },
+  {
+    path: require('./Component/Asset/second_banner_2.png'),
+    label: 'Juice',
+  },
+  {
+    path: require('./Component/Asset/second_banner_3.png'),
+    label: 'Calories',
+  },
+  {
+    path: require('./Component/Asset/second_banner_4.png'),
+    label: 'Healthy',
+  },
+];
+/// stackoverflow END
 
+export const content = [
+  {
+    label: 'Fresh Vegetables',
+    tag: 'be healty and eat healty',
+    color: theme.colors.green,
+  },
+  {
+    label: 'Coffee Break',
+    tag: 'we have the best coffee in town',
+    color: theme.colors.cyan,
+  },
+  {
+    label: 'Beef Food',
+    tag: 'indulge your tongue',
+    color: theme.colors.warning,
+  },
+  {
+    label: 'Juice',
+    tag: 'many varieties of juices',
+    color: theme.colors.error,
+  },
+];
+export const Ordertype = [
+  {
+    label: 'Dine in',
+    tag: 'Feel the satisfaction of ordering at our restaurant',
+    color: theme.colors.blue,
+    icon: 'local-dining',
+  },
+  {
+    label: 'Delivery Orders',
+    tag: 'Lazy to go out? Relax, you can order delivery',
+    color: theme.colors.deepPurple,
+    icon: 'delivery-dining',
+  },
+];
+export const dataCard = [
+  {
+    title: 'Bundling Package - Healty Chalange',
+    price: 'Rp65.000',
+    review: '1k review',
+    location: 'Njabon, kediri',
+    tag: 'asian food',
+    path: require('./Component/Asset/posterLandscape_1.png'),
+  },
+  {
+    title: 'Premium Coffee - Bundling Price',
+    review: '1.5k review',
+    location: 'Mbabal, ngadi',
+    price: 'Rp34.000',
+    tag: 'makan siang',
+    path: require('./Component/Asset/posterLandscape_2.png'),
+  },
+  {
+    title: 'Family Burger Universe',
+    review: '345 review',
+    location: 'Botoran, tulungagung',
+    price: 'Rp56.500',
+    tag: 'khas nusantara',
+    path: require('./Component/Asset/posterLandscape_3.png'),
+  },
+];
 export const sectionData = [
   {
     title: 'Best Seller',

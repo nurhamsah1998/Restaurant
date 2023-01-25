@@ -40,7 +40,7 @@ function AccountScreen() {
     },
   ];
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: theme.colors.white}}>
       <View
         // eslint-disable-next-line react-native/no-inline-styles
         style={{

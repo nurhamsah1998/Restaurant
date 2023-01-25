@@ -5,9 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {Avatar, Text} from 'react-native-paper';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {theme} from '../../../App';
 import Cart from './Cart';
+import IconContained from '../../../Component/Element/IconContained';
 
 function DashboardHeader() {
   const navigation = useNavigation();
@@ -52,34 +54,53 @@ function DashboardHeader() {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <View
-            style={{
-              padding: 3,
-              backgroundColor: theme.colors.white,
-              borderRadius: 100,
-            }}>
-            <Avatar.Image
-              size={40}
-              source={require('../../../Component/Asset/profile.jpg')}
-            />
-          </View>
-          <View>
-            <Text
-              style={{fontSize: 20, color: theme.colors.white, marginLeft: 10}}>
-              Hello, Nurhamsah
-            </Text>
-            <Text
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View
               style={{
-                fontSize: 16,
-                color: theme.colors.white,
-                marginLeft: 10,
-                marginTop: -8,
-                fontFamily: 'Poppins-Bold',
+                padding: 3,
+                backgroundColor: theme.colors.white,
+                borderRadius: 100,
               }}>
-              Gold Badge
-            </Text>
+              <Avatar.Image
+                size={40}
+                source={require('../../../Component/Asset/profile.jpg')}
+              />
+            </View>
+            <View>
+              <Text
+                style={{
+                  fontSize: 17,
+                  color: theme.colors.white,
+                  marginLeft: 10,
+                }}>
+                Hello, Nurhamsah
+              </Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: theme.colors.white,
+                  marginLeft: 10,
+                  marginTop: -8,
+                  fontFamily: 'Poppins-Bold',
+                }}>
+                Gold Badge
+              </Text>
+            </View>
           </View>
+          <TouchableOpacity>
+            <MaterialIcons
+              name="notifications"
+              size={30}
+              color={theme.colors.white}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

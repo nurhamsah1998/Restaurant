@@ -23,8 +23,6 @@ function Card({
         <View style={{flex: 1, height: 200}}>
           <View
             style={{
-              elevation: 5,
-              shadowColor: '#000',
               backgroundColor: theme.colors.white,
               borderRadius: 10,
             }}>
@@ -80,26 +78,6 @@ function Card({
             <Text>5</Text>
           </View>
         </View>
-        {/* <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginTop: -8,
-          }}>
-          <View
-            style={{marginTop: 10, flexDirection: 'row', alignItems: 'center'}}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <MaterialIcons
-                name="people"
-                size={25}
-                style={{marginRight: 5}}
-                color={theme.colors.primary}
-              />
-              <Text>5</Text>
-            </View>
-          </View>
-        </View> */}
-
         <Text style={{fontSize: 25, fontFamily: 'Poppins-Bold'}}>{price}</Text>
       </View>
     </View>
