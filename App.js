@@ -19,8 +19,8 @@ export const theme = {
   fonts: configureFonts({config: fontConfig}),
   colors: {
     ...DefaultTheme.colors,
-    primary: '#43a047',
-    secondary: '#1e88e5',
+    primary: '#11a04eff',
+    secondary: '#e7a518ff',
     typography: '#0d0d0d',
     greenTeal: '#00e673',
     brown: '#795548',

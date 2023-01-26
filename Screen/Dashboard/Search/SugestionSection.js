@@ -5,6 +5,7 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  ImageBackground,
 } from 'react-native';
 import {Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -40,9 +41,11 @@ function SugestionSection({
                     marginTop: 10,
                     paddingBottom: 10,
                   }}>
-                  <View
+                  <ImageBackground
+                    source={require('../../../Component/Asset/RG.png')}
+                    resizeMode="center"
                     style={{
-                      backgroundColor: theme.colors.white,
+                      backgroundColor: theme.colors.divider,
                       borderRadius: 10,
                     }}>
                     <Image
@@ -53,7 +56,7 @@ function SugestionSection({
                         borderRadius: 10,
                       }}
                     />
-                  </View>
+                  </ImageBackground>
 
                   <View style={{marginTop: 5, paddingBottom: 5}}>
                     <Text variant="bodyLarge">{content.label}</Text>

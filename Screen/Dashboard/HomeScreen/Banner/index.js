@@ -1,5 +1,11 @@
 import * as React from 'react';
-import {View, Dimensions, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import {Text, Button} from 'react-native-paper';
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
@@ -40,10 +46,12 @@ function BannerImageCarousel({
         }
         renderItem={({item, index}) => {
           return (
-            <View
+            <ImageBackground
+              resizeMode="center"
+              source={require('../../../../Component/Asset/RG.png')}
               style={{
                 flex: 1,
-                backgroundColor: item?.color,
+                backgroundColor: theme.colors.divider,
                 borderRadius: isBanner ? 10 : 0,
                 width: '100%',
                 elevation: 5,
@@ -52,7 +60,7 @@ function BannerImageCarousel({
               <Image
                 style={{
                   flex: 1,
-                  backgroundColor: 'red',
+
                   borderRadius: isBanner ? 10 : 0,
                   width: '100%',
                   height: '100%',
@@ -60,7 +68,7 @@ function BannerImageCarousel({
                 resizeMode="cover"
                 source={item.imgLink}
               />
-            </View>
+            </ImageBackground>
           );
         }}
       />
