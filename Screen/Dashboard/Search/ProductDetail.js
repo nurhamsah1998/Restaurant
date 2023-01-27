@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {View, Dimensions, ScrollView} from 'react-native';
+import {View, Dimensions, ScrollView, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -130,6 +130,73 @@ const ProductDetail = route => {
     () => <SugestionSection onPressItem={onPressItem} />,
     [],
   );
+
+  const style = StyleSheet.create({
+    topIconContained: {
+      position: 'absolute',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: width,
+      padding: 10,
+    },
+    topIcon: {flexDirection: 'row'},
+    body: {
+      padding: 10,
+      borderTopEndRadius: 20,
+      borderTopStartRadius: 20,
+      marginTop: -20,
+      backgroundColor: theme.colors.white,
+      width: '100%',
+      height: '100%',
+    },
+    firstSection: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 20,
+    },
+    starIconContained: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginRight: 10,
+    },
+    titleIcon: {marginLeft: 2, color: theme.colors.primary},
+    clockIconContained: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    contentContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    price: {
+      flexDirection: 'row',
+      alignItems: 'flex-end',
+    },
+    btnCounter: {flexDirection: 'row'},
+    valueCounter: {
+      borderColor: theme.colors.backdrop,
+      borderWidth: 1,
+      borderRadius: 5,
+      width: 40,
+      height: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    quantity: {fontSize: 20},
+    desc: {marginTop: 20},
+    bottomButton: {
+      flexDirection: 'row',
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      position: 'absolute',
+      bottom: 0,
+      backgroundColor: theme.colors.white,
+      borderTopColor: theme.colors.divider,
+      borderTopWidth: 1,
+    },
+  });
+
   return (
     <BottomSheetScrollViewComponent
       title="Choose Order Type"
@@ -148,19 +215,12 @@ const ProductDetail = route => {
       <View>
         <ScrollView contentOffset={offside}>
           <BannerImageCarousel data={images} />
-          <View
-            style={{
-              position: 'absolute',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: width,
-              padding: 10,
-            }}>
+          <View style={style.topIconContained}>
             <IconContained
               onPress={() => navigate.goBack()}
               icon="arrow-back"
             />
-            <View style={{flexDirection: 'row'}}>
+            <View style={style.topIcon}>
               <IconContained
                 sx={{marginRight: 15}}
                 onPress={() => navigate.navigate('CartList')}
@@ -174,71 +234,33 @@ const ProductDetail = route => {
               />
             </View>
           </View>
-          <View
-            style={{
-              padding: 10,
-              borderTopEndRadius: 20,
-              borderTopStartRadius: 20,
-              marginTop: -20,
-              backgroundColor: theme.colors.white,
-              width: '100%',
-              height: '100%',
-            }}>
-            <Text variant="headlineMedium" style={{}}>
-              {label}
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginTop: 20,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginRight: 10,
-                }}>
+          <View style={style.body}>
+            <Text variant="headlineMedium">{label}</Text>
+            <View style={style.firstSection}>
+              <View style={style.starIconContained}>
                 <AntDesign name="star" size={20} color={theme.colors.primary} />
-                <Text
-                  variant="titleMedium"
-                  style={{marginLeft: 2, color: theme.colors.primary}}>
+                <Text variant="titleMedium" style={style.titleIcon}>
                   {`${review} Review`}
                 </Text>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
+              <View style={style.clockIconContained}>
                 <AntDesign
                   name="clockcircle"
                   size={20}
                   color={theme.colors.primary}
                 />
-                <Text
-                  variant="titleMedium"
-                  style={{marginLeft: 2, color: theme.colors.primary}}>
+                <Text variant="titleMedium" style={style.titleIcon}>
                   {duration || '5 min'}
                 </Text>
               </View>
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'flex-end',
-                }}>
+            <View style={style.contentContainer}>
+              <View style={style.price}>
                 <Text variant="headlineSmall" style={{}}>
                   {FormatCurrency(price * quantity)}
                 </Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={style.btnCounter}>
                 <MyButton
                   disabled={quantity <= 1}
                   onPress={() => setQuantity(prev => prev - 1)}
@@ -246,17 +268,8 @@ const ProductDetail = route => {
                   mode="contained"
                   title="-"
                 />
-                <View
-                  style={{
-                    borderColor: theme.colors.backdrop,
-                    borderWidth: 1,
-                    borderRadius: 5,
-                    width: 40,
-                    height: 40,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={{fontSize: 20}}>{quantity}</Text>
+                <View style={style.valueCounter}>
+                  <Text style={style.quantity}>{quantity}</Text>
                 </View>
                 <MyButton
                   onPress={() => setQuantity(prev => prev + 1)}
@@ -266,21 +279,11 @@ const ProductDetail = route => {
                 />
               </View>
             </View>
-            <Text style={{marginTop: 20}}>{desc}</Text>
+            <Text style={style.desc}>{desc}</Text>
             {MemoSugestion}
           </View>
         </ScrollView>
-        <View
-          style={{
-            flexDirection: 'row',
-            paddingHorizontal: 10,
-            paddingVertical: 5,
-            position: 'absolute',
-            bottom: 0,
-            backgroundColor: theme.colors.white,
-            borderTopColor: theme.colors.divider,
-            borderTopWidth: 1,
-          }}>
+        <View style={style.bottomButton}>
           <MyButton
             title="Add to cart"
             onPress={onAddCart}

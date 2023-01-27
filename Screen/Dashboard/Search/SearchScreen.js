@@ -1,14 +1,5 @@
 import React from 'react';
-import {Text, Button} from 'react-native-paper';
-import {
-  View,
-  TouchableOpacity,
-  FlatList,
-  Dimensions,
-  Image,
-  ImageBackground,
-} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import {View, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {theme} from '../../../App';
@@ -23,18 +14,24 @@ function SearchScreen({navigation}) {
   const onPressItem = i => {
     navigate.navigate('RootDashboard', {screen: 'ProductDetail', params: {i}});
   };
+  const style = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.colors.white,
+    },
+    chipContainer: {
+      paddingBottom: 10,
+      paddingHorizontal: 10,
+      paddingTop: 10,
+    },
+    productCardContainer: {
+      paddingHorizontal: 10,
+      flex: 1,
+    },
+  });
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: theme.colors.white,
-      }}>
-      <View
-        style={{
-          paddingBottom: 10,
-          paddingHorizontal: 10,
-          paddingTop: 10,
-        }}>
+    <View style={style.container}>
+      <View style={style.chipContainer}>
         <View>
           <Chip
             data={category}
@@ -44,11 +41,7 @@ function SearchScreen({navigation}) {
           />
         </View>
       </View>
-      <View
-        style={{
-          paddingHorizontal: 10,
-          flex: 1,
-        }}>
+      <View style={style.productCardContainer}>
         <ProductCard
           onPressItem={onPressItem}
           data={product}

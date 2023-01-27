@@ -141,7 +141,6 @@ function OrdersScreen() {
       // error reading value
     }
   };
-  console.log(orders, ' INI ITEMS');
   const IsEmptyOrders = () => {
     return (
       <>

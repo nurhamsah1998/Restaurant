@@ -27,16 +27,16 @@ export const data = [
 /// answer by Fiston Emmanuel : https://stackoverflow.com/users/12431576/fiston-emmanuel
 export const bannerImage = [
   {
-    img: require('./Component/Asset/pic-1.png'),
+    imgLink: require('./Component/Asset/pic-1.png'),
   },
   {
-    img: require('./Component/Asset/pic-2.png'),
+    imgLink: require('./Component/Asset/pic-2.png'),
   },
   {
-    img: require('./Component/Asset/pic-3.png'),
+    imgLink: require('./Component/Asset/pic-3.png'),
   },
   {
-    img: require('./Component/Asset/pic-4.png'),
+    imgLink: require('./Component/Asset/pic-4.png'),
   },
 ];
 export const secondBannerImage = [
@@ -571,6 +571,8 @@ export const product = [
   {
     label: 'Burger Giant',
     price: 12000,
+    isDeliver: true,
+    isDineIn: true,
     review: '1.2k',
     desc: 'Est minim veniam proident id laboris cupidatat cillum in dolore nulla ea. variant="titleLarge Laborum consequat exercitation ut officia proident dolore elit eu ad ipsum voluptate. Est quis do enim in. Occaecat amet ex consectetur cupidatat. Voluptate reprehenderit tempor duis cupidatat anim pariatur esse aliqua aliqua laborum. Duis adipisicing exercitation pariatur ad id minim proident incididunt ex exercitation duis. Cupidatat occaecat culpa est ipsum deserunt et qui est esse nisi. Do veniam dolor nulla excepteur sit commodo Lorem consequat cillum ipsum qui cupidatat excepteur.',
     imgLink:
@@ -593,6 +595,8 @@ export const product = [
   {
     label: 'Burger Armagedon',
     price: 6000,
+    isDeliver: true,
+    isDineIn: true,
     review: '2.2k',
     images: [
       {
@@ -614,6 +618,8 @@ export const product = [
   {
     label: 'Potato Stick',
     price: 5000,
+    isDeliver: true,
+    isDineIn: false,
     review: '1.1k',
     images: [
       {
@@ -636,6 +642,8 @@ export const product = [
     label: 'Burger + Ice Drink',
     price: 7600,
     review: '677',
+    isDeliver: false,
+    isDineIn: true,
     images: [
       {
         imgLink:
@@ -677,6 +685,8 @@ export const product = [
   {
     label: 'Hot Dog Cogan',
     price: 12000,
+    isDeliver: true,
+    isDineIn: false,
     review: '978',
     images: [
       {
@@ -698,6 +708,8 @@ export const product = [
   {
     label: 'Happy Burger Meal',
     price: 9500,
+    isDeliver: true,
+    isDineIn: true,
     review: '7.1k',
     images: [
       {
@@ -719,6 +731,8 @@ export const product = [
   {
     label: 'Soup',
     price: 20100,
+    isDeliver: true,
+    isDineIn: true,
     review: '6.7k',
     images: [
       {
@@ -740,6 +754,8 @@ export const product = [
   {
     label: 'Tuna',
     price: 5500,
+    isDeliver: true,
+    isDineIn: true,
     review: '6.7k',
     images: [
       {
@@ -762,6 +778,8 @@ export const product = [
     label: 'Bread',
     price: 2500,
     review: '6.7k',
+    isDeliver: true,
+    isDineIn: true,
     images: [
       {
         imgLink:
@@ -782,6 +800,8 @@ export const product = [
   {
     label: 'Ice Tea',
     price: 12500,
+    isDeliver: true,
+    isDineIn: true,
     review: '6.7k',
     images: [
       {
@@ -803,6 +823,8 @@ export const product = [
   {
     label: 'Beef Burger',
     price: 4500,
+    isDeliver: false,
+    isDineIn: true,
     review: '6.7k',
     images: [
       {
