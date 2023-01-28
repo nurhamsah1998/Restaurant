@@ -1,23 +1,30 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {View, TouchableOpacity} from 'react-native';
-import {Badge} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
+import {View, StyleSheet} from 'react-native';
 
 import HomeScreen from '../Dashboard/HomeScreen/HomeScreen';
 import OrdersScreen from '../Dashboard/Orders/OrdersScreen';
 import AccountScreen from '../Dashboard/Account/AccountScreen';
 import SearchScreenRouting from './SearchScreenRouting';
-import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
 import SearchHeader from './Header/SearchHeader';
 import OrdersHeader from './Header/OrdersHeader';
 import DashboardHeader from './Header/DashboardHeader';
 
 function DashboardRouteStack(route) {
+  const style = StyleSheet.create({
+    tabNavigation: {
+      backgroundColor: '#e8fdf1',
+      width: '100%',
+      height: '100%',
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      elevation: 20,
+      shadowColor: '#000',
+    },
+  });
+
   const DashboardNavigationStackTabs = createBottomTabNavigator();
   const iconNavbar = [
     {iconName: 'home', name: 'Home'},
@@ -43,19 +50,7 @@ function DashboardRouteStack(route) {
       height: 60,
       padding: 5,
     },
-    tabBarBackground: () => (
-      <View
-        style={{
-          backgroundColor: '#edf7ee',
-          width: '100%',
-          height: '100%',
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          elevation: 20,
-          shadowColor: '#000',
-        }}
-      />
-    ),
+    tabBarBackground: () => <View style={style.tabNavigation} />,
     // tabBarActiveBackgroundColor: theme.colors.primary,
   });
   return (

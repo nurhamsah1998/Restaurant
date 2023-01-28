@@ -86,6 +86,7 @@ function Orders(route) {
       height: 10,
     },
     seperatorButton: {marginHorizontal: 5},
+    divider: {marginVertical: 5},
   });
   const listOrders = [route?.route?.params];
 
@@ -135,7 +136,7 @@ function Orders(route) {
                 {FormatCurrency(value?.price * value?.quantity)}
               </Text>
             </View>
-            <Divider style={{marginVertical: 5}} />
+            <Divider style={style.divider} />
           </View>
         ))}
       </View>

@@ -14,6 +14,7 @@ import {Text} from 'react-native-paper';
 
 import {FormatCurrency} from '../../Component/FormatCurrency';
 import {theme} from '../../App';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export const SingleProductCard = ({onPress, data}) => {
   const {width} = Dimensions.get('window');
@@ -22,8 +23,9 @@ export const SingleProductCard = ({onPress, data}) => {
   const style = StyleSheet.create({
     touchableOpacity: {
       margin: 5,
-      marginTop: 10,
+      // marginTop: 10,
       paddingBottom: 10,
+      width: 175,
     },
     imageBackground: {
       backgroundColor: theme.colors.divider,
@@ -52,6 +54,7 @@ export const SingleProductCard = ({onPress, data}) => {
     },
     clockIconContainer: {flexDirection: 'row', alignItems: 'center'},
     orderType: {flexDirection: 'row', alignItems: 'center'},
+    price: {marginTop: 10},
   });
   return (
     <TouchableOpacity onPress={onPress} style={style.touchableOpacity}>
@@ -64,7 +67,7 @@ export const SingleProductCard = ({onPress, data}) => {
 
       <View style={style.container}>
         <Text variant="bodyLarge">{item.label}</Text>
-        <Text variant="titleLarge" style={{marginTop: 10}}>
+        <Text variant="titleLarge" style={style.price}>
           {FormatCurrency(item.price)}
         </Text>
         <View style={style.iconContainer}>
@@ -110,27 +113,31 @@ export const SingleProductCard = ({onPress, data}) => {
   );
 };
 
-function ProductCard({data, keyExtractor, onPressItem}) {
+function ProductCard({data, onPressItem}) {
+  const {width} = Dimensions.get('window');
   const style = StyleSheet.create({
     listFooterComponent: {height: 80, width: '100%'},
   });
   return (
-    <FlatList
-      numColumns={2}
-      showsVerticalScrollIndicator={false}
-      ListFooterComponent={<View style={style.listFooterComponent} />}
-      data={data}
-      renderItem={({item, index}) => {
-        return (
-          <SingleProductCard
-            key={index}
-            onPress={() => onPressItem(item)}
-            data={item}
-          />
-        );
-      }}
-      keyExtractor={keyExtractor}
-    />
+    <ScrollView>
+      <View
+        style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+        }}>
+        {data?.map((item, index) => {
+          return (
+            <SingleProductCard
+              key={index}
+              onPress={() => onPressItem(item)}
+              data={item}
+            />
+          );
+        })}
+      </View>
+      <View style={style.listFooterComponent} />
+    </ScrollView>
   );
 }
 

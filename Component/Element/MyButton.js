@@ -5,7 +5,6 @@ import {theme} from '../../App';
 function MyButton({
   mode = 'outlined',
   title = 'text here',
-  size,
   sx,
   color = 'primary',
   disabled,
@@ -18,7 +17,7 @@ function MyButton({
     : theme.colors.secondary;
   return (
     <Button
-      contentStyle={{height: small ? null : 55}}
+      contentStyle={{height: small ? 40 : 55}}
       style={{
         borderRadius: 5,
         borderColor: disabled ? theme.colors.backdrop : isOutled,

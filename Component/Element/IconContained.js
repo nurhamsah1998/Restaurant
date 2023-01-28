@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function IconContained({
@@ -10,20 +10,21 @@ function IconContained({
   sx,
   ...props
 }) {
+  const style = StyleSheet.create({
+    button: {
+      width: size,
+      height: size,
+      borderRadius: 20,
+      elevation: 8,
+      shadowColor: '#000',
+      backgroundColor: backgroundColor,
+      justifyContent: 'center',
+      alignItems: 'center',
+      ...sx,
+    },
+  });
   return (
-    <TouchableOpacity
-      style={{
-        width: size,
-        height: size,
-        borderRadius: 20,
-        elevation: 8,
-        shadowColor: '#000',
-        backgroundColor: backgroundColor,
-        justifyContent: 'center',
-        alignItems: 'center',
-        ...sx,
-      }}
-      {...props}>
+    <TouchableOpacity style={style.button} {...props}>
       <MaterialIcons name={icon} size={size / 1.7} color={iconColor} />
     </TouchableOpacity>
   );

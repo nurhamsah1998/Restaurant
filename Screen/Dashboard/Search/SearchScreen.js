@@ -42,11 +42,7 @@ function SearchScreen({navigation}) {
         </View>
       </View>
       <View style={style.productCardContainer}>
-        <ProductCard
-          onPressItem={onPressItem}
-          data={product}
-          keyExtractor={item => item.label}
-        />
+        <ProductCard onPressItem={onPressItem} data={product} />
       </View>
     </View>
   );

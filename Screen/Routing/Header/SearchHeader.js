@@ -2,7 +2,7 @@ import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useIsFocused} from '@react-navigation/native';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
@@ -39,34 +39,39 @@ function SearchHeader() {
     }
   }, [isFocused]);
   /// stackoverflow End
+
+  const style = StyleSheet.create({
+    container: {backgroundColor: theme.colors.white},
+    body: {
+      backgroundColor: theme.colors.primary,
+      borderBottomRightRadius: 20,
+      borderBottomLeftRadius: 20,
+      padding: 10,
+      paddingHorizontal: 10,
+      width: '100%',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    iconContainer: {
+      flex: 1,
+      height: 40,
+      borderRadius: 20,
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    icon: {marginHorizontal: 15},
+  });
   return (
-    <View style={{backgroundColor: theme.colors.white}}>
-      <View
-        style={{
-          backgroundColor: theme.colors.primary,
-          borderBottomRightRadius: 20,
-          borderBottomLeftRadius: 20,
-          padding: 10,
-          paddingHorizontal: 10,
-          width: '100%',
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
+    <View style={style.container}>
+      <View style={style.body}>
         <MyTextField
           placeholder="Find foods you love"
           leftIcon="magnify"
           fontSize={15}
           sx={{flex: 2, marginRight: 10}}
         />
-        <View
-          style={{
-            flex: 1,
-            height: 40,
-            borderRadius: 20,
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-            flexDirection: 'row',
-          }}>
+        <View style={style.iconContainer}>
           <TouchableOpacity>
             <FontAwesome name="filter" size={25} color={theme.colors.white} />
           </TouchableOpacity>
@@ -74,7 +79,7 @@ function SearchHeader() {
             <AntDesign
               name="heart"
               size={25}
-              style={{marginHorizontal: 15}}
+              style={style.icon}
               color={theme.colors.white}
             />
           </TouchableOpacity>

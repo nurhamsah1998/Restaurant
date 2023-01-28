@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Dimensions} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import {Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
@@ -8,26 +8,27 @@ import {theme} from '../../../../App';
 
 export const EmptyData = ({firstTitle, secondTitle, thirtTitle}) => {
   const navigation = useNavigation();
+
+  const style = StyleSheet.create({
+    containerEmptyData: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%',
+    },
+    firstTitle: {color: theme.colors.backdrop, textAlign: 'center'},
+    thirtTitle: {color: theme.colors.primary, fontWeight: 'bold'},
+  });
   return (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-      }}>
+    <View style={style.containerEmptyData}>
       <View>
-        <Text
-          variant="headlineMedium"
-          style={{color: theme.colors.backdrop, textAlign: 'center'}}>
+        <Text variant="headlineMedium" style={style.firstTitle}>
           {firstTitle}
         </Text>
-        <Text
-          variant="titleMedium"
-          style={{color: theme.colors.backdrop, textAlign: 'center'}}>
+        <Text variant="titleMedium" style={style.firstTitle}>
           {secondTitle}{' '}
           <Text
             onPress={() => navigation.navigate('Search')}
-            style={{color: theme.colors.primary, fontWeight: 'bold'}}>
+            style={style.thirtTitle}>
             {thirtTitle}
           </Text>
         </Text>
@@ -36,10 +37,15 @@ export const EmptyData = ({firstTitle, secondTitle, thirtTitle}) => {
   );
 };
 function Index({isEmptyCart, totalAmountCart, cart}) {
-  const navigation = useNavigation();
+  const style = StyleSheet.create({
+    containerEmptcontainerListProductyData: {
+      paddingBottom: 0,
+      height: height / 1.2,
+    },
+  });
   const {height} = Dimensions.get('window');
   return (
-    <View style={{paddingBottom: 0, height: height / 1.2}}>
+    <View style={style.containerListProduct}>
       {isEmptyCart ? (
         <EmptyData
           firstTitle="Your cart is empty"

@@ -13,3 +13,8 @@ How to use React forwardRef
 https://felixgerschau.com/react-forwardref-explained/
 
 =======================================
+
+FlatList Vs ScrollView
+https://stackoverflow.com/questions/55256221/flatlist-vs-scrollview
+
+=======================================

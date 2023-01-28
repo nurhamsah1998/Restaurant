@@ -1,70 +1,129 @@
 import React from 'react';
-import {View, FlatList, Image} from 'react-native';
-import {Text, IconButton} from 'react-native-paper';
+import {View, FlatList, Image, StyleSheet, ImageBackground} from 'react-native';
+import {Button, IconButton, Text} from 'react-native-paper';
 
 import {FormatCurrency} from '../FormatCurrency';
 import {theme} from '../../App';
 import IconContained from './IconContained';
+import MyButton from './MyButton';
 
 function ListProduct({data}) {
+  const [quantity, setQuantity] = React.useState(1);
+  const style = StyleSheet.create({
+    itemSeparatorComponent: {height: 20},
+    listFooterComponent: {height: 80, width: '100%'},
+    renderItemContainer: {
+      flexDirection: 'row',
+      borderRadius: 10,
+    },
+    imageContainer: {
+      elevation: 5,
+      backgroundColor: theme.colors.divider,
+      shadowColor: '#000',
+      borderRadius: 10,
+    },
+    image: {height: 100, width: 100, borderRadius: 20},
+    renderItemBody: {
+      flex: 1,
+      marginLeft: 10,
+    },
+    titlePriceXquantity: {fontSize: 14, color: theme.colors.backdrop},
+    titlePriceTotal: {color: theme.colors.primary},
+    btnCounter: {flexDirection: 'row', alignItems: 'center'},
+    iconButton: {borderRadius: 5, height: 30, width: 30},
+    valueCounter: {
+      borderColor: theme.colors.primary,
+      borderWidth: 1,
+      borderRadius: 5,
+      width: 30,
+      height: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    deleteIcon: {
+      justifyContent: 'flex-end',
+      flexDirection: 'row',
+      backgroundColor: 'blue',
+    },
+    titleLabel: {flex: 1},
+    quantity: {
+      flexDirection: 'row',
+    },
+    quantityContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+  });
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      ItemSeparatorComponent={<View style={{height: 20}} />}
-      ListFooterComponent={<View style={{height: 80, width: '100%'}} />}
+      ItemSeparatorComponent={<View style={style.itemSeparatorComponent} />}
+      ListFooterComponent={<View style={style.listFooterComponent} />}
       renderItem={({item, index}) => {
         return (
-          <View
-            style={{
-              flexDirection: 'row',
-              borderRadius: 20,
-              marginTop: index === 0 ? 10 : 0,
-            }}>
+          <View>
             <View
-              style={{
-                elevation: 5,
-                backgroundColor: theme.colors.background,
-                shadowColor: '#000',
-                borderRadius: 20,
-              }}>
-              <Image
-                source={{uri: item.imgLink}}
-                resizeMode="cover"
-                style={{height: 100, width: 100, borderRadius: 20}}
-              />
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                flex: 1,
-                justifyContent: 'space-between',
-              }}>
-              <View
-                style={{
-                  marginLeft: 10,
-                }}>
-                <View>
-                  <Text variant="titleMedium">{item.label}</Text>
-                  <Text style={{fontSize: 17, color: theme.colors.backdrop}}>
-                    {item.variant || '-'}
-                  </Text>
-                  <Text style={{fontSize: 14, color: theme.colors.backdrop}}>
-                    {FormatCurrency(item.price)} x {item.quantity}
+              style={[
+                style.renderItemContainer,
+                // eslint-disable-next-line react-native/no-inline-styles
+                {marginTop: index === 0 ? 10 : 5},
+              ]}>
+              <ImageBackground
+                style={style.imageContainer}
+                source={require('../../Component/Asset/RG.png')}
+                resizeMode="center">
+                <Image
+                  source={{uri: item.imgLink}}
+                  resizeMode="cover"
+                  style={style.image}
+                />
+              </ImageBackground>
+              <View style={style.renderItemBody}>
+                <View style={style.quantityContainer}>
+                  <Text variant="titleMedium" style={style.titleLabel}>
+                    {item.label}
                   </Text>
                 </View>
-                <Text
-                  variant="titleMedium"
-                  style={{color: theme.colors.primary}}>
-                  {FormatCurrency(item.price * item.quantity)}
-                </Text>
+                <View style={style.quantityContainer}>
+                  <View>
+                    <Text style={style.titlePriceXquantity}>
+                      {FormatCurrency(item.price)} x {item.quantity}
+                    </Text>
+                    <Text variant="titleMedium" style={style.titlePriceTotal}>
+                      {FormatCurrency(item.price * item.quantity)}
+                    </Text>
+                  </View>
+                  <View style={style.btnCounter}>
+                    <IconButton
+                      icon="minus"
+                      disabled={quantity <= 1}
+                      mode="contained"
+                      containerColor={theme.colors.error}
+                      iconColor={theme.colors.white}
+                      style={style.iconButton}
+                      onPress={() => setQuantity(prev => prev - 1)}
+                    />
+                    <View style={style.valueCounter}>
+                      <Text style={style.quantity}>{quantity}</Text>
+                    </View>
+                    <IconButton
+                      icon="plus"
+                      mode="contained"
+                      containerColor={theme.colors.primary}
+                      iconColor={theme.colors.white}
+                      style={style.iconButton}
+                      onPress={() => setQuantity(prev => prev + 1)}
+                    />
+                  </View>
+                </View>
               </View>
-              <IconContained
-                backgroundColor={theme.colors.error}
-                size={40}
-                icon="delete"
-                iconColor={theme.colors.white}
-              />
             </View>
+            <MyButton
+              sx={{marginTop: 10}}
+              small
+              color="error"
+              title="Cancel This Order"
+            />
           </View>
         );
       }}

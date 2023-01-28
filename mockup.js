@@ -593,7 +593,7 @@ export const product = [
     ],
   },
   {
-    label: 'Burger Armagedon',
+    label: 'Burger Armagedon Best In This Town',
     price: 6000,
     isDeliver: true,
     isDineIn: true,

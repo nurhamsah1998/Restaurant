@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Alert} from 'react-native';
+import {View, Alert, StyleSheet} from 'react-native';
 import {Text, Button, ActivityIndicator} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
@@ -76,6 +76,31 @@ function CartList() {
     getData();
   }, []);
   const sheetRef = React.useRef(null);
+
+  const style = StyleSheet.create({
+    container: {
+      paddingHorizontal: 10,
+      flex: 1,
+      backgroundColor: theme.colors.white,
+    },
+    title: {fontSize: 18},
+    titleLoading: {marginTop: 20},
+    titleLoadingContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1,
+    },
+    buttonContainer: {
+      backgroundColor: theme.colors.white,
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+      left: 0,
+      flex: 1,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+    },
+  });
   return (
     <BottomSheetScrollViewComponent
       triggerCallBack={tabs}
@@ -91,12 +116,7 @@ function CartList() {
           setTabs={setTabs}
         />
       }>
-      <View
-        style={{
-          paddingHorizontal: 10,
-          flex: 1,
-          backgroundColor: theme.colors.white,
-        }}>
+      <View style={style.container}>
         <HeaderBack onPressBack={() => navigation.goBack()} title="Cart" />
         <View
           // eslint-disable-next-line react-native/no-inline-styles
@@ -105,7 +125,7 @@ function CartList() {
             alignItems: 'center',
             justifyContent: 'space-between',
           }}>
-          <Text style={{fontSize: 18}}>Upcoming Orders</Text>
+          <Text style={style.title}>Upcoming Orders</Text>
           <Button
             disabled={isEmptyCart}
             onPress={async () =>
@@ -135,14 +155,13 @@ function CartList() {
         </View>
         <View style={{flex: 1}}>
           {loading ? (
-            <View
-              style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+            <View style={style.titleLoadingContainer}>
               <ActivityIndicator
                 animating={true}
                 color={theme.colors.primary}
                 size={50}
               />
-              <Text style={{marginTop: 20}}>Please wait</Text>
+              <Text style={style.titleLoading}>Please wait</Text>
             </View>
           ) : (
             <Items
@@ -152,17 +171,7 @@ function CartList() {
             />
           )}
         </View>
-        <View
-          style={{
-            backgroundColor: theme.colors.white,
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            left: 0,
-            flex: 1,
-            paddingHorizontal: 10,
-            paddingVertical: 5,
-          }}>
+        <View style={style.buttonContainer}>
           <MyButton
             disabled={cart?.length <= 0}
             mode="contained"
