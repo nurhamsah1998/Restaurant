@@ -47,15 +47,17 @@ function AccountScreen() {
       justifyContent: 'center',
       alignItems: 'center',
       paddingVertical: 20,
-      borderBottomEndRadius: 30,
-      borderBottomStartRadius: 30,
+      borderBottomEndRadius: 20,
+      borderBottomStartRadius: 20,
+      shadowColor: '#000',
+      elevation: 5,
     },
     imageContainer: {
       backgroundColor: theme.colors.white,
       width: 200,
       height: 200,
       padding: 15,
-      borderRadius: 20,
+      borderRadius: 10,
     },
     image: {width: '100%', height: '100%'},
     codeTitleQr: {
@@ -70,23 +72,28 @@ function AccountScreen() {
       marginTop: -5,
     },
     accountProgress: {
-      height: 90,
       width: '100%',
-      borderRadius: 20,
+      borderRadius: 10,
+      shadowColor: '#000',
+      elevation: 5,
       backgroundColor: theme.colors.primary,
       paddingVertical: 20,
       flexDirection: 'row',
+      alignItems: 'flex-end',
     },
     accountProgressTitle: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
-    valueProgress: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+    valueProgress: {
+      textAlign: 'center',
+      color: theme.colors.white,
+      fontFamily: 'Poppins-Bold',
+    },
     valueProgressTitle: {
       color: theme.colors.white,
-      fontSize: 15,
-      fontFamily: 'Poppins-Bold',
+      fontSize: 16,
     },
     bottomMenuContainer: {
       marginTop: 10,
@@ -130,15 +137,21 @@ function AccountScreen() {
       <View style={{padding: 20}}>
         <View style={style.accountProgress}>
           <View style={style.accountProgressTitle}>
-            <Text style={style.valueProgress}>27</Text>
+            <Text style={style.valueProgress} variant="headlineMedium">
+              27
+            </Text>
             <Text style={style.valueProgressTitle}>Total Orders</Text>
           </View>
           <View style={style.poin}>
-            <Text style={style.valueProgress}>6</Text>
+            <Text style={style.valueProgress} variant="headlineMedium">
+              6
+            </Text>
             <Text style={style.valueProgressTitle}>Total Poin</Text>
           </View>
           <View style={style.accountProgressTitle}>
-            <Text style={style.valueProgress}>2.4K</Text>
+            <Text style={style.valueProgress} variant="headlineMedium">
+              2.4K
+            </Text>
             <Text style={style.valueProgressTitle}>Total Spend</Text>
           </View>
         </View>

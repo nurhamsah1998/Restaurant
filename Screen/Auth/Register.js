@@ -1,9 +1,9 @@
-import React, {useCallback} from 'react';
-import {useIsFocused} from '@react-navigation/native';
+import React from 'react';
 import {
   View,
   SafeAreaView,
   Keyboard,
+  Image,
   TouchableWithoutFeedback,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,17 +25,23 @@ const DismissKeyBoard = ({children}) => {
 
 export default function Register({navigation}) {
   const navigate = useNavigation();
+  const [showPassword, setShowPassword] = React.useState(true);
   return (
     <DismissKeyBoard>
       <View
         style={{
           flex: 1,
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           alignItems: 'center',
           backgroundColor: theme.colors.white,
         }}>
-        <View style={{marginHorizontal: 15}}>
-          <View style={{width: '100%'}}>
+        <View style={{width: '100%'}}>
+          <View style={{marginHorizontal: 15}}>
+            <Image
+              style={{width: '50%', alignSelf: 'center'}}
+              resizeMode="center"
+              source={require('../../Component/Asset/RC-flex.png')}
+            />
             <View style={{marginBottom: 30}}>
               <Text variant="displaySmall">Register</Text>
             </View>
@@ -66,7 +72,9 @@ export default function Register({navigation}) {
                       value={values.password}
                       sx={{marginTop: 20}}
                       placeholder="Password"
-                      secure
+                      rightIcon={showPassword ? 'eye-off' : 'eye'}
+                      onPressRightIcon={() => setShowPassword(!showPassword)}
+                      secure={showPassword}
                     />
                     <View style={{marginTop: 25}}>
                       <Text
@@ -74,7 +82,7 @@ export default function Register({navigation}) {
                           textAlign: 'center',
                           color: theme.colors.backdrop,
                         }}>
-                        By Registering you aggree{' '}
+                        By Registering you agree{' '}
                         <Text
                           style={{
                             color: theme.colors.primary,
@@ -103,15 +111,17 @@ export default function Register({navigation}) {
                     <View
                       style={{
                         marginTop: 20,
+                        flexDirection: 'row',
                       }}>
-                      <Text>Already have an account ?</Text>
-                      <MyButton
-                        onPress={() => navigate.navigate('Login')}
-                        mode="contained"
-                        size="large"
-                        title="Login"
-                        color="primary"
-                      />
+                      <Text>Already have an account ? </Text>
+                      <Text
+                        style={{
+                          color: theme.colors.primary,
+                          fontFamily: 'Poppins-Bold',
+                        }}
+                        onPress={() => navigate.navigate('Login')}>
+                        Login
+                      </Text>
                     </View>
                   </View>
                 )}

@@ -4,12 +4,12 @@ import {
   SafeAreaView,
   Keyboard,
   TouchableWithoutFeedback,
+  Image,
 } from 'react-native';
 import MyButton from '../../Component/Element/MyButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
-import MyTypography from '../../Component/Element/MyTypography';
 import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
 import {AuthToken} from '../Routing/contextHelper';
@@ -27,17 +27,23 @@ export const DismissKeyBoard = ({children}) => {
 export default function Login() {
   const navigate = useNavigation();
   const {signIn} = React.useContext(AuthToken);
+  const [showPassword, setShowPassword] = React.useState(true);
   return (
     <DismissKeyBoard>
       <View
         style={{
           flex: 1,
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           alignItems: 'center',
           backgroundColor: theme.colors.white,
         }}>
         <View style={{width: '100%'}}>
           <View style={{marginHorizontal: 15}}>
+            <Image
+              style={{width: '50%', alignSelf: 'center'}}
+              resizeMode="center"
+              source={require('../../Component/Asset/RC-flex.png')}
+            />
             <View style={{marginBottom: 30}}>
               <Text variant="displaySmall">Login</Text>
             </View>
@@ -79,8 +85,10 @@ export default function Login() {
                       onBlur={handleBlur('password')}
                       value={values.password}
                       sx={{marginTop: 20}}
+                      rightIcon={showPassword ? 'eye-off' : 'eye'}
+                      onPressRightIcon={() => setShowPassword(!showPassword)}
+                      secure={showPassword}
                       placeholder="Password"
-                      secure
                     />
                     <MyButton
                       onPress={handleSubmit}
@@ -92,15 +100,17 @@ export default function Login() {
                     <View
                       style={{
                         marginTop: 20,
+                        flexDirection: 'row',
                       }}>
-                      <Text>You don't have an account ?</Text>
-                      <MyButton
-                        onPress={() => navigate.navigate('Register')}
-                        mode="contained"
-                        size="large"
-                        title="Register"
-                        color="secondary"
-                      />
+                      <Text>You don't have an account ? </Text>
+                      <Text
+                        style={{
+                          color: theme.colors.primary,
+                          fontFamily: 'Poppins-Bold',
+                        }}
+                        onPress={() => navigate.navigate('Register')}>
+                        Register
+                      </Text>
                     </View>
                   </View>
                 )}
