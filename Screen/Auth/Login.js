@@ -6,15 +6,18 @@ import {
   TouchableWithoutFeedback,
   Image,
 } from 'react-native';
-import MyButton from '../../Component/Element/MyButton';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Formik} from 'formik';
+import {Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
+import Snackbar from 'react-native-snackbar';
+import {useDispatch} from 'react-redux';
+
 import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
-import {AuthToken} from '../Routing/contextHelper';
-import {Button, Text} from 'react-native-paper';
-import Snackbar from 'react-native-snackbar';
+import {login} from '../../Store/AuthReducer';
+import MyButton from '../../Component/Element/MyButton';
 
 export const DismissKeyBoard = ({children}) => {
   return (
@@ -26,8 +29,9 @@ export const DismissKeyBoard = ({children}) => {
 
 export default function Login() {
   const navigate = useNavigation();
-  const {signIn} = React.useContext(AuthToken);
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   return (
     <DismissKeyBoard>
       <View
@@ -51,15 +55,21 @@ export default function Login() {
               <Formik
                 initialValues={{email: '', password: ''}}
                 onSubmit={async values => {
+                  setLoading(true);
                   try {
                     if (
                       values?.email?.includes('nurhamsah') &&
                       values?.password?.includes('1')
                     ) {
                       const jsonValue = JSON.stringify(values);
-                      await AsyncStorage.setItem('@access_token', jsonValue);
-                      signIn();
+                      await AsyncStorage.setItem('@access_token', jsonValue)
+                        .then(res => {
+                          setLoading(false);
+                          dispatch(login());
+                        })
+                        .catch(err => console.log(err));
                     } else {
+                      setLoading(false);
                       Snackbar.show({
                         text: 'Check your email or password!',
                         duration: Snackbar.LENGTH_SHORT,
@@ -93,6 +103,8 @@ export default function Login() {
                     <MyButton
                       onPress={handleSubmit}
                       mode="contained"
+                      loading={loading}
+                      disabled={loading}
                       sx={{marginTop: 25}}
                       size="large"
                       title="login"

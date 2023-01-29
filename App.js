@@ -8,6 +8,9 @@ import {
 } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {store} from './Store/store';
+import {Provider} from 'react-redux';
+
 import Routing from './Screen/Routing';
 
 const fontConfig = {
@@ -52,7 +55,9 @@ export default function App({navigation}) {
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={theme}>
         <NavigationContainer>
-          <Routing />
+          <Provider store={store}>
+            <Routing />
+          </Provider>
         </NavigationContainer>
       </PaperProvider>
     </QueryClientProvider>

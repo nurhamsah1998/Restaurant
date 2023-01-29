@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Image, BackHandler, Alert} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  BackHandler,
+  Alert,
+  Dimensions,
+} from 'react-native';
 import {Divider, Text} from 'react-native-paper';
 import {useNavigation, useFocusEffect, use} from '@react-navigation/native';
 
@@ -10,6 +17,7 @@ import BottomSheetScrollViewComponent from '../../../Component/Element/BottomShe
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 
 function Orders(route) {
+  const {width} = Dimensions.get('window');
   const style = StyleSheet.create({
     container: {
       padding: 10,
@@ -76,6 +84,7 @@ function Orders(route) {
     },
     label: {
       fontSize: 17,
+      maxWidth: width / 1.7,
     },
     main: {
       justifyContent: 'center',
@@ -144,9 +153,10 @@ function Orders(route) {
   };
   return (
     <BottomSheetScrollViewComponent
+      readOnly
       title="All Your Menu List"
       sheetRef={sheetRef}
-      cancelLabel="Cancel"
+      cancelLabel="Close"
       content={<List />}>
       <View style={style.container}>
         <HeaderBack

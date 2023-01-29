@@ -18,9 +18,8 @@ const BottomSheetScrollViewComponent = ({
   cancelLabel,
   submitLabel,
   triggerCallBack,
+  readOnly = false,
 }) => {
-  // hooks
-
   // variables
   const snapPoints = useMemo(() => ['69%', '70%'], []);
 
@@ -72,13 +71,15 @@ const BottomSheetScrollViewComponent = ({
                 onPress={handleClosePress}
                 title={cancelLabel}
               />
-              <View style={styles.seperator} />
-              <MyButton
-                sx={{flex: 1}}
-                mode="contained"
-                onPress={onPressSubmit}
-                title={submitLabel}
-              />
+              {readOnly ? null : <View style={styles.seperator} />}
+              {readOnly ? null : (
+                <MyButton
+                  sx={{flex: 1}}
+                  mode="contained"
+                  onPress={onPressSubmit}
+                  title={submitLabel}
+                />
+              )}
             </View>
           </View>
         </BottomSheetFooter>

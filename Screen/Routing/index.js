@@ -1,32 +1,26 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useNavigation} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
 
+import {login, logOut} from '../../Store/AuthReducer';
 import AuthRouteStack from './AuthRouteStack';
 import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
-import {AuthToken} from './contextHelper';
 import ProductDetail from '../Dashboard/Search/ProductDetail';
 import OrdersDetails from '../Dashboard/Search/OrdersDetails';
 import CartList from '../Dashboard/Orders/CartList';
 
 function Index() {
-  const navigation = useNavigation();
-  const [loading, setLoading] = React.useState({
-    isLoading: true,
-    isAuth: false,
-  });
+  const auth = useSelector(auth => auth.auth);
+  const dispatch = useDispatch();
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('@access_token');
       if (value !== null) {
-        setLoading({isLoading: false, isAuth: true});
-        // navigation.navigate('Dashboard');
+        dispatch(login());
       } else {
-        setLoading(false);
-        setLoading({isLoading: false, isAuth: false});
-        // navigation.navigate('AuthRouteStack');
+        dispatch(logOut());
       }
     } catch (e) {
       // error reading value
@@ -37,19 +31,6 @@ function Index() {
   }, []);
   const RootNavigationStack = createNativeStackNavigator();
   const RootDashboardNavigationStack = createNativeStackNavigator();
-  const AuthContext = React.useMemo(() => {
-    return {
-      signIn: () => {
-        setLoading({isLoading: false, isAuth: true});
-      },
-      signOut: () => {
-        setLoading({isLoading: false, isAuth: false});
-      },
-      signUp: () => {
-        setLoading({isLoading: false, isAuth: true});
-      },
-    };
-  }, []);
   const RootDashboard = () => {
     return (
       <RootDashboardNavigationStack.Navigator
@@ -76,13 +57,13 @@ function Index() {
       </RootDashboardNavigationStack.Navigator>
     );
   };
-  if (loading.isLoading) {
+  if (auth.isLoading) {
     return <LoadingSplashScreen />;
   }
   return (
-    <AuthToken.Provider value={AuthContext}>
+    <>
       <RootNavigationStack.Navigator screenOptions={{headerShown: false}}>
-        {loading.isAuth ? (
+        {auth.isAuth ? (
           <RootNavigationStack.Screen
             name="RootDashboard"
             component={RootDashboard}
@@ -94,7 +75,7 @@ function Index() {
           />
         )}
       </RootNavigationStack.Navigator>
-    </AuthToken.Provider>
+    </>
   );
 }
 

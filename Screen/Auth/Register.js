@@ -7,13 +7,16 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import MyButton from '../../Component/Element/MyButton';
+import {Text} from 'react-native-paper';
 import {Formik} from 'formik';
+import {useDispatch} from 'react-redux';
+
+import MyButton from '../../Component/Element/MyButton';
 import {useNavigation} from '@react-navigation/native';
 import MyTypography from '../../Component/Element/MyTypography';
 import MyTextField from '../../Component/Element/MyTextField';
 import {theme} from '../../App';
-import {Text} from 'react-native-paper';
+import {register} from '../../Store/AuthReducer';
 
 const DismissKeyBoard = ({children}) => {
   return (

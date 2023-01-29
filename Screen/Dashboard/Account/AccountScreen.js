@@ -1,14 +1,15 @@
 import * as React from 'react';
-import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Image, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import {Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch} from 'react-redux';
 
+import {logOut} from '../../../Store/AuthReducer';
 import {theme} from '../../../App';
-import {AuthToken} from '../../Routing/contextHelper';
 
 function AccountScreen() {
-  const {signOut} = React.useContext(AuthToken);
+  const dispatch = useDispatch();
   const buttonList = [
     {
       label: 'Account Setting',
@@ -34,8 +35,21 @@ function AccountScreen() {
       leftIcon: 'logout',
       rightIcon: 'right',
       action: async () => {
-        await AsyncStorage.clear();
-        signOut();
+        Alert.alert(
+          'Are you sure you want to exit?',
+          'All stored data will be deleted including activity logs, cookies, cart lists and user information, log out now?',
+          [
+            {text: 'Cancel', style: 'cancel', onPress: () => {}},
+            {
+              text: 'Log out',
+              style: 'destructive',
+              onPress: async () => {
+                dispatch(logOut());
+                await AsyncStorage.clear();
+              },
+            },
+          ],
+        );
       },
     },
   ];

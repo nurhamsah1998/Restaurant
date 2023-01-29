@@ -22,7 +22,9 @@ function Chip({setSelectedIdCategory, data, selectedCategory, keyExtractor}) {
               paddingHorizontal: 10,
               paddingVertical: 5,
               backgroundColor:
-                index === selectedCategory ? theme.colors.primary : '#eeeeee',
+                index === selectedCategory
+                  ? theme.colors.primary
+                  : theme.colors.white,
               elevation: 2,
               shadowColor: theme.colors.primary,
               borderRadius: 20,

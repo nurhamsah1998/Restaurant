@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image, ImageBackground, Alert} from 'react-native';
+import {Text, ActivityIndicator} from 'react-native-paper';
 
 const style = StyleSheet.create({
   containerSplashScreen: {
@@ -12,14 +13,14 @@ const style = StyleSheet.create({
 function LoadingSplashScreen({params}) {
   return (
     <View style={style.containerSplashScreen}>
-      {/* stackoverflow Start */}
-      {/* question: https://stackoverflow.com/questions/52307978/how-to-disable-react-navigations-stack-navigator-transition */}
-      {/* Answer By wobsoriano : https://stackoverflow.com/users/4698790/wobsoriano */}
-      <ImageBackground
-        style={{width: '100%', height: '100%'}}
-        source={require('../../Component/Asset/launch_screen.png')}
+      <Image
+        source={require('../../Component/Asset/RC.png')}
+        resizeMode="center"
+        style={{
+          alignSelf: 'center',
+        }}
       />
-      {/* stackoverflow End */}
+      <ActivityIndicator size={40} />
     </View>
   );
 }

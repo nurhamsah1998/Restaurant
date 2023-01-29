@@ -44,8 +44,8 @@ function SearchHeader() {
     container: {backgroundColor: theme.colors.white},
     body: {
       backgroundColor: theme.colors.primary,
-      borderBottomRightRadius: 20,
-      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 10,
+      borderBottomLeftRadius: 10,
       padding: 10,
       paddingHorizontal: 10,
       width: '100%',
