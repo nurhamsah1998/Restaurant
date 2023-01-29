@@ -20,6 +20,7 @@ import {theme} from '../../../../App';
 function BannerImageCarousel({
   data = [],
   autoPlay = false,
+  isUri = false,
   mode = '',
   isBanner = false,
 }) {
@@ -27,7 +28,6 @@ function BannerImageCarousel({
   const [isVertical, setIsVertical] = React.useState(false);
   const progressValue = useSharedValue(0);
   const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399'];
-
   return (
     <View>
       <Carousel
@@ -65,7 +65,7 @@ function BannerImageCarousel({
                   height: '100%',
                 }}
                 resizeMode="cover"
-                source={item.imgLink}
+                source={isUri ? {uri: item.imgLink} : item.imgLink}
               />
             </ImageBackground>
           );
@@ -80,7 +80,7 @@ function BannerImageCarousel({
           justifyContent: 'center',
         }}>
         <View style={{flexDirection: 'row'}}>
-          {Array(5)
+          {Array(data?.length || 1)
             .fill(theme.colors.primary)
             .map((backgroundColor, index) => {
               return (

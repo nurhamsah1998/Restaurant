@@ -17,12 +17,12 @@ function ListProduct({data}) {
       borderRadius: 10,
     },
     imageContainer: {
-      elevation: 5,
+      // elevation: 5,
+      // shadowColor: '#000',
       backgroundColor: theme.colors.divider,
-      shadowColor: '#000',
       borderRadius: 10,
     },
-    image: {height: 100, width: 100, borderRadius: 20},
+    image: {height: 100, width: 100, borderRadius: 10},
     renderItemBody: {
       flex: 1,
       marginLeft: 10,
@@ -53,6 +53,9 @@ function ListProduct({data}) {
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
+    main: {
+      marginHorizontal: 10,
+    },
   });
   return (
     <FlatList
@@ -61,7 +64,7 @@ function ListProduct({data}) {
       ListFooterComponent={<View style={style.listFooterComponent} />}
       renderItem={({item, index}) => {
         return (
-          <View>
+          <View style={style.main}>
             <View
               style={[
                 style.renderItemContainer,

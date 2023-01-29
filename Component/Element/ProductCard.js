@@ -25,13 +25,13 @@ export const SingleProductCard = ({onPress, data}) => {
       margin: 5,
       // marginTop: 10,
       paddingBottom: 10,
-      width: 175,
+      width: width / 2.21,
     },
     imageBackground: {
       backgroundColor: theme.colors.divider,
       borderRadius: 10,
-      shadowColor: '#000',
-      elevation: 5,
+      // shadowColor: '#000',
+      // elevation: 5,
     },
     image: {
       width: width / 2.21,

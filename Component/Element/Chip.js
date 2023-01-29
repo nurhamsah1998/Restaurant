@@ -1,10 +1,40 @@
 import React from 'react';
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 
 import {theme} from '../../App';
 
-function Chip({setSelectedIdCategory, data, selectedCategory, keyExtractor}) {
+function Chip({
+  setSelectedIdCategory,
+  data,
+  selectedCategory,
+  keyExtractor,
+  readOnly,
+}) {
+  const colorReadOnly = readOnly
+    ? theme.colors.lightPrimary
+    : theme.colors.white;
+
+  const style = StyleSheet.create({
+    main: {
+      flex: 1,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      elevation: 2,
+      shadowColor: theme.colors.primary,
+      borderRadius: 5,
+      borderColor: theme.colors.primary,
+      borderWidth: 1,
+    },
+    mainReadOnly: {
+      flex: 1,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      elevation: 2,
+      shadowColor: theme.colors.primary,
+      borderRadius: 5,
+    },
+  });
   return (
     <FlatList
       data={data}
@@ -17,20 +47,15 @@ function Chip({setSelectedIdCategory, data, selectedCategory, keyExtractor}) {
       renderItem={({item, index}) => {
         return (
           <TouchableOpacity
-            style={{
-              flex: 1,
-              paddingHorizontal: 10,
-              paddingVertical: 5,
-              backgroundColor:
-                index === selectedCategory
-                  ? theme.colors.primary
-                  : theme.colors.white,
-              elevation: 2,
-              shadowColor: theme.colors.primary,
-              borderRadius: 20,
-              borderColor: theme.colors.primary,
-              borderWidth: 1,
-            }}
+            style={[
+              readOnly ? style.mainReadOnly : style.main,
+              {
+                backgroundColor:
+                  index === selectedCategory
+                    ? theme.colors.primary
+                    : colorReadOnly,
+              },
+            ]}
             onPress={() => setSelectedIdCategory(index)}>
             <Text
               style={{

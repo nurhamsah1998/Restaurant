@@ -567,6 +567,24 @@ export const category = [
     value: 'drink',
   },
 ];
+export const topRated = [
+  {
+    label: 'Free Delivery',
+    value: 'free_delivery',
+  },
+  {
+    label: 'Top Menu',
+    value: 'top_menu',
+  },
+  {
+    label: 'Bigger Size',
+    value: 'bigger_size',
+  },
+  {
+    label: 'Most Order',
+    value: 'most_order',
+  },
+];
 export const product = [
   {
     label: 'Burger Giant',

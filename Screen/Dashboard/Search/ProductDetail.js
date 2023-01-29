@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {View, Dimensions, ScrollView, StyleSheet} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Text, IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Snackbar from 'react-native-snackbar';
@@ -8,14 +8,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import BottomSheetScrollViewComponent from '../../../Component/Element/BottomSheetScrollViewComponent';
 import {theme} from '../../../App';
-import Cart from '../../Routing/Header/Cart';
 import IconContained from '../../../Component/Element/IconContained';
 import MyButton from '../../../Component/Element/MyButton';
 import SugestionSection from './SugestionSection';
 import BannerImageCarousel from '../HomeScreen/Banner';
-import {data} from '../../../mockup';
 import CheckoutContent from './CheckoutContent';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
+import Chip from '../../../Component/Element/Chip';
+import {topRated} from '../../../mockup';
 
 const ProductDetail = route => {
   const sheetRef = useRef(null);
@@ -29,7 +29,7 @@ const ProductDetail = route => {
   const navigate = useNavigation();
   const {label, images, review, duration, desc, price} =
     route?.route?.params?.i;
-  console.log(route?.route?.params?.i, '<===');
+
   const {width} = Dimensions.get('window');
   const [quantity, setQuantity] = React.useState(1);
   const onAddCart = async () => {
@@ -58,11 +58,9 @@ const ProductDetail = route => {
       if (value !== null || valueOrders !== null) {
         const jsonValue = JSON.parse(value);
         const jsonValueOrders = JSON.parse(valueOrders);
-        setTimeout(() => {
-          setLoading(false);
-          setCart(jsonValue || []);
-          setOrders(jsonValueOrders || []);
-        }, 2000);
+        setLoading(false);
+        setCart(jsonValue || []);
+        setOrders(jsonValueOrders || []);
       } else {
         setCart([]);
         // navigation.navigate('AuthRouteStack');
@@ -152,7 +150,6 @@ const ProductDetail = route => {
     firstSection: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginTop: 20,
     },
     starIconContained: {
       flexDirection: 'row',
@@ -168,23 +165,26 @@ const ProductDetail = route => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+      marginTop: 15,
     },
     price: {
       flexDirection: 'row',
       alignItems: 'flex-end',
     },
-    btnCounter: {flexDirection: 'row'},
+    btnCounter: {flexDirection: 'row', alignItems: 'center'},
+    iconButton: {borderRadius: 5, height: 30, width: 30},
     valueCounter: {
-      borderColor: theme.colors.backdrop,
+      borderColor: theme.colors.primary,
       borderWidth: 1,
       borderRadius: 5,
-      width: 40,
-      height: 40,
+      width: 30,
+      height: 30,
       justifyContent: 'center',
       alignItems: 'center',
     },
     quantity: {fontSize: 20},
-    desc: {marginTop: 20},
+    descContainer: {marginTop: 20},
+    desc: {fontSize: 19, fontFamily: 'Poppins-Bold'},
     bottomButton: {
       flexDirection: 'row',
       paddingHorizontal: 10,
@@ -195,6 +195,7 @@ const ProductDetail = route => {
       borderTopColor: theme.colors.divider,
       borderTopWidth: 1,
     },
+    chip: {marginTop: 10},
   });
 
   return (
@@ -214,7 +215,7 @@ const ProductDetail = route => {
       }>
       <View>
         <ScrollView contentOffset={offside}>
-          <BannerImageCarousel data={images} />
+          <BannerImageCarousel isUri data={images} />
           <View style={style.topIconContained}>
             <IconContained
               onPress={() => navigate.goBack()}
@@ -236,50 +237,71 @@ const ProductDetail = route => {
           </View>
           <View style={style.body}>
             <Text variant="headlineMedium">{label}</Text>
-            <View style={style.firstSection}>
-              <View style={style.starIconContained}>
-                <AntDesign name="star" size={20} color={theme.colors.primary} />
-                <Text variant="titleMedium" style={style.titleIcon}>
-                  {`${review} Review`}
-                </Text>
-              </View>
-              <View style={style.clockIconContained}>
-                <AntDesign
-                  name="clockcircle"
-                  size={20}
-                  color={theme.colors.primary}
-                />
-                <Text variant="titleMedium" style={style.titleIcon}>
-                  {duration || '5 min'}
-                </Text>
-              </View>
+            <View style={style.chip}>
+              <Chip
+                readOnly
+                data={topRated}
+                keyExtractor={item => item.value}
+              />
             </View>
             <View style={style.contentContainer}>
-              <View style={style.price}>
-                <Text variant="headlineSmall" style={{}}>
-                  {FormatCurrency(price * quantity)}
-                </Text>
+              <View>
+                <View style={style.price}>
+                  <Text variant="headlineSmall" style={{}}>
+                    {FormatCurrency(price * quantity)}
+                  </Text>
+                </View>
+                <View style={style.firstSection}>
+                  <View style={style.starIconContained}>
+                    <AntDesign
+                      name="star"
+                      size={20}
+                      color={theme.colors.primary}
+                    />
+                    <Text variant="titleMedium" style={style.titleIcon}>
+                      {`${review} Review`}
+                    </Text>
+                  </View>
+                  <View style={style.clockIconContained}>
+                    <AntDesign
+                      name="clockcircle"
+                      size={20}
+                      color={theme.colors.primary}
+                    />
+                    <Text variant="titleMedium" style={style.titleIcon}>
+                      {duration || '5 min'}
+                    </Text>
+                  </View>
+                </View>
               </View>
               <View style={style.btnCounter}>
-                <MyButton
+                <IconButton
+                  icon="minus"
                   disabled={quantity <= 1}
-                  onPress={() => setQuantity(prev => prev - 1)}
-                  small
                   mode="contained"
-                  title="-"
+                  containerColor={theme.colors.error}
+                  iconColor={theme.colors.white}
+                  style={style.iconButton}
+                  onPress={() => setQuantity(prev => prev - 1)}
                 />
                 <View style={style.valueCounter}>
                   <Text style={style.quantity}>{quantity}</Text>
                 </View>
-                <MyButton
-                  onPress={() => setQuantity(prev => prev + 1)}
-                  small
-                  title="+"
+                <IconButton
+                  icon="plus"
                   mode="contained"
+                  containerColor={theme.colors.primary}
+                  iconColor={theme.colors.white}
+                  style={style.iconButton}
+                  onPress={() => setQuantity(prev => prev + 1)}
                 />
               </View>
             </View>
-            <Text style={style.desc}>{desc}</Text>
+
+            <View style={style.descContainer}>
+              <Text style={style.desc}>Description</Text>
+              <Text>{desc}</Text>
+            </View>
             {MemoSugestion}
           </View>
         </ScrollView>

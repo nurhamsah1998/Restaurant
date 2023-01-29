@@ -23,6 +23,7 @@ export const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#11a04eff',
+    lightPrimary: '#d1fae3',
     secondary: '#e7a518ff',
     typography: '#0d0d0d',
     greenTeal: '#00e673',

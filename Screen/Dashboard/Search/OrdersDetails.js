@@ -20,8 +20,9 @@ function Orders(route) {
   const {width} = Dimensions.get('window');
   const style = StyleSheet.create({
     container: {
-      padding: 10,
+      paddingHorizontal: 10,
       flex: 1,
+      backgroundColor: theme.colors.white,
     },
     button: {
       flexDirection: 'row',
@@ -48,9 +49,11 @@ function Orders(route) {
       width: 250,
       height: 250,
       padding: 15,
+      borderWidth: 1,
+      borderColor: theme.colors.backdrop,
       borderRadius: 20,
-      shadowColor: '#000',
-      elevation: 10,
+      // shadowColor: '#000',
+      // elevation: 10,
     },
     images: {width: '100%', height: '100%'},
     qrCode: {
@@ -87,8 +90,8 @@ function Orders(route) {
       maxWidth: width / 1.7,
     },
     main: {
-      justifyContent: 'center',
-      alignItems: 'center',
+      // justifyContent: 'center',
+      // alignItems: 'center',
       flex: 1,
     },
     ItemSeparatorComponent: {
@@ -161,7 +164,6 @@ function Orders(route) {
       <View style={style.container}>
         <HeaderBack
           onPressBack={() => navigate.navigate(parent, {screen: child})}
-          marginBottom={0}
           title="Orders"
         />
         <View style={style.main}>

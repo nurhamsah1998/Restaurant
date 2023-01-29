@@ -5,7 +5,6 @@ import IconContained from './IconContained';
 import {useNavigation} from '@react-navigation/native';
 
 function HeaderBack({title, onPressBack}) {
-  const navigate = useNavigation();
   return (
     <View
       style={{

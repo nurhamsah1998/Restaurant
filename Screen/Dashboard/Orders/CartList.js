@@ -79,7 +79,6 @@ function CartList() {
 
   const style = StyleSheet.create({
     container: {
-      paddingHorizontal: 10,
       flex: 1,
       backgroundColor: theme.colors.white,
     },
@@ -100,6 +99,16 @@ function CartList() {
       paddingHorizontal: 10,
       paddingVertical: 5,
     },
+    cartList: {flex: 1},
+    sectionTitle: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: 10,
+    },
+    headerBack: {
+      paddingHorizontal: 10,
+    },
   });
   return (
     <BottomSheetScrollViewComponent
@@ -117,14 +126,10 @@ function CartList() {
         />
       }>
       <View style={style.container}>
-        <HeaderBack onPressBack={() => navigation.goBack()} title="Cart" />
-        <View
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
+        <View style={style.headerBack}>
+          <HeaderBack onPressBack={() => navigation.goBack()} title="Cart" />
+        </View>
+        <View style={style.sectionTitle}>
           <Text style={style.title}>Upcoming Orders</Text>
           <Button
             disabled={isEmptyCart}
@@ -153,7 +158,7 @@ function CartList() {
             Clear all
           </Button>
         </View>
-        <View style={{flex: 1}}>
+        <View style={style.cartList}>
           {loading ? (
             <View style={style.titleLoadingContainer}>
               <ActivityIndicator

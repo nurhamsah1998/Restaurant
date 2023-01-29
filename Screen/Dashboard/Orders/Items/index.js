@@ -37,13 +37,14 @@ export const EmptyData = ({firstTitle, secondTitle, thirtTitle}) => {
   );
 };
 function Index({isEmptyCart, totalAmountCart, cart}) {
+  const {height} = Dimensions.get('window');
   const style = StyleSheet.create({
-    containerEmptcontainerListProductyData: {
+    containerListProduct: {
       paddingBottom: 0,
       height: height / 1.2,
     },
   });
-  const {height} = Dimensions.get('window');
+
   return (
     <View style={style.containerListProduct}>
       {isEmptyCart ? (
