@@ -4,12 +4,12 @@ import {Text, Button, ActivityIndicator} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
-import BottomSheetScrollViewComponent from '../../../Component/Element/BottomSheetScrollViewComponent';
-import Items from './Items';
-import CheckoutContent from '../Search/CheckoutContent';
-import {theme} from '../../../App';
-import HeaderBack from '../../../Component/Element/HeaderBack';
-import MyButton from '../../../Component/Element/MyButton';
+import BottomSheetScrollViewComponent from '../../../../Component/Element/BottomSheetScrollViewComponent';
+import Items from '../../../Dashboard/Orders/Items';
+import CheckoutContent from '../../../Dashboard/Search/CheckoutContent';
+import {theme} from '../../../../App';
+import HeaderBack from '../../../../Component/Element/HeaderBack';
+import MyButton from '../../../../Component/Element/MyButton';
 
 function CartList() {
   const navigation = useNavigation();

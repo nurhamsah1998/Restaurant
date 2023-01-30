@@ -18,6 +18,7 @@ const BottomSheetScrollViewComponent = ({
   cancelLabel,
   submitLabel,
   triggerCallBack,
+  onClose,
   readOnly = false,
 }) => {
   // variables
@@ -106,6 +107,7 @@ const BottomSheetScrollViewComponent = ({
         index={-1}
         snapPoints={snapPoints}
         backdropComponent={renderBackdrop}
+        onClose={onClose}
         footerComponent={renderFooter}>
         <Text style={styles.title}>{title}</Text>
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>

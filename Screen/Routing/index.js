@@ -9,7 +9,8 @@ import DashboardRouteStack from './DashboardRouteStack';
 import LoadingSplashScreen from './LoadingSplashScreen';
 import ProductDetail from '../Dashboard/Search/ProductDetail';
 import OrdersDetails from '../Dashboard/Search/OrdersDetails';
-import CartList from '../Dashboard/Orders/CartList';
+import CartList from './Header/CartScreen/CartList';
+import FavoriteList from './Header/FavoriteScreen/FavoriteList';
 
 function Index() {
   const auth = useSelector(auth => auth.auth);
@@ -53,6 +54,11 @@ function Index() {
           options={{headerShown: false}}
           name="CartList"
           component={CartList}
+        />
+        <RootDashboardNavigationStack.Screen
+          options={{headerShown: false}}
+          name="FavoriteList"
+          component={FavoriteList}
         />
       </RootDashboardNavigationStack.Navigator>
     );

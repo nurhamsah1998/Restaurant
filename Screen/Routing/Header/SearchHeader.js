@@ -5,13 +5,16 @@ import {useIsFocused} from '@react-navigation/native';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
 
+import {open} from '../../../Store/BottomSheetReducer';
 import MyTextField from '../../../Component/Element/MyTextField';
 import {theme} from '../../../App';
 import Cart from './Cart';
 
 function SearchHeader() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [cart, setCart] = React.useState([]);
   const getData = async () => {
     try {
@@ -72,10 +75,10 @@ function SearchHeader() {
           sx={{flex: 2, marginRight: 10}}
         />
         <View style={style.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => dispatch(open())}>
             <FontAwesome name="filter" size={25} color={theme.colors.white} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('FavoriteList')}>
             <AntDesign
               name="heart"
               size={25}

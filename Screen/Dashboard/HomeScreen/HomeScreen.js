@@ -132,12 +132,12 @@ function HomeScreen() {
         <Text variant="titleMedium" style={style.title}>
           Find the food that always suits you
         </Text>
-        <BannerImageCarousel
+        {/* <BannerImageCarousel
           isBanner
           autoPlay
           mode="parallax"
           data={bannerImage}
-        />
+        /> */}
         <View style={style.viewContainer}>
           <ScrollView
             showsHorizontalScrollIndicator={false}

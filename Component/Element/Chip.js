@@ -10,6 +10,7 @@ function Chip({
   selectedCategory,
   keyExtractor,
   readOnly,
+  isWrap = false,
 }) {
   const colorReadOnly = readOnly
     ? theme.colors.lightPrimary
@@ -34,11 +35,13 @@ function Chip({
       shadowColor: theme.colors.primary,
       borderRadius: 5,
     },
+    flatListContainer: {},
   });
   return (
     <FlatList
       data={data}
       horizontal
+      style={isWrap && style.flatListContainer}
       /// stackoverflow start
       /// question : https://stackoverflow.com/questions/73338922/how-do-i-add-gap-in-between-items-in-flatlist
       /// answered by marcel099 : https://stackoverflow.com/users/13419373/marcel099
@@ -58,6 +61,7 @@ function Chip({
             ]}
             onPress={() => setSelectedIdCategory(index)}>
             <Text
+              variant="titleMedium"
               style={{
                 color:
                   index === selectedCategory ? '#fff' : theme.colors.primary,
