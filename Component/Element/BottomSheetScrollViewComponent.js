@@ -98,6 +98,11 @@ const BottomSheetScrollViewComponent = ({
     ),
     [],
   );
+  // const handleAnimate = params => {
+  //   if (params === -1) {
+  //     console.warn('hello');
+  //   }
+  // };
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.containerChildren}>{children}</View>
@@ -108,6 +113,7 @@ const BottomSheetScrollViewComponent = ({
         snapPoints={snapPoints}
         backdropComponent={renderBackdrop}
         onClose={onClose}
+        // onChange={handleAnimate}
         footerComponent={renderFooter}>
         <Text style={styles.title}>{title}</Text>
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>

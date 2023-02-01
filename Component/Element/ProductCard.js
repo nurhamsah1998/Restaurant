@@ -19,10 +19,9 @@ import {ScrollView} from 'react-native-gesture-handler';
 export const SingleProductCard = ({onPress, data}) => {
   const {width} = Dimensions.get('window');
   const item = data;
-
   const style = StyleSheet.create({
     touchableOpacity: {
-      margin: 5,
+      margin: Math.round(width) > 393 ? 5 : 2,
       // marginTop: 10,
       paddingBottom: 10,
       width: width / 2.21,

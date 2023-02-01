@@ -3,8 +3,9 @@ import {View, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
-import Chip from '../../../Component/Element/Chip';
+import {ChipWrap} from '../../../Component/Element/Chip';
 import {category} from '../../../mockup';
+import SliderComponent from '../../../Component/Element/SliderComponent';
 
 function Filter() {
   const navigation = useNavigation();
@@ -12,14 +13,18 @@ function Filter() {
   const [selectedCategory, setSelectedIdCategory] = React.useState(null);
   return (
     <View>
-      <Text variant="titleMedium">Filter</Text>
-      <Chip
-        isWrap
-        data={category}
-        selectedCategory={selectedCategory}
-        setSelectedIdCategory={setSelectedIdCategory}
-        keyExtractor={item => item.value}
-      />
+      <View>
+        <Text variant="titleMedium">Filter by category food</Text>
+        <ChipWrap
+          data={category}
+          selectedCategory={selectedCategory}
+          setSelectedIdCategory={setSelectedIdCategory}
+        />
+      </View>
+      <View style={{marginTop: 20}}>
+        <Text variant="titleMedium">Select Price Range</Text>
+        <SliderComponent />
+      </View>
     </View>
   );
 }
