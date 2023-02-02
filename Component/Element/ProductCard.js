@@ -16,12 +16,12 @@ import {FormatCurrency} from '../../Component/FormatCurrency';
 import {theme} from '../../App';
 import {ScrollView} from 'react-native-gesture-handler';
 
-export const SingleProductCard = ({onPress, data}) => {
+export const SingleProductCard = ({onPress, data, margin = 2}) => {
   const {width} = Dimensions.get('window');
   const item = data;
   const style = StyleSheet.create({
     touchableOpacity: {
-      margin: Math.round(width) > 393 ? 5 : 2,
+      margin: Math.round(width) > 393 ? 5 : margin,
       // marginTop: 10,
       paddingBottom: 10,
       width: width / 2.21,

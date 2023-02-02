@@ -580,10 +580,6 @@ export const topRated = [
     label: 'Bigger Size',
     value: 'bigger_size',
   },
-  {
-    label: 'Most Order',
-    value: 'most_order',
-  },
 ];
 export const product = [
   {

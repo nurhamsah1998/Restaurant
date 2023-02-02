@@ -24,6 +24,7 @@ function SugestionSection({
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {item.data.map((content, contentIndex) => (
                 <SingleProductCard
+                  margin={5}
                   onPress={() => onPressItem(content)}
                   key={contentIndex}
                   data={content}

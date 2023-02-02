@@ -45,9 +45,9 @@ function SearchScreen({navigation}) {
   return (
     <BottomSheetScrollViewComponent
       onClose={() => dispatch(close())}
-      readOnly
       title="Filter"
       sheetRef={sheetRef}
+      submitLabel="Apply"
       cancelLabel="Close"
       content={<Filter />}>
       <View style={style.container}>

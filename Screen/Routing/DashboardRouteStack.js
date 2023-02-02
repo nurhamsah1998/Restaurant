@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {View, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import Animated, {SlideInDown, SlideInUp} from 'react-native-reanimated';
@@ -29,10 +29,10 @@ function DashboardRouteStack(route) {
 
   const DashboardNavigationStackTabs = createBottomTabNavigator();
   const iconNavbar = [
-    {iconName: 'home', name: 'Home'},
-    {iconName: 'search1', name: 'Search'},
-    {iconName: 'filetext1', name: 'Orders'},
-    {iconName: 'user', name: 'Account'},
+    {iconName: 'fastfood', name: 'Home'},
+    {iconName: 'search', name: 'Search'},
+    {iconName: 'wysiwyg', name: 'Orders'},
+    {iconName: 'account-circle', name: 'Account'},
   ];
   const bottomSheet = useSelector(props => props.bottomSheet);
   const handleNavbar = ({route, focused}) => ({
@@ -43,11 +43,11 @@ function DashboardRouteStack(route) {
         iconName = focused ? pick.iconName : pick.iconName;
       }
       // You can return any component that you like here!
-      return <AntDesign name={iconName} size={size} color={color} />;
+      return <MaterialIcons name={iconName} size={size} color={color} />;
     },
     tabBarActiveTintColor: theme.colors.primary,
     tabBarInactiveTintColor: theme.colors.backdrop,
-    tabBarLabelStyle: {fontSize: 15, paddingBottom: 10, fontWeight: 'bold'},
+    tabBarLabelStyle: {fontSize: 15, paddingBottom: 10},
     tabBarStyle: {
       position: 'absolute',
       height: 60,

@@ -223,27 +223,27 @@ const ProductDetail = route => {
             />
             <View style={style.topIcon}>
               <IconContained
-                sx={{marginRight: 15}}
+                sx={{marginRight: 8}}
                 onPress={() => navigate.navigate('CartList')}
                 icon="shopping-cart"
                 iconColor={theme.colors.primary}
               />
               <IconContained
+                sx={{marginRight: 8}}
                 onPress={handleFavorite}
                 icon={isFavorite ? 'favorite' : 'favorite-border'}
+                iconColor={theme.colors.primary}
+              />
+              <IconContained
+                // onPress={handleFavorite}
+                // icon={isFavorite ? 'favorite' : 'favorite-border'}
+                icon="share"
                 iconColor={theme.colors.primary}
               />
             </View>
           </View>
           <View style={style.body}>
             <Text variant="headlineMedium">{label}</Text>
-            <View style={style.chip}>
-              <Chip
-                readOnly
-                data={topRated}
-                keyExtractor={item => item.value}
-              />
-            </View>
             <View style={style.contentContainer}>
               <View>
                 <View style={style.price}>
@@ -297,7 +297,13 @@ const ProductDetail = route => {
                 />
               </View>
             </View>
-
+            <View style={style.chip}>
+              <Chip
+                readOnly
+                data={topRated}
+                keyExtractor={item => item.value}
+              />
+            </View>
             <View style={style.descContainer}>
               <Text style={style.desc}>Description</Text>
               <Text>{desc}</Text>
