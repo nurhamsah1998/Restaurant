@@ -6,19 +6,24 @@ import {FormatCurrency} from '../FormatCurrency';
 import {theme} from '../../App';
 import IconContained from './IconContained';
 import MyButton from './MyButton';
+import Seperator from './Seperator';
 
-function ListProduct({data}) {
+function ListProduct({
+  data,
+  isFavorite,
+  cancelButtonLabel,
+  submitButtonLabel,
+  bottom = 80,
+}) {
   const [quantity, setQuantity] = React.useState(1);
   const style = StyleSheet.create({
     itemSeparatorComponent: {height: 20},
-    listFooterComponent: {height: 80, width: '100%'},
+    listFooterComponent: {height: bottom, width: '100%'},
     renderItemContainer: {
       flexDirection: 'row',
       borderRadius: 10,
     },
     imageContainer: {
-      // elevation: 5,
-      // shadowColor: '#000',
       backgroundColor: theme.colors.divider,
       borderRadius: 10,
     },
@@ -56,6 +61,9 @@ function ListProduct({data}) {
     main: {
       marginHorizontal: 10,
     },
+    btnIsFavorite: {
+      flexDirection: 'row',
+    },
   });
   return (
     <FlatList
@@ -64,7 +72,7 @@ function ListProduct({data}) {
       ListFooterComponent={<View style={style.listFooterComponent} />}
       renderItem={({item, index}) => {
         return (
-          <View style={style.main}>
+          <View style={style.main} key={index}>
             <View
               style={[
                 style.renderItemContainer,
@@ -121,17 +129,28 @@ function ListProduct({data}) {
                 </View>
               </View>
             </View>
-            <MyButton
-              sx={{marginTop: 10}}
-              small
-              color="error"
-              title="Cancel This Order"
-            />
+            <View style={style.btnIsFavorite}>
+              <MyButton
+                sx={{marginTop: 10, flex: 1}}
+                small
+                color="error"
+                title={cancelButtonLabel}
+              />
+              {isFavorite ? <Seperator /> : null}
+              {isFavorite ? (
+                <MyButton
+                  sx={{marginTop: 10, flex: 1}}
+                  small
+                  mode="contained"
+                  color="primary"
+                  title={submitButtonLabel}
+                />
+              ) : null}
+            </View>
           </View>
         );
       }}
       data={data}
-      keyExtractor={item => item.label}
     />
   );
 }
