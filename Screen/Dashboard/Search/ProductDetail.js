@@ -16,6 +16,7 @@ import CheckoutContent from './CheckoutContent';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
 import Chip from '../../../Component/Element/Chip';
 import {topRated} from '../../../mockup';
+import Seperator from '../../../Component/Element/Seperator';
 
 const ProductDetail = route => {
   const sheetRef = useRef(null);
@@ -312,11 +313,8 @@ const ProductDetail = route => {
           </View>
         </ScrollView>
         <View style={style.bottomButton}>
-          <MyButton
-            title="Add to cart"
-            onPress={onAddCart}
-            sx={{marginRight: 20}}
-          />
+          <MyButton title="Add to cart" onPress={onAddCart} />
+          <Seperator />
           <MyButton
             onPress={() => sheetRef.current?.snapToIndex(1)}
             title="Checkout"

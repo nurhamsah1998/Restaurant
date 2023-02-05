@@ -54,7 +54,7 @@ function Index({isEmptyCart, totalAmountCart, cart}) {
           thirtTitle="Here!"
         />
       ) : (
-        <ListProduct data={cart} />
+        <ListProduct cancelButtonLabel="Remove from cart" data={cart} />
       )}
     </View>
   );

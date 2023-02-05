@@ -15,6 +15,7 @@ import {theme} from '../../../App';
 import MyButton from '../../../Component/Element/MyButton';
 import BottomSheetScrollViewComponent from '../../../Component/Element/BottomSheetScrollViewComponent';
 import {FormatCurrency} from '../../../Component/FormatCurrency';
+import Seperator from '../../../Component/Element/Seperator';
 
 function Orders(route) {
   const {width} = Dimensions.get('window');
@@ -97,7 +98,6 @@ function Orders(route) {
     ItemSeparatorComponent: {
       height: 10,
     },
-    seperatorButton: {marginHorizontal: 5},
     divider: {marginVertical: 5},
   });
   const listOrders = [route?.route?.params];
@@ -202,7 +202,7 @@ function Orders(route) {
                 }
                 title="Cancel My Order"
               />
-              <View style={style.seperatorButton} />
+              <Seperator />
               <MyButton
                 mode="contained"
                 sx={{flex: 1}}
